@@ -11,80 +11,81 @@
 </head>
 
 <body>
-	<div id="container" >
+	<DIV id="container">
+	
+		<DIV id="header" class="header">
+		
+			<div class = "logo">
+				<img src="img/big-logo-small.png" alt="logo">
+			</div>
+			<div class = "quiz">Quiz</div>
 
+			<div class = "anmelden">Anmelden</div>
 
-		<div id="content">
+		
+		</DIV>
+		
+		<DIV id="content" class="content">
 			
 			
 			<form action="" method="get">
 			
-				<h2 class="inputError">Persönliche Daten</h2>
-			
-				<p>
-						<label for="firstname">Vorname </label> 
-						<input
-							type="text" id="firstname" name="firstname">
-						</input> 
-						<br/> 
-						<label for="lastname">Nachname </label>
-						<input
-							type="text" id="lastname" name="lastname" />
-						<br/> 
-						<label for="birthday">Geburtstag </label>
-						<input
-							type="text" id="birthday" name="birthday" /> 
-						<label
-							id="birthdayErrorLable">Verwenden sie bitte folgendes Datumsformat: dd.mm.yyyy (z.B 24.12.2012)	</label>
-						<br/> 
-						<label for="sex">Geschlecht </label> 
-						<select title="genre" id="sex">
-							<option value="male">maenlich</option>
-							<option value="female">weiblich</option>
-						</select>
-						<br/>
-				</p>
+				<h2>Persönliche Daten</h2>	
 				
-				<h2>Login Daten</h2>
 				
-				<p>
-					<label for="username">Benutzername </label> 
-					<input type="text" id="username" name="username" /> 
-					<label id="userNameErrorLable">
-						Der	Benutzername muss mindestens 4 Zeichen und darf maximal 8 Zeichen
-							enthalten
-					</label>
-					<br /> 
-					<label for="password">Passwort</label> 
-					<input type="password" id="password" name="password" /> 
-					<label id="passwordErrorLable">Der Passwort muss mindestens 4 Zeichen und darf 
-						maximal 8 Zeichen enthalten
-					</label>
-					<br />
-	
-				</p>
 				
-				<p>
-					<div id="registerButton">
-						Registieren
+				
+					<p>
+					<label class="inputLabel" for="firstname">Vorname: </label>
+					<input class="inputText" type="text" id="firstname" name="firstname"></input>
+					</p>
+					<p>
+					<label class="inputLabel" for="lastname">Nachname: </label>
+					<input class="inputText" type="text" id="lastname" name="lastname"></input>
+					</p>
+					<p>
+					<label class="inputLabel" for="birthday">Geburtstag: </label>
+					<input class="inputText" type="text" id="birthday" name="birthday"></input>
+					</p>
+					<p>
+					<label class="inputLabel">Geschlecht: </label> 
+					<select class="inputText" title="Geschlecht">
+						<option value="male">Mänlich</option>
+						<option value="female">Weiblich</option>
+					</select>
+					</p>
+				
 						
-					</div>
-				</p>
-				
-				<div id="registrationFooter">
-					<p>Mit "*" kenngezeichnete Felder sind Pflichtfelder</p>
-				</div>
-				
-				<div id="footer">
-					<p>Copyright 2014 BIG Quiz</p>
-				</div>
+				<h2>Login Daten</h2>
+					
+					<p>
+					<label class="inputLabel" for="userName">Benutzername*: </label>
+					<input class="inputText" type="text" id="userName" name="userName"></input>
+					</p>
+					<p>
+					<label class="inputLabel" for="mypass">Passwort*: </label>
+					<input class="inputText" type="password" id="mypass" name="mypass"></input>
+					</p>
+					
+					<p>
+					<input type="submit" id="buttonRegister" value="Registrieren" />
+					</p>
 			
 			</form>
+		
+		</DIV>
+		
+		<DIV id="footer" class="footer">
+			<p class="noteLabel">
+				Mit * kenngezeichnete Felder sind Pflichtfelder
+			</p>
 			
-			
-		</div>
-
-	</div>
+			<p class="noteCopyright">
+				&copy 2014 BIG Quiz
+			</p>
+		</DIV>
+		
+	</DIV>
 </body>
 
 </html>
