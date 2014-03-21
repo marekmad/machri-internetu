@@ -13,6 +13,7 @@
 
 
 <p>countdown: <span id="countdown">00:30</span></p>
+<progress id="progressElement" value="10" max="30"></progress>  
 
 
 </body>
@@ -30,6 +31,8 @@ var interval = setInterval(function() {
     counter++;
     // Display 'counter' wherever you want to display it.
     span = document.getElementById("countdown");
+    progressBar = document.getElementById("progressElement");
+    progressBar.value = 30-counter;
     span.innerHTML = secToMMSS(30-counter);
     if (counter == 30) {
         counter=-1;
