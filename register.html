@@ -1,91 +1,195 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C/DTD XHTML 1.1//EN"
-"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de">
 
-<head>
-<title>Register</title>
+    <head>
+        <title>Register</title>
 
-<link href="styles.css" rel="stylesheet" type="text/css" />
+        <link href="styles.css" rel="stylesheet" type="text/css" />
 
-</head>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/framework.js"></script>
 
-<body>
-	<DIV id="container">
-	
-		<DIV id="header" class="header">
-		
-			<div class = "logo">
-				<img src="img/big-logo-small.png" alt="logo">
-			</div>
-			<div class = "quiz">Quiz</div>
 
-			<div class = "anmelden">Anmelden</div>
 
-		
-		</DIV>
-		
-		<DIV id="content" class="content">
-			
-			
-			<form action="" method="get">
-			
-				<h2>Persönliche Daten</h2>	
-				
-				
-				
-				
-					<p>
-					<label class="inputLabel" for="firstname">Vorname: </label>
-					<input class="inputText" type="text" id="firstname" name="firstname"></input>
-					</p>
-					<p>
-					<label class="inputLabel" for="lastname">Nachname: </label>
-					<input class="inputText" type="text" id="lastname" name="lastname"></input>
-					</p>
-					<p>
-					<label class="inputLabel" for="birthday">Geburtstag: </label>
-					<input class="inputText" type="text" id="birthday" name="birthday"></input>
-					</p>
-					<p>
-					<label class="inputLabel">Geschlecht: </label> 
-					<select class="inputText" title="Geschlecht">
-						<option value="male">Mänlich</option>
-						<option value="female">Weiblich</option>
-					</select>
-					</p>
-				
-						
-				<h2>Login Daten</h2>
-					
-					<p>
-					<label class="inputLabel" for="userName">Benutzername*: </label>
-					<input class="inputText" type="text" id="userName" name="userName"></input>
-					</p>
-					<p>
-					<label class="inputLabel" for="mypass">Passwort*: </label>
-					<input class="inputText" type="password" id="mypass" name="mypass"></input>
-					</p>
-					
-					<p>
-					<input type="submit" id="buttonRegister" value="Registrieren" />
-					</p>
-			
-			</form>
-		
-		</DIV>
-		
-		<DIV id="footer" class="footer">
-			<p class="noteLabel">
-				Mit * kenngezeichnete Felder sind Pflichtfelder
-			</p>
-			
-			<p class="noteCopyright">
-				&copy 2014 BIG Quiz
-			</p>
-		</DIV>
-		
-	</DIV>
-</body>
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+                $("#submitButtonEn").addClass("show");
+                $("#submitButtonDis").removeClass("show");
+
+                var passwordB = false;
+                var birthdayB = false;
+                var userB = false;
+
+                function check() {
+                    //alert("check");
+
+
+                    if (passwordB && userB && birthdayB)
+                    {
+                        //enable
+                        document.getElementById("buttonRegister").disabled = false;
+                        //alert("disabled = false");
+
+                    }
+                    else
+                    {
+                        //disable
+                        document.getElementById("buttonRegister").disabled = true;
+                        //alert("disabled = true");
+
+                    }
+
+
+                }
+
+
+                $('#birthday').keyup(function()
+                {
+
+                    var birthday = getNormalizedDateString("#birthday");
+                    if (!birthday.match(/^\d{1,2}\.\d{1,2}\.\d{4}$/))
+                    {
+                        if (birthday == '')
+                        {
+                            birthdayB = true;
+                            //alert("birthaday OK");
+                        }
+                        else
+                        {
+                            birthdayB = false;
+
+                        }
+                    }
+                    else
+                    {
+                        birthdayB = true;
+                        //alert("birthaday OK");
+
+                    }
+                    check();
+
+
+                });
+
+                $('#userName').keyup(function()
+                {
+                    var username = document.getElementById("userName").value;
+
+                    if ((username.length < 4 | username.length > 8)) {
+                        userB = false;
+
+                    } else {
+                        userB = true;
+                        //alert("user OK");
+
+                    }
+                    ;
+
+                    check();
+
+                });
+
+                $('#mypass').keyup(function()
+                {
+                    var password = document.getElementById("mypass").value;
+                    if ((password.length < 4 | password.length > 8)) {
+                        passwordB = false;
+
+                    } else {
+                        passwordB = true;
+                        //alert("password OK");
+
+                    }
+                    ;
+
+                    check();
+
+                });
+
+            });
+        </script>
+
+    </head>
+
+    <body>
+        <DIV id="container">
+
+            <DIV id="header" class="header">
+
+                <div class = "logo">
+                    <img src="img/big-logo-small.png" alt="logo">
+                </div>
+                <div class = "quiz">Quiz</div>
+
+                <div class = "anmelden">Anmelden</div>
+
+
+            </DIV>
+
+            <DIV id="content" class="content">
+
+
+                <form action="" method="get">
+
+                    <h2>Persönliche Daten</h2>	
+
+
+
+
+                    <p>
+                        <label class="inputLabel" for="firstname">Vorname: </label>
+                        <input class="inputText" type="text" id="firstname" name="firstname"></input>
+                    </p>
+                    <p>
+                        <label class="inputLabel" for="lastname">Nachname: </label>
+                        <input class="inputText" type="text" id="lastname" name="lastname"></input>
+                    </p>
+                    <p>
+                        <label class="inputLabel" for="birthday">Geburtstag: </label>
+                        <input class="inputText" type="text" id="birthday" name="birthday"></input>
+                    </p>
+                    <p>
+                        <label class="inputLabel">Geschlecht: </label> 
+                        <select class="inputText" title="Geschlecht">
+                            <option value="male">Mänlich</option>
+                            <option value="female">Weiblich</option>
+                        </select>
+                    </p>
+
+
+                    <h2>Login Daten</h2>
+
+                    <p>
+                        <label class="inputLabel" for="userName">Benutzername*: </label>
+                        <input class="inputText" type="text" id="userName" name="userName"></input>
+                    </p>
+                    <p>
+                        <label class="inputLabel" for="mypass">Passwort*: </label>
+                        <input class="inputText" type="password" id="mypass" name="mypass"></input>
+                    </p>
+
+                    <p>
+                        <input type="submit"  disabled="disabled" id="buttonRegister" value="Registrieren" />
+                    </p>
+
+                </form>
+
+            </DIV>
+
+            <DIV id="footer" class="footer">
+                <p class="noteLabel">
+                    Mit * kenngezeichnete Felder sind Pflichtfelder
+                </p>
+
+                <p class="noteCopyright">
+                    &copy 2014 BIG Quiz
+                </p>
+            </DIV>
+
+        </DIV>
+    </body>
 
 </html>
