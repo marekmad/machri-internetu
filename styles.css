@@ -1,6 +1,254 @@
 @charset "utf-8";
 
-
-.inputError{
-	color: red;
+body {
+	background: url(img/style1-background.png);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin: 0px;
+	padding: 0px;
 }
+
+.header{
+	background-color: #033058;
+	height: 60px;
+}
+
+.content
+{
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3em;
+}
+
+.footer
+{
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+h2 {
+	color: white;
+	font-family: "Arial";
+	font-size: 150%;
+	
+}
+
+h4 {
+	float:left;
+	color: white;
+	font-family: "Arial";
+	font-size: 90%;
+
+}
+
+.inputLabel {
+	color: white;
+	font-family: "Arial";
+	font-size: 90%;
+}
+
+.noteLabel {
+	color: white;
+	font-family: "Times New Roman";
+	margin-top:5em;
+	margin-left:3em;
+	
+}
+
+.noteCopyright {
+	color: white;
+	font-family: "Arial";
+	margin-top:5em;
+	margin-left:9em;
+	float:left;
+}
+
+
+.inputText {
+	border-radius: 0.3em;
+	width:250px;
+	float:right;
+}
+
+
+.buttonStyle {
+	border-radius: 0.3em;
+	width:200px;
+	float:right;
+}
+
+#buttonRegister{
+	background-image: url(img/white-arrow-right.png);
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	width:14em;
+	float: right;
+	font-family: Arial;
+	color: white;
+	display: block;
+	background-color: green;
+	border-color:#669900;
+	padding: 0.3em 2.4em;
+	border-radius:0.3em;
+}
+
+#buttonRegister:disabled{
+	background-image: url(img/white-arrow-right.png);
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	width:14em;
+	float: right;
+	font-family: Arial;
+	color: white;
+	display: block;
+	background-color: lightgray;
+	border-color:#669900;
+	padding: 0.3em 2.4em;
+	border-radius:0.3em;
+}
+
+
+.logo{
+	height: 50px;
+	width: 50px;
+	float:left;
+	padding-top: 5px;
+	padding-left: 10px;
+	margin:2px;
+}
+
+.quiz{
+	margin-top: 15px;
+	margin-left: 10px;
+	float: left;
+	font-family: Arial;
+	font-size: 150%;
+	font-weight: 900;
+	color: white;
+
+}
+
+.anmelden{
+	float: right;
+	margin-top: 14px;
+	margin-right: 50px;
+	font-family: Arial;
+	font-size: 110%;
+	font-weight: bold;
+	color: white;
+	display: block;
+	background-color: orange;
+	padding: 5px 40px;
+	border-radius:10px;
+}
+.anmelden:hover{
+	background-color:#033058;
+}
+.anmelden:active{
+	background-color: white;
+}
+
+
+.ewaSpieler{
+	margin:20px;
+	font-weight: bold;
+}
+
+.ewa{
+	margin:10px;
+	float: center;
+	font-family: Arial;
+	font-size: 110%;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+}
+
+.spieler1{
+	margin-left: 120px;
+	float: left;
+	font-size: 90%;
+	font-family: Arial;
+	color: white;
+}
+.spieler2{
+	margin-right: 120px;
+	font-size: 90%;
+	float: right;
+	font-family: Arial;
+	color: white;
+}
+
+.lva{
+	margin-top: 5%;
+	text-align: center;
+	font-size: 150%;
+	font-family: Arial;
+	font-weight: lighter;
+	color: white;
+	letter-spacing: 1px;
+
+}
+
+.questions{
+margin-top: 2%;
+}
+
+.question1{
+	font-size: 110%;
+	font-family: Arial;
+	padding-left: 125px;
+	padding-right: 125px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-left: 20%;
+	float: left;
+	background-color: blue;
+	border-radius:10px;
+	color:white;
+}
+.question2{
+	font-size: 110%;
+	font-family: Arial;
+	padding-left: 125px;
+	padding-right: 125px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-right: 20%;
+	float: right;
+	background-color: blue;
+	border-radius:10px;
+	color:white;
+}
+.question3{
+	margin-top: 10px;
+	font-size: 110%;
+	font-family: Arial;
+	padding-left: 125px;
+	padding-right: 125px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-left: 20%;
+	float: left;
+	background-color: blue;
+	border-radius:10px;
+	color:white;
+}
+.question4{
+	margin-top: 10px;
+	font-size: 110%;
+	font-family: Arial;
+	padding-left: 125px;
+	padding-right: 125px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-right: 20%;
+	float: right;
+	background-color: blue;
+	border-radius:10px;
+	color:white;
+}
+
