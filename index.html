@@ -5,6 +5,31 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	<title >QUIZ</title>
 
+
+<script src="js/jquery.js"></script>
+<script src="js/framework.js"></script>
+<script>
+
+ 
+
+var counter = 0;
+var interval = setInterval(function() {
+    counter++;
+    // Display 'counter' wherever you want to display it.
+    span = document.getElementById("countdown");
+    progressBar = document.getElementById("progressElement");
+    progressBar.value = 30-counter;
+    span.innerHTML = secToMMSS(30-counter);
+    if (counter == 30) {
+        counter=-1;
+    }
+}, 1000);
+
+
+
+</script>
+
+
 </head>
 
 <body>
@@ -40,7 +65,8 @@
 <div >
 	<input type ="submit" value = "weiter" id ="buttonWeiter">
 </div>
-
+<p>Verbleibende Zeit: <span id="countdown">00:30</span></p>
+<progress id="progressElement" value="10" max="30"></progress>  
 
 <DIV id="footer" class="footer">
 	<p class="noteCopyright">
