@@ -2,7 +2,7 @@
 <html>
 <head>
 	
-	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="styles_Juro.css">
 	<title >QUIZ</title>
 
 
@@ -45,9 +45,23 @@ var interval = setInterval(function() {
 </div>
 
 <div class = "ewaSpieler">
+
 	<div class = "spieler1">Spieler 1</div>
 	<div class = "spieler2">Spieler 2</div>
 	<div class = "ewa">EWA</div>
+
+</div>
+<div class = "imgCorrectheit">
+<div class = "imgSpieler1">
+		<img src="img/correct-white.png" alt="" width = "18" height = "18">
+		<img src="img/incorrect-white.png" alt=""width = "18" height = "18">
+		<img src="img/unknown-white.png" alt=""width = "18" height = "18">
+</div>
+<div class = "imgSpieler2">
+		<img src="img/correct-white.png" alt="" width = "18" height = "18">
+		<img src="img/correct-white.png" alt="" width = "18" height = "18">
+		<img src="img/unknown-white.png" alt=""width = "18" height = "18">
+</div>
 </div>
 <div class = "lva">Welche zwei LVAs werden im Modul EWA zusammengefasst?</div>
 
@@ -61,13 +75,15 @@ var interval = setInterval(function() {
 	<div class = "question4">Web Engeneering</div>
 </div>
 </div>
-
-<div >
-	<input type ="submit" value = "weiter" id ="buttonWeiter">
+<div class = "weiterProgressZeit">
+	<div >
+		<input type ="submit" value = "weiter" id ="buttonWeiter">
+	</div>
+	<div class = "progressZeit">
+		<p class = "verbleibendeZeit">Verbleibende Zeit: <span id="countdown">00:30</span></p>
+		<progress id="progressElement" value="10" max="30" ></progress>  
+	</div>
 </div>
-<p>Verbleibende Zeit: <span id="countdown">00:30</span></p>
-<progress id="progressElement" value="10" max="30"></progress>  
-
 <DIV id="footer" class="footer">
 	<p class="noteCopyright">
 				&copy 2014 BIG Quiz
