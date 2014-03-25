@@ -33,7 +33,6 @@
 
 
 	<script>
-	
 		$(document).ready(function() {
 
 			var selected = new Array();
@@ -41,87 +40,83 @@
 			selected[2] = false;
 			selected[3] = false;
 			selected[4] = false;
-			
-			var checkMax2Selected = function(){
+
+			var checkMax2Selected = function() {
 				var count = 0;
-				for(var i = 1; i < 5; i++){
-					if(selected[i]){
+				for (var i = 1; i < 5; i++) {
+					if (selected[i]) {
 						count++;
 					}
 				}
-				return count<=1;
-				
+				return count <= 1;
+
 			};
-			
+
 			$("#q1").click(function() {
-				
-				
-				if(!checkMax2Selected() && !selected[1]){
+
+				if (!checkMax2Selected() && !selected[1]) {
 					return;
 				}
-				
-				selected[1]=!selected[1];
-				if(selected[1]){
-					$(this).css("background-color","#033058");//selected
-					$(this).css("color","white");
-				}else{
-					$(this).css("background-color","#b9d6f0");//b9d6f0
-					$(this).css("color","#033058");//b9d6f0
+
+				selected[1] = !selected[1];
+				if (selected[1]) {
+					$(this).css("background-color", "#033058");//selected
+					$(this).css("color", "white");
+				} else {
+					$(this).css("background-color", "#b9d6f0");//b9d6f0
+					$(this).css("color", "#033058");//b9d6f0
 				}
-				
-				
-				
-			});	
-			
+
+			});
+
 			$("#q2").click(function() {
-				
-				if(!checkMax2Selected() && !selected[2]){
+
+				if (!checkMax2Selected() && !selected[2]) {
 					return;
 				}
-				
-				selected[2]=!selected[2];
-				if(selected[2]){
-					$(this).css("background-color","#033058");//selected
-					$(this).css("color","white");
-				}else{
-					$(this).css("background-color","#b9d6f0");//b9d6f0
-					$(this).css("color","#033058");//b9d6f0
+
+				selected[2] = !selected[2];
+				if (selected[2]) {
+					$(this).css("background-color", "#033058");//selected
+					$(this).css("color", "white");
+				} else {
+					$(this).css("background-color", "#b9d6f0");//b9d6f0
+					$(this).css("color", "#033058");//b9d6f0
 				}
-			});	
-			
+			});
+
 			$("#q3").click(function() {
-				
-				if(!checkMax2Selected() && !selected[3]){
+
+				if (!checkMax2Selected() && !selected[3]) {
 					return;
 				}
-				
-				selected[3]=!selected[3];
-				if(selected[3]){
-					$(this).css("background-color","#033058");//selected
-					$(this).css("color","white");
-				}else{
-					$(this).css("background-color","#b9d6f0");//b9d6f0
-					$(this).css("color","#033058");//b9d6f0
+
+				selected[3] = !selected[3];
+				if (selected[3]) {
+					$(this).css("background-color", "#033058");//selected
+					$(this).css("color", "white");
+				} else {
+					$(this).css("background-color", "#b9d6f0");//b9d6f0
+					$(this).css("color", "#033058");//b9d6f0
 				}
-			});	
-			
+			});
+
 			$("#q4").click(function() {
-				
-				if(!checkMax2Selected() && !selected[4]){
+
+				if (!checkMax2Selected() && !selected[4]) {
 					return;
 				}
-				
-				selected[4]=!selected[4];
-				if(selected[4]){
-					$(this).css("background-color","#033058");//selected
-					$(this).css("color","white");
-				}else{
-					$(this).css("background-color","#b9d6f0");//b9d6f0
-					$(this).css("color","#033058");//b9d6f0
+
+				selected[4] = !selected[4];
+				if (selected[4]) {
+					$(this).css("background-color", "#033058");//selected
+					$(this).css("color", "white");
+				} else {
+					$(this).css("background-color", "#b9d6f0");//b9d6f0
+					$(this).css("color", "#033058");//b9d6f0
 				}
-			});	
+			});
 		});
-		
 	</script>
 
 	<DIV id="container">
