@@ -14,10 +14,18 @@
 
 
         <script type="text/javascript">
+           
+            
+            var HTMLValidation = hasFormValidation();
+            
+
+
+
+
+
             $(document).ready(function() {
 
-                $("#submitButtonEn").addClass("show");
-                $("#submitButtonDis").removeClass("show");
+          
 
                 var passwordB = false;
                 var birthdayB = true;
@@ -49,26 +57,45 @@
                 $('#birthday').keyup(function()
                 {
 
-                    var birthday = getNormalizedDateString("#birthday");
-                    if (!birthday.match(/^\d{1,2}\.\d{1,2}\.\d{4}$/))
-                    {
-                        if (birthday == '')
-                        {
+                    if (HTMLValidation && hasNativeDateInput()) {
+                        var birthday = document.getElementById("birthday");
+                        console.log(birthday.checkValidity());
+                        if(birthday.checkValidity()){
                             birthdayB = true;
-                            //alert("birthaday OK");
+                       
+                        }
+                        else{
+                            birthdayB = false;
+                        }
+                        
+                       
+                    }
+                    else {
+                        var birthday = getNormalizedDateString("#birthday");
+                        if (!birthday.match(/^\d{1,2}\.\d{1,2}\.\d{4}$/))
+                        {
+                            if (birthday == '')
+                            {
+                                birthdayB = true;
+                                //alert("birthaday OK");
+                            }
+                            else
+                            {
+                                birthdayB = false;
+
+                            }
                         }
                         else
                         {
-                            birthdayB = false;
+                            birthdayB = true;
+                            //alert("birthaday OK");
 
                         }
-                    }
-                    else
-                    {
-                        birthdayB = true;
-                        //alert("birthaday OK");
+
 
                     }
+
+
                     check();
 
 
@@ -76,17 +103,32 @@
 
                 $('#userName').keyup(function()
                 {
-                    var username = document.getElementById("userName").value;
-
-                    if ((username.length < 4 | username.length > 8)) {
-                        userB = false;
-
-                    } else {
-                        userB = true;
-                        //alert("user OK");
-
+                    if (HTMLValidation) {
+                        console.log("validating");
+                        var username = document.getElementById("userName");
+                        console.log(username.checkValidity());
+                        if(username.checkValidity()){
+                            userB = true;
+                       
+                        }
+                        else{
+                            userB = false;
+                        }
+                      
                     }
-                    ;
+                    else {
+                        var username = document.getElementById("userName").value;
+
+                        if ((username.length < 4 | username.length > 8)) {
+                            userB = false;
+
+                        } else {
+                            userB = true;
+                            //alert("user OK");
+
+                        }
+                        ;
+                    }
 
                     check();
 
@@ -94,20 +136,37 @@
 
                 $('#mypass').keyup(function()
                 {
-                    var password = document.getElementById("mypass").value;
-                    if ((password.length < 4 | password.length > 8)) {
-                        passwordB = false;
+                    if (HTMLValidation) {
+                         console.log("validating");
+                        var password = document.getElementById("mypass");
+                        console.log(password.checkValidity());
+                        if(password.checkValidity()){
+                            passwordB = true;
+                        }
+                        else{
+                            passwordB = false;
+                        }
+                        
 
-                    } else {
-                        passwordB = true;
-                        //alert("password OK");
 
                     }
-                    ;
+                    else {
+                        var password = document.getElementById("mypass").value;
+                        if ((password.length < 4 | password.length > 8)) {
+                            passwordB = false;
+
+                        } else {
+                            passwordB = true;
+                            //alert("password OK");
+
+                        }
+                        ;
+                    }
 
                     check();
 
                 });
+
 
             });
         </script>
@@ -149,7 +208,7 @@
                     </p>
                     <p>
                         <label class="inputLabel" for="birthday">Geburtstag: </label>
-                        <input class="inputText" type="text" id="birthday" name="birthday"></input>
+                        <input class="inputText" type="date" id="birthday" name="birthday"></input>
                     </p>
                     <p>
                         <label class="inputLabel">Geschlecht: </label> 
@@ -159,16 +218,16 @@
                         </select>
                     </p>
 
-					<BR />
+                    <BR />
                     <h2>Login Daten</h2>
 
                     <p>
                         <label class="inputLabel" for="userName">Benutzername*: </label>
-                        <input class="inputText" type="text" id="userName" name="userName"></input>
+                        <input class="inputText" type="text" id="userName" name="userName" required pattern="^.{4,10}$"></input>
                     </p>
                     <p>
                         <label class="inputLabel" for="mypass">Passwort*: </label>
-                        <input class="inputText" type="password" id="mypass" name="mypass"></input>
+                        <input class="inputText" type="password" id="mypass" name="mypass" required pattern="^.{4,10}$"></input>
                     </p>
 
                     <p>
@@ -193,3 +252,4 @@
     </body>
 
 </html>
+
