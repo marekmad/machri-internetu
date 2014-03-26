@@ -1,27 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C/DTD XHTML 1.1//EN"
-    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de">
 
-    <head>
-    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Register</title>
+<!DOCTYPE html>
 
-        <link href="styles.css" rel="stylesheet" type="text/css" />
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
 
-        <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/framework.js"></script>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="keywords" content="CSS, XHTML, JavaScript" />
+
+<meta name="description" content="UE1, WebEngineering, TU Wien" />
+
+<meta name="author"
+	content="Filip Rydzi(1226452), Juraj Kabzan(1226654), Marek Madarasz(1027541)" />
+
+<title>Register</title>
+
+<link href="styles.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/framework.js"></script>
 
 
 
-        <script type="text/javascript">
+<script type="text/javascript">
            
             
             var HTMLValidation = hasFormValidation();
-            
-
-
-
 
 
             $(document).ready(function() {
@@ -172,85 +177,87 @@
             });
         </script>
 
-    </head>
+</head>
 
-    <body>
-        <DIV id="container">
+<body>
+	<div id="container">
 
-            <DIV id="header" class="header">
+		<div id="header" class="header">
 
-                <div class = "logo">
-                    <img src="img/big-logo-small.png" alt="logo">
-                </div>
-                <div class = "quiz">Quiz</div>
+			<div class="logo">
+				<img src="img/big-logo-small.png" alt="logo">
+			</div>
+			<div class="quiz">Quiz</div>
 
-                <div class = "anmelden">Anmelden</div>
-
-
-            </DIV>
-
-            <DIV id="content" class="content">
+			<div class="anmelden">Anmelden</div>
 
 
-                <form action="" method="get">
+		</div>
 
-                    <h2>Persönliche Daten</h2>	
-
-
+		<div id="content" class="content">
 
 
-                    <p>
-                        <label class="inputLabel" for="firstname">Vorname: </label>
-                        <input class="inputText" type="text" id="firstname" name="firstname"></input>
-                    </p>
-                    <p>
-                        <label class="inputLabel" for="lastname">Nachname: </label>
-                        <input class="inputText" type="text" id="lastname" name="lastname"></input>
-                    </p>
-                    <p>
-                        <label class="inputLabel" for="birthday">Geburtstag: </label>
-                        <input class="inputText" type="date" id="birthday" name="birthday"></input>
-                    </p>
-                    <p>
-                        <label class="inputLabel">Geschlecht: </label> 
-                        <select class="inputText" title="Geschlecht">
-                            <option value="male">Mänlich</option>
-                            <option value="female">Weiblich</option>
-                        </select>
-                    </p>
+			<form method="get">
 
-                    <BR />
-                    <h2>Login Daten</h2>
+				<h2>Persönliche Daten</h2>
 
-                    <p>
-                        <label class="inputLabel" for="userName">Benutzername*: </label>
-                        <input class="inputText" type="text" id="userName" name="userName" required pattern="^.{4,10}$"></input>
-                    </p>
-                    <p>
-                        <label class="inputLabel" for="mypass">Passwort*: </label>
-                        <input class="inputText" type="password" id="mypass" name="mypass" required pattern="^.{4,10}$"></input>
-                    </p>
 
-                    <p>
-                        <input type="submit"  disabled="disabled" id="buttonRegister" value="Registrieren" />
-                    </p>
 
-                </form>
 
-            </DIV>
+				<p>
+					<label class="inputLabel" for="firstname">Vorname: </label> <input
+						class="inputText" type="text" id="firstname" name="firstname">
+				</p>
+				<p>
+					<label class="inputLabel" for="lastname">Nachname: </label> <input
+						class="inputText" type="text" id="lastname" name="lastname">
+				</p>
+				<p>
+					<label class="inputLabel" for="birthday">Geburtstag: </label> <input
+						class="inputText" type="date" id="birthday" name="birthday">
+				</p>
+				<p>
+					<label class="inputLabel">Geschlecht: </label> <select
+						class="inputText" title="Geschlecht">
+						<option value="male">Mänlich</option>
+						<option value="female">Weiblich</option>
+					</select>
+				</p>
 
-            <DIV id="footer" class="footer">
-                <p class="noteLabel">
-                    Mit * kenngezeichnete Felder sind Pflichtfelder
-                </p>
+				<br>
+				<h2>Login Daten</h2>
 
-                <p class="noteCopyright">
-                    &copy 2014 BIG Quiz
-                </p>
-            </DIV>
+				<p>
+					<label class="inputLabel" for="userName">Benutzername*: </label> <input
+						class="inputText" type="text" id="userName" name="userName"
+						required="" pattern="^.{4,10}$">
+				</p>
+				<p>
+					<label class="inputLabel" for="mypass">Passwort*: </label> <input
+						class="inputText" type="password" id="mypass" name="mypass"
+						required="" pattern="^.{4,10}$">
+				</p>
 
-        </DIV>
-    </body>
+				<p>
+					<input type="submit" disabled="disabled" id="buttonRegister"
+						value="Registrieren">
+				</p>
 
+			</form>
+
+		</div>
+
+		<div id="footer" class="footer">
+			<p class="noteLabel">Mit * kenngezeichnete Felder sind
+				Pflichtfelder</p>
+
+			<p class="noteCopyright">© 2014 BIG Quiz</p>
+		</div>
+
+	</div>
+
+
+
+
+</body>
 </html>
-

@@ -4,8 +4,6 @@
 	
 	body {
 	background: url(img/style1-background.png);
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
 	margin: 0px;
 	padding: 0px;
 	}
@@ -98,8 +96,6 @@
 @media screen and (max-width: 399px) {
 	body {
 	background: url(img/style1-background.png);
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
 	margin: 0px;
 	padding: 0px;
 	}
@@ -256,7 +252,6 @@ h4 {
 
 .ewa{
 	margin:10px;
-	float: center;
 	font-family: Arial;
 	font-size: 110%;
 	text-align: center;
