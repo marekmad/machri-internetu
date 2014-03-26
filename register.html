@@ -22,16 +22,15 @@
 <script type="text/javascript" src="js/framework.js"></script>
 
 
+   <script type="text/javascript">
 
-<script type="text/javascript">
-           
-            
+
             var HTMLValidation = hasFormValidation();
 
 
             $(document).ready(function() {
 
-          
+               
 
                 var passwordB = false;
                 var birthdayB = true;
@@ -39,9 +38,7 @@
 
                 function check() {
                     //alert("check");
-
-
-                    if (passwordB && userB && birthdayB)
+                     if (passwordB && userB && birthdayB)
                     {
                         //enable
                         document.getElementById("buttonRegister").disabled = false;
@@ -57,7 +54,29 @@
                     }
 
 
+
+
                 }
+
+                $('#birthday').focus(function()
+                {
+
+                    var birthday = document.getElementById("birthday");
+                    birthday.select();
+                });
+
+
+                $('#birthday').blur(function()
+                {
+                    if (!birthdayB) {
+                        var birthday = document.getElementById("birthday");
+                        birthday.value = 'dd/mm/yyyy';
+                        check();
+                    }
+
+
+                });
+
 
 
                 $('#birthday').keyup(function()
@@ -66,21 +85,23 @@
                     if (HTMLValidation && hasNativeDateInput()) {
                         var birthday = document.getElementById("birthday");
                         console.log(birthday.checkValidity());
-                        if(birthday.checkValidity()){
+                        if (birthday.checkValidity()) {
                             birthdayB = true;
-                       
+
                         }
-                        else{
+                        else {
                             birthdayB = false;
+
                         }
-                        
-                       
+
+
                     }
                     else {
                         var birthday = getNormalizedDateString("#birthday");
                         if (!birthday.match(/^\d{1,2}\.\d{1,2}\.\d{4}$/))
                         {
-                            if (birthday == '')
+                            
+                            if (birthday == '' || birthday == 'dd/mm/yyyy')
                             {
                                 birthdayB = true;
                                 //alert("birthaday OK");
@@ -109,18 +130,19 @@
 
                 $('#userName').keyup(function()
                 {
+                   
                     if (HTMLValidation) {
                         console.log("validating");
                         var username = document.getElementById("userName");
                         console.log(username.checkValidity());
-                        if(username.checkValidity()){
+                        if (username.checkValidity()) {
                             userB = true;
-                       
+
                         }
-                        else{
+                        else {
                             userB = false;
                         }
-                      
+
                     }
                     else {
                         var username = document.getElementById("userName").value;
@@ -143,16 +165,16 @@
                 $('#mypass').keyup(function()
                 {
                     if (HTMLValidation) {
-                         console.log("validating");
+                        console.log("validating");
                         var password = document.getElementById("mypass");
                         console.log(password.checkValidity());
-                        if(password.checkValidity()){
+                        if (password.checkValidity()) {
                             passwordB = true;
                         }
-                        else{
+                        else {
                             passwordB = false;
                         }
-                        
+
 
 
                     }
@@ -176,6 +198,7 @@
 
             });
         </script>
+
 
 </head>
 
@@ -214,7 +237,7 @@
 				</p>
 				<p>
 					<label class="inputLabel" for="birthday">Geburtstag: </label> <input
-						class="inputText" type="date" id="birthday" name="birthday">
+						class="inputText" type="date" id="birthday" name="birthday" value='dd/mm/yyyy'>
 				</p>
 				<p>
 					<label class="inputLabel">Geschlecht: </label> <select
@@ -230,12 +253,12 @@
 				<p>
 					<label class="inputLabel" for="userName">Benutzername*: </label> <input
 						class="inputText" type="text" id="userName" name="userName"
-						required="" pattern="^.{4,10}$">
+						required="" pattern="^.{4,8}$">
 				</p>
 				<p>
 					<label class="inputLabel" for="mypass">Passwort*: </label> <input
 						class="inputText" type="password" id="mypass" name="mypass"
-						required="" pattern="^.{4,10}$">
+						required="" pattern="^.{4,8}$">
 				</p>
 
 				<p>
