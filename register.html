@@ -28,9 +28,15 @@
             var HTMLValidation = hasFormValidation();
 
 
+
+        	 
             $(document).ready(function() {
 
                
+                
+				var birthdayInsert = document.getElementById("birthday");
+        		birthdayInsert.value = 'dd/mm/yyyy';
+        	 
 
                 var passwordB = false;
                 var birthdayB = true;
@@ -71,8 +77,9 @@
                     if (!birthdayB) {
                         var birthday = document.getElementById("birthday");
                         birthday.value = 'dd/mm/yyyy';
-                        check();
+                        birthdayB = true
                     }
+                    check();
 
 
                 });
@@ -98,13 +105,17 @@
                     }
                     else {
                         var birthday = getNormalizedDateString("#birthday");
+                        if(birthday == 'dd/mm/yyyy'){
+                        	birthdayB = true;
+                        }
+                        
                         if (!birthday.match(/^\d{1,2}\.\d{1,2}\.\d{4}$/))
                         {
                             
-                            if (birthday == '' || birthday == 'dd/mm/yyyy')
+                            if (birthday == '')
                             {
                                 birthdayB = true;
-                                //alert("birthaday OK");
+                                alert("birthaday OK");
                             }
                             else
                             {
@@ -237,7 +248,7 @@
 				</p>
 				<p>
 					<label class="inputLabel" for="birthday">Geburtstag: </label> <input
-						class="inputText" type="date" id="birthday" name="birthday" value='dd/mm/yyyy'>
+						class="inputText" type="date" id="birthday" name="birthday">
 				</p>
 				<p>
 					<label class="inputLabel">Geschlecht: </label> <select
