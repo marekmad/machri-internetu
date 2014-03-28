@@ -138,6 +138,15 @@
 
 
                 });
+                
+                $('#userName').blur(function()
+                {
+
+                	if (!userB) {
+                    		alert("Der Benutzername muss minimal aus 4 und maximal aus 8 Zeichen bestehen!");
+                	}
+
+                });
 
                 $('#userName').keyup(function()
                 {
@@ -172,6 +181,15 @@
                     check();
 
                 });
+                
+                $('#mypass').blur(function()
+                {
+
+                	if (!passwordB) {
+                    		alert("Das Password muss minimal aus 4 und maximal aus 8 Zeichen bestehen!");
+                	}
+
+                });
 
                 $('#mypass').keyup(function()
                 {
@@ -185,8 +203,6 @@
                         else {
                             passwordB = false;
                         }
-
-
 
                     }
                     else {
