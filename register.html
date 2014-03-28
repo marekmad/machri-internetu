@@ -91,7 +91,7 @@
 
                     if (HTMLValidation && hasNativeDateInput()) {
                         var birthday = document.getElementById("birthday");
-                        console.log(birthday.checkValidity());
+                        //console.log(birthday.checkValidity());
                         if (birthday.checkValidity()) {
                             birthdayB = true;
 
@@ -141,8 +141,10 @@
                 
                 $('#userName').blur(function()
                 {
-
-                	if (!userB) {
+					var username = document.getElementById("userName").value;
+					
+					
+                	if (!userB && username != '') {
                     		alert("Der Benutzername muss minimal aus 4 und maximal aus 8 Zeichen bestehen!");
                 	}
 
@@ -152,9 +154,9 @@
                 {
                    
                     if (HTMLValidation) {
-                        console.log("validating");
+                        //console.log("validating");
                         var username = document.getElementById("userName");
-                        console.log(username.checkValidity());
+                        //console.log(username.checkValidity());
                         if (username.checkValidity()) {
                             userB = true;
 
@@ -184,8 +186,9 @@
                 
                 $('#mypass').blur(function()
                 {
-
-                	if (!passwordB) {
+				    var password = document.getElementById("mypass").value;
+					 
+                	if (!passwordB && password != '') {
                     		alert("Das Password muss minimal aus 4 und maximal aus 8 Zeichen bestehen!");
                 	}
 
@@ -194,9 +197,9 @@
                 $('#mypass').keyup(function()
                 {
                     if (HTMLValidation) {
-                        console.log("validating");
+                        //console.log("validating");
                         var password = document.getElementById("mypass");
-                        console.log(password.checkValidity());
+                        //console.log(password.checkValidity());
                         if (password.checkValidity()) {
                             passwordB = true;
                         }
