@@ -104,55 +104,65 @@
 				<img src="img/big-logo-small.png" alt="logo" longdesc="URL">
 			</div>
 			<div class="quiz">Quiz</div>
-			<div class="anmelden">Anmelden</div>
+			<div class="anmelden">Abmelden</div>
 		</div>
 		<div class="ewaSpieler">
-			<div class="spieler1">Spieler 1</div>
-			<div class="spieler2">Spieler 2</div>
+			<div class="spieler12">
+				<div class="spieler1imgSpieler1">
+					<div class="spieler1">Spieler 1</div>
+					<div class="imgSpieler1">
+						<img src="img/correct-white.png" alt="" width="18" height="18"
+							longdesc="URL" margin="5px"> <img
+							src="img/incorrect-white.png" alt="" width="18" height="18"
+							longdesc="URL"> <img src="img/unknown-white.png" alt=""
+							width="18" height="18" longdesc="URL">
+					</div>
+				</div>
+				<div class="spieler2imgSpieler2">
+					<div class="spieler2">Spieler 2</div>
+					<div class="imgSpieler2">
+						<img src="img/correct-white.png" alt="" width="18" height="18"
+							longdesc="URL"> <img src="img/correct-white.png" alt=""
+							width="18" height="18" longdesc="URL"> <img
+							src="img/unknown-white.png" alt="" width="18" height="18"
+							longdesc="URL">
+					</div>
+				</div>
+			</div>
 			<div class="ewa">EWA</div>
 		</div>
-		<div class="imgCorrectheit">
-			<div class="imgSpieler1">
-				<img src="img/correct-white.png" alt="" width="18" height="18"
-					longdesc="URL"> <img src="img/incorrect-white.png" alt=""
-					width="18" height="18" longdesc="URL"> <img
-					src="img/unknown-white.png" alt="" width="18" height="18"
-					longdesc="URL">
-			</div>
-			<div class="imgSpieler2">
-				<img src="img/correct-white.png" alt="" width="18" height="18"
-					longdesc="URL"> <img src="img/correct-white.png" alt=""
-					width="18" height="18" longdesc="URL"> <img
-					src="img/unknown-white.png" alt="" width="18" height="18"
-					longdesc="URL">
-			</div>
+
+	</div>
+	<div class="lva">Welche zwei LVAs werden im Modul EWA
+		zusammengefasst?</div>
+	<div>
+		<div class="questions">
+			<div id="q1" class="question1">IT Strategorie</div>
+			<div id="q2" class="question2">Web Engeneering</div>
 		</div>
-		<div class="lva">Welche zwei LVAs werden im Modul EWA
-			zusammengefasst?</div>
+		<div class="questions2">
+			<div id="q3" class="question3">Semistrukturierte Daten</div>
+			<div id="q4" class="question4">Objektorientierte Modellierung</div>
+		</div>
+	</div>
+	<div class="weiterProgressZeit">
 		<div>
-			<div class="questions">
-				<div id="q1" class="question1">IT Strategorie</div>
-				<div id="q2" class="question2">Web Engeneering</div>
-			</div>
-			<div class="questions2">
-				<div id="q3" class="question3">IT Strategorie</div>
-				<div id="q4" class="question4">Web Engeneering</div>
-			</div>
+			<input type="submit" value="weiter" id="buttonWeiter">
 		</div>
-		<div class="weiterProgressZeit">
-			<div>
-				<input type="submit" value="weiter" id="buttonWeiter">
-			</div>
-			<div class="progressZeit">
-				<p class="verbleibendeZeit">
-					Verbleibende Zeit: <span id="countdown">00:30</span>
-				</p>
-				<progress id="progressElement" value="10" max="30"></progress>
-			</div>
+		<div class="progressZeit">
+			<p class="verbleibendeZeit">
+				Verbleibende Zeit: <span id="countdown">00:30</span>
+			</p>
+			<progress id="progressElement" value="30" max="30"></progress>
+			<div class = "letztesSpiel">
+	Letztes Spiel: NEIN
+	</div>
 		</div>
-		<DIV id="footer" class="footer">
-			<p class="noteCopyright">&copy;. 2014 BIG Quiz</p>
-		</DIV>
+	</div>
+	
+	<DIV id="footer" class="footer">
+		<p class="noteCopyright">&copy;. 2014 BIG Quiz</p>
+	</DIV>
 	</DIV>
 </body>
 </html>
