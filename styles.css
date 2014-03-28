@@ -26,7 +26,7 @@
 		width: 250px;
 		float: right;
 	}
-	.anmelden {
+	.anmeldenBtn {
 		float: right;
 		margin-top: 14px;
 		margin-right: 50px;
@@ -39,7 +39,7 @@
 		padding: 5px 40px;
 		border-radius: 10px;
 	}
-	.anmelden:active {
+	.anmeldenBtn:active {
 		color: black
 	}
 	#buttonRegister {
@@ -103,7 +103,7 @@
 		width: 350px;
 		float: left;
 	}
-	.anmelden {
+	.anmeldenBtn {
 		float: right;
 		margin-top: 14px;
 		margin-right: 20px;
@@ -116,7 +116,7 @@
 		padding: 5px 5px;
 		border-radius: 10px;
 	}
-	.anmelden:active {
+	.anmeldenBtn:active {
 		color: black
 	}
 	#buttonRegister {
@@ -173,6 +173,22 @@
 		text-align: center;
 		color: white;
 		font-weight: bold;
+	}
+	.anmelden {
+		float: right;
+		margin-top: 14px;
+		margin-right: 50px;
+		font-family: Arial;
+		font-size: 110%;
+		font-weight: bold;
+		color: white;
+		display: block;
+		background-color: orange;
+		padding: 5px 40px;
+		border-radius: 10px;
+	}
+	.anmelden:active {
+		color: black
 	}
 	.spieler1imgSpieler1 {
 		
@@ -380,6 +396,23 @@
 		color: white;
 		letter-spacing: 1px;
 	}
+	.anmelden {
+		float: right;
+		margin-top: 14px;
+		margin-right: 20px;
+		font-family: Arial;
+		font-size: 110%;
+		font-weight: bold;
+		color: white;
+		display: block;
+		background-color: orange;
+		padding: 5px 5px;
+		border-radius: 10px;
+	}
+	.anmelden:active {
+		color: black
+	}
+	
 	.question1 {
 		margin-top: 0.5em;
 		font-size: 110%;
@@ -471,19 +504,6 @@
 		border-radius: 0.3em;
 		border: 1px solid black;
 		margin-top: 14px;
-	}
-	.anmelden {
-		float: right;
-		margin-top: 14px;
-		margin-right: 20px;
-		font-family: Arial;
-		font-size: 110%;
-		font-weight: bold;
-		color: white;
-		display: block;
-		background-color: orange;
-		padding: 5px 5px;
-		border-radius: 10px;
 	}
 	.letztesSpiel{
 	font-family: Arial;
