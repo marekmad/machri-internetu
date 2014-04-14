@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<%@page import="java.util.List"%>
+<%@page import="at.ac.tuwien.big.we14.lab2.api.Choice"%>
 <jsp:useBean id="question" scope="session" class="at.ac.tuwien.big.we14.lab2.api.impl.SimpleQuestion" />
+
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
@@ -13,7 +16,7 @@
         <script src="js/framework.js" type="text/javascript"></script>
     </head>
     <body id="questionpage">
-        <a class="accessibility" href="#question">Zur Frage springen</a>
+        <a class="accessibility" href="BigQuizServlet?action=question">Zur Frage springen</a>
         <header role="banner" aria-labelledby="mainheading"><h1 id="mainheading"><span class="accessibility">Business Informatics Group</span> Quiz</h1></header>
         <nav role="navigation" aria-labelledby="navheading">
             <h2 id="navheading" class="accessibility">Navigation</h2>
@@ -42,20 +45,20 @@
                         <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class="unknown">Unbekannt</span></li>
                     </ul>
                 </div>
-                <div id="currentcategory"><span class="accessibility">Kategorie:</span> Sport</div>
+                <div id="currentcategory"><span class="accessibility">Kategorie:</span> <%=question.getCategory().getName() %></div>
             </section>
             
             <!-- Question -->
             <section id="question" aria-labelledby="questionheading">
                 
-                <form id="questionform" action="submitSelection" method="post">
+                <form id="questionform" action="BigQuizServlet?action=submitAnswer" method="post">
                     <h2 id="questionheading" class="accessibility">Frage</h2>
                     <p id="questiontext"><%=question.getText()%></p>
                     <ul id="answers">
-                        <li><input id="option1" type="checkbox" name = "opts" value = "0"/><label for="option1">IT Strategie</label></li>
-                        <li><input id="option2" type="checkbox" name = "opts" value = "1"/><label for="option2">Web Engineering</label></li>
-                        <li><input id="option3" type="checkbox" name = "opts" value = "2"/><label for="option3">Semistrukturierte Daten</label></li>
-                        <li><input id="option4" type="checkbox" name = "opts" value = "3"/><label for="option4">Objektorientierte Modellierung</label></li>
+                    	<%List<Choice> choices = question.getAllChoices();%>
+                   		<% for (int i = 0; i < 4; i ++) { %>
+                				<li><input id=<%=choices.get(i).getId()%> type="checkbox"/><label for=<%=choices.get(i).getId()%>><%= choices.get(i).getText() %> </label></li>
+            			<% } %>
                     </ul>
                     <input id="timeleftvalue" type="hidden" value="100"/>
                     <input id="next" type="submit" value="weiter" accesskey="s"/>
