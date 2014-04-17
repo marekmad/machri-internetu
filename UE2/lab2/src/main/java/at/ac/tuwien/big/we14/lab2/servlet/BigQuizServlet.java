@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import at.ac.tuwien.big.we14.lab2.api.impl.AskedQuestion;
 import at.ac.tuwien.big.we14.lab2.api.impl.ServletQuizFactory;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleCategory;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleQuestion;
@@ -42,6 +43,7 @@ public class BigQuizServlet extends HttpServlet {
 	private int[] scoreP2 = new int[3];
 	private int timeP1 = 0;
 	private int timeP2 = 0;
+	private AskedQuestion askedQuestion =null;
 
 	@Override
 	public void init() throws ServletException {
@@ -64,25 +66,34 @@ public class BigQuizServlet extends HttpServlet {
 		// List<Choice> wChoises = new ArrayList<Choice>();
 		// q.get(questionNumber).getCorrectChoices().toString();
 		allcChoises.addAll(q.get(questionNumber - 1).getCorrectChoices());
-		List<Choice> copyOfChoises = new ArrayList<Choice>(cChoises);
+		
 
 		// wChoises.addAll(q.get(questionNumber).getAllChoices());
 		// wChoises.removeAll(c)
+		
+		List<Choice> allChoicesAsked = askedQuestion.getAllChoices();
+		System.out.println("askedQuestion: " + askedQuestion.getText());
+		
+		for (Choice allC : allChoicesAsked) {
+			//System.out.println(s);
+			for (Choice c : allcChoises) {
+				if (c == allC) {
+					cChoises.add(c);
+					System.out.println("adding" + c.getId());
+				}
+
+			}
+		}
+		
+		List<Choice> copyOfChoises = new ArrayList<Choice>(cChoises);
+		
 
 		boolean wasNotCorrect = false;
 		boolean wasIncluded = false;
 		if (selected != null) {
 
-			for (String s : selected) {
-				System.out.println(s);
-				for (Choice c : allcChoises) {
-					if (String.valueOf(c.getId()).equals(s)) {
-						cChoises.add(c);
-						System.out.println("adding" + c.getId());
-					}
-
-				}
-			}
+			
+			
 			if (!cChoises.isEmpty()) {
 				for (String s : selected) {
 					System.out.println(s);
@@ -130,10 +141,13 @@ public class BigQuizServlet extends HttpServlet {
 
 		} else {
 			SimpleQuestion question = q.get(questionNumber++);
+			
+			//save to asked question
+			askedQuestion = new AskedQuestion(question);
 
 			HttpSession session = request.getSession(true);
 
-			session.setAttribute("question", question);
+			session.setAttribute("question", askedQuestion);
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("/question.jsp");
 
@@ -163,10 +177,13 @@ public class BigQuizServlet extends HttpServlet {
 		}
 
 		SimpleQuestion q1 = q.get(questionNumber++);
+		
+		//save to asked question
+		askedQuestion = new AskedQuestion(q1);
 
 		HttpSession session = request.getSession(true);
 
-		session.setAttribute("question", q1);
+		session.setAttribute("question", askedQuestion);
 
 		RequestDispatcher dispatcher = request
 				.getRequestDispatcher("question.jsp");

@@ -2,7 +2,7 @@
 
 <%@page import="java.util.List"%>
 <%@page import="at.ac.tuwien.big.we14.lab2.api.Choice"%>
-<jsp:useBean id="question" scope="session" class="at.ac.tuwien.big.we14.lab2.api.impl.SimpleQuestion" />
+<jsp:useBean id="question" scope="session" class="at.ac.tuwien.big.we14.lab2.api.impl.AskedQuestion" />
 
 
 <!DOCTYPE html>
