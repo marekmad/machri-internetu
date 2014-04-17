@@ -6,10 +6,12 @@ import java.util.List;
 public class Player {
 
 	private int score = 0;
+	private int roundNumberWon = 0;
 	private long time = 0;
+	private String name;
 
-	public Player() {
-
+	public Player(String name) {
+		this.name = name;
 	}
 
 	private List<QuestionState> playerQuestions = new ArrayList<QuestionState>(
@@ -60,6 +62,14 @@ public class Player {
 	public void setPlayerQuestions(List<QuestionState> playerQuestions) {
 		this.playerQuestions = playerQuestions;
 	}
+	
+	public void incrementRoundNumberWon(){
+		roundNumberWon++;
+	}
+	
+	public int getNumberRoundWon(){
+		return this.roundNumberWon;
+	}
 
 	public String getQuestionState(int qN) {
 		if (playerQuestions.get(qN).equals(QuestionState.CORRECT)) {
@@ -68,6 +78,10 @@ public class Player {
 			return "incorrect";
 		}
 		return "unknown";
+	}
+	
+	public String getName(){
+		return name;
 	}
 
 	public enum QuestionState {

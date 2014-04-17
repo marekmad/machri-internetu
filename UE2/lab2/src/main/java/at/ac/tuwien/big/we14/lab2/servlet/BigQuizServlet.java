@@ -40,7 +40,7 @@ public class BigQuizServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		startGame();
+		
 		super.init();
 	}
 
@@ -63,8 +63,11 @@ public class BigQuizServlet extends HttpServlet {
 
 				}
 			} else {
+				
+				game.incrementScoreAfterRound();
+				
 				RequestDispatcher dispatcher = request
-						.getRequestDispatcher("/roundcomplete.html");
+						.getRequestDispatcher("/roundcomplete.jsp");
 
 				if (dispatcher != null) {
 					dispatcher.forward(request, response);
@@ -77,7 +80,7 @@ public class BigQuizServlet extends HttpServlet {
 
 			game.nextQuestion();
 			
-			session.setAttribute("question", game.getAcctuallQuestion());
+			session.setAttribute("game", game);
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("/question.jsp");
 
@@ -109,7 +112,7 @@ public class BigQuizServlet extends HttpServlet {
 
 		HttpSession session = request.getSession(true);
 
-		session.setAttribute("question", game.getAcctuallQuestion());
+		session.setAttribute("game", game);
 
 		RequestDispatcher dispatcher = request
 				.getRequestDispatcher("question.jsp");

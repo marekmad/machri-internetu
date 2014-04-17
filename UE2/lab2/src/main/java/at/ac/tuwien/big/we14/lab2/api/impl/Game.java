@@ -19,6 +19,7 @@ public class Game {
 	private int questionNumber = 0;
 
 	private Player player1;
+	private Player player2;
 
 	private List<SimpleCategory> categories = new ArrayList<SimpleCategory>();
 	private List<SimpleQuestion> questionForCategory = new ArrayList<SimpleQuestion>();
@@ -26,7 +27,8 @@ public class Game {
 	private AskedQuestion acctuallQuestion;
 
 	public Game() {
-		player1 = new Player();
+		player1 = new Player("Spieler1");
+		player2 = new Player("Spieler2");
 	}
 
 	public void validateAnswer(String[] selected) {
@@ -97,6 +99,10 @@ public class Game {
 		//save to asked question
 		acctuallQuestion = new AskedQuestion(question);
 	}
+	
+	public String getRoundWinerName(){
+		return this.getRoundWinner().getName();
+	}
 
 	public void startQuiz(List<SimpleCategory> categories) {
 		roundNumber = 0;
@@ -154,6 +160,17 @@ public class Game {
 		return orderedQuestions;
 	}
 
+	public void incrementScoreAfterRound(){
+		getRoundWinner().incrementRoundNumberWon();
+	}
+	
+	public Player getRoundWinner(){
+		if(player1.getScore() > player2.getScore()){
+			return player1;
+		}
+		return player2;
+	}
+	
 	public int getRoundNumber() {
 		return roundNumber;
 	}
