@@ -40,6 +40,7 @@ public class BigQuizServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
+		startGame();
 		super.init();
 	}
 
@@ -74,6 +75,8 @@ public class BigQuizServlet extends HttpServlet {
 
 			HttpSession session = request.getSession(true);
 
+			game.nextQuestion();
+			
 			session.setAttribute("question", game.getAcctuallQuestion());
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("/question.jsp");
@@ -94,13 +97,7 @@ public class BigQuizServlet extends HttpServlet {
 		System.out.println("Action: " + action);
 
 		if (action.equals("newGame")) {
-			ServletContext servletContext = getServletContext();
-			QuizFactory factory = ServletQuizFactory.init(servletContext);
-			QuestionDataProvider provider = factory.createQuestionDataProvider();
-			List<? super Category> categories = provider.loadCategoryData();
-			List<SimpleCategory> cats = new ArrayList(categories);
-			game.startQuiz(cats);
-			System.out.println("starting new game");
+			startGame();
 		}
 
 		if (action.equals("newRound")) {
@@ -120,6 +117,16 @@ public class BigQuizServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 
+	}
+	
+	public void startGame(){
+		ServletContext servletContext = getServletContext();
+		QuizFactory factory = ServletQuizFactory.init(servletContext);
+		QuestionDataProvider provider = factory.createQuestionDataProvider();
+		List<? super Category> categories = provider.loadCategoryData();
+		List<SimpleCategory> cats = new ArrayList(categories);
+		game.startQuiz(cats);
+		System.out.println("starting new game");
 	}
 
 }

@@ -19,7 +19,6 @@ public class Game {
 	private int questionNumber = 0;
 
 	private Player player1;
-	private Player player2;
 
 	private List<SimpleCategory> categories = new ArrayList<SimpleCategory>();
 	private List<SimpleQuestion> questionForCategory = new ArrayList<SimpleQuestion>();
@@ -28,7 +27,6 @@ public class Game {
 
 	public Game() {
 		player1 = new Player();
-		player2 = new Player();
 	}
 
 	public void validateAnswer(String[] selected) {
@@ -101,7 +99,6 @@ public class Game {
 	}
 
 	public void startQuiz(List<SimpleCategory> categories) {
-		player1.resetQuestionState();
 		roundNumber = 0;
 		this.categories = orderCategories(categories);
 		System.out.println(categories);
@@ -189,13 +186,6 @@ public class Game {
 		this.player1 = player1;
 	}
 
-	public Player getPlayer2() {
-		return player2;
-	}
-
-	public void setPlayer2(Player player2) {
-		this.player2 = player2;
-	}
 
 	public List<SimpleCategory> getCategories() {
 		return categories;

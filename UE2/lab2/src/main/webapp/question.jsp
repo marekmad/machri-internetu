@@ -2,7 +2,7 @@
 
 <%@page import="java.util.List"%>
 <%@page import="at.ac.tuwien.big.we14.lab2.api.Choice"%>
-<jsp:useBean id="question" scope="session" class="at.ac.tuwien.big.we14.lab2.api.impl.AskedQuestion" />
+<jsp:useBean id="game" scope="session" class="at.ac.tuwien.big.we14.lab2.api.impl.Game" />
 
 
 <!DOCTYPE html>
@@ -32,9 +32,9 @@
                 <div id="player1info">
                     <span id="player1name">Spieler 1</span>
                     <ul class="playerroundsummary">
-                        <li><span class="accessibility">Frage 1:</span><span id="player1answer1" class="correct">Richtig</span></li>
-                        <li><span class="accessibility">Frage 2:</span><span id="player1answer2" class="incorrect">Falsch</span></li>
-                        <li><span class="accessibility">Frage 3:</span><span id="player1answer3" class="unknown">Unbekannt</span></li>
+                        <li><span class="accessibility">Frage 1:</span><span id="player1answer1" class=<%=game.getPlayer1().getQuestionState(0) %>> Richtig</span></li>
+                        <li><span class="accessibility">Frage 2:</span><span id="player1answer2" class=<%=game.getPlayer1().getQuestionState(1) %>>Falsch</span></li>
+                        <li><span class="accessibility">Frage 3:</span><span id="player1answer3" class=<%=game.getPlayer1().getQuestionState(2) %>>Unbekannt</span></li>
                     </ul>
                 </div>
                 <div id="player2info">
@@ -45,7 +45,7 @@
                         <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class="unknown">Unbekannt</span></li>
                     </ul>
                 </div>
-                <div id="currentcategory"><span class="accessibility">Kategorie:</span> <%=question.getCategory().getName() %></div>
+                <div id="currentcategory"><span class="accessibility">Kategorie:</span> <%=game.getAcctuallQuestion().getCategory().getName() %></div>
             </section>
             
             <!-- Question -->
@@ -53,9 +53,9 @@
                 
                 <form id="questionform" action="BigQuizServlet?action=submitAnswer" method="post">
                     <h2 id="questionheading" class="accessibility">Frage</h2>
-                    <p id="questiontext"><%=question.getText()%></p>
+                    <p id="questiontext"><%=game.getAcctuallQuestion().getText()%></p>
                     <ul id="answers">
-                    	<%List<Choice> choices = question.getAllChoices();%>
+                    	<%List<Choice> choices = game.getAcctuallQuestion().getAllChoices();%>
                    		<% for (int i = 0; i < 4; i ++) { %> 
                    				<li><input id=<%=choices.get(i).getId()%> type="checkbox" name = "opts" value = "<%=choices.get(i).getId()%>"/><label for=<%=choices.get(i).getId()%>><%= choices.get(i).getText() %> </label></li>
                 		<% } %>

@@ -7,12 +7,13 @@ public class Player {
 
 	private int score = 0;
 	private long time = 0;
-	
-	public Player(){
-		
+
+	public Player() {
+
 	}
 
-	private List<QuestionState> playerQuestions = new ArrayList<QuestionState>(3);
+	private List<QuestionState> playerQuestions = new ArrayList<QuestionState>(
+			3);
 
 	public Player(int score, long time, List<QuestionState> playerQuestions) {
 		super();
@@ -21,15 +22,13 @@ public class Player {
 		this.playerQuestions = playerQuestions;
 	}
 
-	
-	
 	public void setStateOfQuestion(int questionNumber, QuestionState state) {
 		playerQuestions.set(questionNumber, state);
 	}
-	
-	public void resetQuestionState(){
+
+	public void resetQuestionState() {
 		playerQuestions = new ArrayList<QuestionState>(3);
-		for(int i = 0; i < playerQuestions.size(); i++){
+		for (int i = 0; i < 3; i++) {
 			playerQuestions.add(QuestionState.UNKNOWN);
 		}
 	}
@@ -41,8 +40,8 @@ public class Player {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	
-	public void incrementScore(){
+
+	public void incrementScore() {
 		score++;
 	}
 
@@ -60,6 +59,15 @@ public class Player {
 
 	public void setPlayerQuestions(List<QuestionState> playerQuestions) {
 		this.playerQuestions = playerQuestions;
+	}
+
+	public String getQuestionState(int qN) {
+		if (playerQuestions.get(qN).equals(QuestionState.CORRECT)) {
+			return "correct";
+		} else if (playerQuestions.get(qN).equals(QuestionState.INCORRECT)) {
+			return "incorrect";
+		}
+		return "unknown";
 	}
 
 	public enum QuestionState {
