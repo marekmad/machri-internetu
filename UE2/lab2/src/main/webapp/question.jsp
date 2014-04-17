@@ -56,7 +56,7 @@
                     <p id="questiontext"><%=question.getText()%></p>
                     <ul id="answers">
                     	<%List<Choice> choices = question.getAllChoices();%>
-                   		<% for (int i = 0; i < 4; i ++) { %>
+                   		<% for (int i = 0; i < 4; i ++) { %> 
                    				<li><input id=<%=choices.get(i).getId()%> type="checkbox" name = "opts" value = "<%=choices.get(i).getId()%>"/><label for=<%=choices.get(i).getId()%>><%= choices.get(i).getText() %> </label></li>
                 		<% } %>
                     </ul>

@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import at.ac.tuwien.big.we14.lab2.api.impl.AskedQuestion;
+import at.ac.tuwien.big.we14.lab2.api.impl.Game;
 import at.ac.tuwien.big.we14.lab2.api.impl.ServletQuizFactory;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleCategory;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleQuestion;
@@ -34,16 +35,8 @@ public class BigQuizServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private List<SimpleCategory> cat = new ArrayList<SimpleCategory>();
-	private List<SimpleQuestion> q = new ArrayList<SimpleQuestion>();
-	private int questionNumber = 0;
-	private int roundNumber = 0;
-	private int[] scoreP1 = new int[3];
-	private int[] scoreP2 = new int[3];
-	private int timeP1 = 0;
-	private int timeP2 = 0;
-	private AskedQuestion askedQuestion =null;
+	
+	private Game game = new Game();
 
 	@Override
 	public void init() throws ServletException {
@@ -55,74 +48,12 @@ public class BigQuizServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		String[] selected = request.getParameterValues("opts");
-		String[] testing = request.getParameterValues("");
 		
-		System.out.println(testing + "testing");
+		game.validateAnswer(selected);
 
-		System.out.println("______Questionnumber" + questionNumber);
+		if (game.getQuestionNumber() == 3) {
 
-		List<Choice> allcChoises = new ArrayList<Choice>();
-		List<Choice> cChoises = new ArrayList<Choice>();
-		// List<Choice> wChoises = new ArrayList<Choice>();
-		// q.get(questionNumber).getCorrectChoices().toString();
-		allcChoises.addAll(q.get(questionNumber - 1).getCorrectChoices());
-		
-
-		// wChoises.addAll(q.get(questionNumber).getAllChoices());
-		// wChoises.removeAll(c)
-		
-		List<Choice> allChoicesAsked = askedQuestion.getAllChoices();
-		System.out.println("askedQuestion: " + askedQuestion.getText());
-		
-		for (Choice allC : allChoicesAsked) {
-			//System.out.println(s);
-			for (Choice c : allcChoises) {
-				if (c == allC) {
-					cChoises.add(c);
-					System.out.println("adding" + c.getId());
-				}
-
-			}
-		}
-		
-		List<Choice> copyOfChoises = new ArrayList<Choice>(cChoises);
-		
-
-		boolean wasNotCorrect = false;
-		boolean wasIncluded = false;
-		if (selected != null) {
-
-			
-			
-			if (!cChoises.isEmpty()) {
-				for (String s : selected) {
-					System.out.println(s);
-
-					wasIncluded = false;
-					for (Choice c : cChoises) {
-						System.out.println("ceking for choise" + c.getId());
-						if (String.valueOf(c.getId()).equals(s)) {
-							copyOfChoises.remove(c);
-							wasIncluded = true;
-							System.out.println("Removing: " + s);
-						}
-					}
-					if (!wasIncluded)
-						wasNotCorrect = true;
-				}
-
-			}
-		}
-
-		System.out.println("was not Correct: " + wasNotCorrect);
-		System.out.println("Choises: " + copyOfChoises);
-		System.out.println("Is empty:" + copyOfChoises.isEmpty());
-		System.out.println("____________________________");
-		// cChoises.
-
-		if (questionNumber == 3) {
-
-			if (roundNumber == 5) {
+			if (game.getRoundNumber() == 5) {
 				RequestDispatcher dispatcher = request
 						.getRequestDispatcher("/finish.html");
 
@@ -140,14 +71,10 @@ public class BigQuizServlet extends HttpServlet {
 			}
 
 		} else {
-			SimpleQuestion question = q.get(questionNumber++);
-			
-			//save to asked question
-			askedQuestion = new AskedQuestion(question);
 
 			HttpSession session = request.getSession(true);
 
-			session.setAttribute("question", askedQuestion);
+			session.setAttribute("question", game.getAcctuallQuestion());
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("/question.jsp");
 
@@ -167,23 +94,25 @@ public class BigQuizServlet extends HttpServlet {
 		System.out.println("Action: " + action);
 
 		if (action.equals("newGame")) {
-			startQuiz();
+			ServletContext servletContext = getServletContext();
+			QuizFactory factory = ServletQuizFactory.init(servletContext);
+			QuestionDataProvider provider = factory.createQuestionDataProvider();
+			List<? super Category> categories = provider.loadCategoryData();
+			List<SimpleCategory> cats = new ArrayList(categories);
+			game.startQuiz(cats);
 			System.out.println("starting new game");
 		}
 
 		if (action.equals("newRound")) {
-			startNewRound();
-			System.out.println("starting new round " + roundNumber);
+			game.startNewRound();
+			System.out.println("starting new round " + game.getRoundNumber());
 		}
 
-		SimpleQuestion q1 = q.get(questionNumber++);
-		
-		//save to asked question
-		askedQuestion = new AskedQuestion(q1);
+		game.nextQuestion();
 
 		HttpSession session = request.getSession(true);
 
-		session.setAttribute("question", askedQuestion);
+		session.setAttribute("question", game.getAcctuallQuestion());
 
 		RequestDispatcher dispatcher = request
 				.getRequestDispatcher("question.jsp");
@@ -191,63 +120,6 @@ public class BigQuizServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 
-	}
-
-	private void startQuiz() {
-		roundNumber = 0;
-		ServletContext servletContext = getServletContext();
-		QuizFactory factory = ServletQuizFactory.init(servletContext);
-		QuestionDataProvider provider = factory.createQuestionDataProvider();
-		List<? super Category> categories = provider.loadCategoryData();
-		List<SimpleCategory> cats = new ArrayList(categories);
-		cat = orderCategories(cats);
-		System.out.println(cats);
-		startNewRound();
-
-	}
-
-	private void startNewRound() {
-		questionNumber = 0;
-		List<? extends Question> question = new ArrayList<Question>(cat.get(
-				roundNumber++).getQuestions());
-		List<SimpleQuestion> qu = new ArrayList(question);
-
-		q = orderQuestions(qu);
-
-	}
-
-	private List<SimpleCategory> orderCategories(List<SimpleCategory> categories) {
-
-		List<SimpleCategory> allCategories = new ArrayList<SimpleCategory>(
-				categories);
-		List<SimpleCategory> orderedCategories = new ArrayList<SimpleCategory>();
-
-		Random rand = new Random();
-
-		for (int i = 0; i < allCategories.size(); i++) {
-			int r = rand.nextInt(allCategories.size() - i);
-			orderedCategories.add(allCategories.get(r));
-			allCategories.set(r,
-					allCategories.get(allCategories.size() - 1 - i));
-		}
-
-		return orderedCategories;
-	}
-
-	private List<SimpleQuestion> orderQuestions(List<SimpleQuestion> allQuestion) {
-
-		List<SimpleQuestion> all = new ArrayList<SimpleQuestion>(allQuestion);
-		List<SimpleQuestion> orderedQuestions = new ArrayList<SimpleQuestion>();
-
-		Random rand = new Random();
-
-		for (int i = 0; i < 3; i++) {
-			int r = rand.nextInt(all.size() - i);
-			orderedQuestions.add(all.get(r));
-			all.set(r, all.get(all.size() - 1 - i));
-		}
-
-		return orderedQuestions;
 	}
 
 }
