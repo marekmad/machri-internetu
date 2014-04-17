@@ -20,6 +20,7 @@ import at.ac.tuwien.big.we14.lab2.api.impl.ServletQuizFactory;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleCategory;
 import at.ac.tuwien.big.we14.lab2.api.impl.SimpleQuestion;
 import at.ac.tuwien.big.we14.lab2.api.Category;
+import at.ac.tuwien.big.we14.lab2.api.Choice;
 import at.ac.tuwien.big.we14.lab2.api.Question;
 import at.ac.tuwien.big.we14.lab2.api.QuestionDataProvider;
 import at.ac.tuwien.big.we14.lab2.api.QuizFactory;
@@ -37,6 +38,10 @@ public class BigQuizServlet extends HttpServlet {
 	private List<SimpleQuestion> q = new ArrayList<SimpleQuestion>();
 	private int questionNumber = 0;
 	private int roundNumber = 0;
+	private int[] scoreP1 = new int[3];
+	private int[] scoreP2 = new int[3];
+	private int timeP1 = 0;
+	private int timeP2 = 0;
 
 	@Override
 	public void init() throws ServletException {
@@ -48,6 +53,61 @@ public class BigQuizServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		String[] selected = request.getParameterValues("opts");
+		String[] testing = request.getParameterValues("");
+		
+		System.out.println(testing + "testing");
+
+		System.out.println("______Questionnumber" + questionNumber);
+
+		List<Choice> allcChoises = new ArrayList<Choice>();
+		List<Choice> cChoises = new ArrayList<Choice>();
+		// List<Choice> wChoises = new ArrayList<Choice>();
+		// q.get(questionNumber).getCorrectChoices().toString();
+		allcChoises.addAll(q.get(questionNumber - 1).getCorrectChoices());
+		List<Choice> copyOfChoises = new ArrayList<Choice>(cChoises);
+
+		// wChoises.addAll(q.get(questionNumber).getAllChoices());
+		// wChoises.removeAll(c)
+
+		boolean wasNotCorrect = false;
+		boolean wasIncluded = false;
+		if (selected != null) {
+
+			for (String s : selected) {
+				System.out.println(s);
+				for (Choice c : allcChoises) {
+					if (String.valueOf(c.getId()).equals(s)) {
+						cChoises.add(c);
+						System.out.println("adding" + c.getId());
+					}
+
+				}
+			}
+			if (!cChoises.isEmpty()) {
+				for (String s : selected) {
+					System.out.println(s);
+
+					wasIncluded = false;
+					for (Choice c : cChoises) {
+						System.out.println("ceking for choise" + c.getId());
+						if (String.valueOf(c.getId()).equals(s)) {
+							copyOfChoises.remove(c);
+							wasIncluded = true;
+							System.out.println("Removing: " + s);
+						}
+					}
+					if (!wasIncluded)
+						wasNotCorrect = true;
+				}
+
+			}
+		}
+
+		System.out.println("was not Correct: " + wasNotCorrect);
+		System.out.println("Choises: " + copyOfChoises);
+		System.out.println("Is empty:" + copyOfChoises.isEmpty());
+		System.out.println("____________________________");
+		// cChoises.
 
 		if (questionNumber == 3) {
 
@@ -57,6 +117,7 @@ public class BigQuizServlet extends HttpServlet {
 
 				if (dispatcher != null) {
 					dispatcher.forward(request, response);
+
 				}
 			} else {
 				RequestDispatcher dispatcher = request

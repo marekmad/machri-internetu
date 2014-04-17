@@ -57,8 +57,8 @@
                     <ul id="answers">
                     	<%List<Choice> choices = question.getAllChoices();%>
                    		<% for (int i = 0; i < 4; i ++) { %>
-                				<li><input id=<%=choices.get(i).getId()%> type="checkbox"/><label for=<%=choices.get(i).getId()%>><%= choices.get(i).getText() %> </label></li>
-            			<% } %>
+                   				<li><input id=<%=choices.get(i).getId()%> type="checkbox" name = "opts" value = "<%=choices.get(i).getId()%>"/><label for=<%=choices.get(i).getId()%>><%= choices.get(i).getText() %> </label></li>
+                		<% } %>
                     </ul>
                     <input id="timeleftvalue" type="hidden" value="100"/>
                     <input id="next" type="submit" value="weiter" accesskey="s"/>
@@ -104,7 +104,7 @@
                 
                 var value = $("#timeleftvalue").val();
                 if(value > 0) {
-                    value = value - 1;   
+                    //value = value - 1;   
                 }
                 
                 hiddenInput.val(value);
