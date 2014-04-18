@@ -90,7 +90,9 @@ public class Game {
 		}else{
 			player1.setStateOfQuestion(questionNumber - 1, QuestionState.INCORRECT);
 		}
-
+		
+		//Simulate PC Player
+		this.simulateTaktik();
 	}
 	
 	public void nextQuestion(){
@@ -114,8 +116,11 @@ public class Game {
 
 	public void startNewRound() {
 		player1.resetQuestionState();
+		player2.resetQuestionState();
 		
-		System.out.println("---------------------------------------------------------SSSSSSSSSSS" + player1.getPlayerQuestions().size());
+		System.out.println("---------------------------------------------------------SSSSSSSSSSSPlayer1" + player1.getPlayerQuestions().size());
+		System.out.println("---------------------------------------------------------SSSSSSSSSSS222Player2" + player2.getPlayerQuestions().size());
+		System.out.println("Round won1: " + this.getPlayer1().getNumberRoundWon());
 		
 		questionNumber = 0;
 		List<? extends Question> question = new ArrayList<Question>(categories
@@ -159,10 +164,23 @@ public class Game {
 
 		return orderedQuestions;
 	}
+	
+	public void simulateTaktik(){
+		Random rand = new Random();
+		if(rand.nextDouble()<0.50){
+			player2.incrementScore();
+			player2.setStateOfQuestion(questionNumber-1, QuestionState.CORRECT);
+		}
+		else{
+			player2.setStateOfQuestion(questionNumber-1, QuestionState.INCORRECT);
+			
+		}
+		
+	}
 
 	public void incrementScoreAfterRound(){
 		getRoundWinner().incrementRoundNumberWon();
-	}
+		}
 	
 	public Player getRoundWinner(){
 		if(player1.getScore() > player2.getScore()){
@@ -201,6 +219,14 @@ public class Game {
 
 	public void setPlayer1(Player player1) {
 		this.player1 = player1;
+	}
+	
+	public Player getPlayer2() {
+		return player2;
+	}
+
+	public void setPlayer2(Player player1) {
+		this.player2 = player1;
 	}
 
 

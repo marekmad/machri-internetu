@@ -44,9 +44,9 @@
                 <div id="player2info" class="playerinfo">
                     <span id="player2name" class="playername">Spieler 2</span>
                     <ul class="playerroundsummary">
-                        <li><span class="accessibility">Frage 1:</span><span id="player2answer1" class="correct">Richtig</span></li>
-                        <li><span class="accessibility">Frage 2:</span><span id="player2answer2" class="correct">Richtig</span></li>
-                        <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class="correct">Richtig</span></li>
+                        <li><span class="accessibility">Frage 1:</span><span id="player2answer1" class=<%=game.getPlayer2().getQuestionState(0) %>>Richtig</span></li>
+                        <li><span class="accessibility">Frage 2:</span><span id="player2answer2" class=<%=game.getPlayer2().getQuestionState(1) %>>Richtig</span></li>
+                        <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class=<%=game.getPlayer2().getQuestionState(2) %>>Richtig</span></li>
                     </ul>
                     <p id="player2roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player2wonrounds" class="playerwonrounds">1</span></p>
                 </div>
