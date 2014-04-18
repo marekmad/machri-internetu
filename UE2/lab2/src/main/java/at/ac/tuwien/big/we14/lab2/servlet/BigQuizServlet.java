@@ -63,7 +63,7 @@ public class BigQuizServlet extends HttpServlet {
 
 				}
 			} else {
-				
+				System.out.println("incrementing score after round "+game.getRoundNumber());
 				game.incrementScoreAfterRound();
 				
 				RequestDispatcher dispatcher = request

@@ -5,7 +5,8 @@ import java.util.List;
 
 public class Player {
 
-	private int score = 0;
+	private int scoreInRound = 0;
+	private int totalScore = 0;
 	private int roundNumberWon = 0;
 	private long time = 0;
 	private String name;
@@ -19,7 +20,7 @@ public class Player {
 
 	public Player(int score, long time, List<QuestionState> playerQuestions) {
 		super();
-		this.score = score;
+		this.scoreInRound = score;
 		this.time = time;
 		this.playerQuestions = playerQuestions;
 	}
@@ -35,16 +36,28 @@ public class Player {
 		}
 	}
 
-	public int getScore() {
-		return score;
+	public int getScoreInRound() {
+		return scoreInRound;
 	}
 
-	public void setScore(int score) {
-		this.score = score;
+	public void setScoreInRound(int score) {
+		this.scoreInRound = score;
 	}
 
-	public void incrementScore() {
-		score++;
+	public void incrementScoreInRound() {
+		scoreInRound++;
+	}
+	
+	public void incrementTotalScore(){
+		totalScore++;
+	}
+	
+	public void setTotalScore(int score){
+		this.totalScore = score;
+	}
+	
+	public int getTotalScore(){
+		return this.totalScore;
 	}
 
 	public long getTime() {

@@ -26,7 +26,7 @@
             <!-- winner message -->
             <section id="roundwinner" aria-labelledby="roundwinnerheading">
                 <h2 id="roundwinnerheading" class="accessibility">Rundenzwischenstand</h2>
-                <p class="roundwinnermessage"><%=game.getRoundWinerName() %> gewinnt Runde 1!</p>
+                <p class="roundwinnermessage"><%=game.getRoundWinerName() %> gewinnt Runde <%=game.getRoundNumber() %>!</p>
             </section>
         
             <!-- round info -->    
@@ -39,7 +39,7 @@
                         <li><span class="accessibility">Frage 2:</span><span id="player1answer2" class=<%=game.getPlayer1().getQuestionState(1) %>>Falsch</span></li>
                         <li><span class="accessibility">Frage 3:</span><span id="player1answer3" class=<%=game.getPlayer1().getQuestionState(2) %>>Richtig</span></li>
                     </ul>
-                    <p id="player1roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player1wonrounds" class="playerwonrounds"><%game.getPlayer1().getNumberRoundWon(); %></span></p>
+                    <p id="player1roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player1wonrounds" class="playerwonrounds"><%= game.getPlayer1().getNumberRoundWon() %></span></p>
                 </div>
                 <div id="player2info" class="playerinfo">
                     <span id="player2name" class="playername">Spieler 2</span>
@@ -48,7 +48,7 @@
                         <li><span class="accessibility">Frage 2:</span><span id="player2answer2" class=<%=game.getPlayer2().getQuestionState(1) %>>Richtig</span></li>
                         <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class=<%=game.getPlayer2().getQuestionState(2) %>>Richtig</span></li>
                     </ul>
-                    <p id="player2roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player2wonrounds" class="playerwonrounds">1</span></p>
+                    <p id="player2roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player2wonrounds" class="playerwonrounds"><%= game.getPlayer2().getNumberRoundWon() %></span></p>
                 </div>
                 <a id="next" href="BigQuizServlet?action=newRound">Weiter</a>
             </section>

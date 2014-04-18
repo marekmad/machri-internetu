@@ -32,12 +32,13 @@ public class Game {
 	}
 
 	public void validateAnswer(String[] selected) {
-		
+
 		System.out.println("______Questionnumber" + questionNumber);
 
 		List<Choice> allcChoises = new ArrayList<Choice>();
 		List<Choice> cChoises = new ArrayList<Choice>();
-		allcChoises.addAll(questionForCategory.get(questionNumber - 1).getCorrectChoices());
+		allcChoises.addAll(questionForCategory.get(questionNumber - 1)
+				.getCorrectChoices());
 
 		List<Choice> allChoicesAsked = acctuallQuestion.getAllChoices();
 		System.out.println("askedQuestion: " + acctuallQuestion.getText());
@@ -83,26 +84,29 @@ public class Game {
 		System.out.println("Is empty:" + copyOfChoises.isEmpty());
 		System.out.println("____________________________");
 		// cChoises.
-		
-		if(copyOfChoises.isEmpty() && !wasNotCorrect){
-			player1.incrementScore();
-			player1.setStateOfQuestion(questionNumber - 1, QuestionState.CORRECT);
-		}else{
-			player1.setStateOfQuestion(questionNumber - 1, QuestionState.INCORRECT);
+
+		if (copyOfChoises.isEmpty() && !wasNotCorrect) {
+			player1.incrementScoreInRound();
+			player1.incrementTotalScore();
+			player1.setStateOfQuestion(questionNumber - 1,
+					QuestionState.CORRECT);
+		} else {
+			player1.setStateOfQuestion(questionNumber - 1,
+					QuestionState.INCORRECT);
 		}
-		
-		//Simulate PC Player
+
+		// Simulate PC Player
 		this.simulateTaktik();
 	}
-	
-	public void nextQuestion(){
+
+	public void nextQuestion() {
 		SimpleQuestion question = questionForCategory.get(questionNumber++);
-		
-		//save to asked question
+
+		// save to asked question
 		acctuallQuestion = new AskedQuestion(question);
 	}
-	
-	public String getRoundWinerName(){
+
+	public String getRoundWinerName() {
 		return this.getRoundWinner().getName();
 	}
 
@@ -115,19 +119,35 @@ public class Game {
 	}
 
 	public void startNewRound() {
+		
+		player1.setScoreInRound(0);
+		player2.setScoreInRound(0);
+		
 		player1.resetQuestionState();
 		player2.resetQuestionState();
+
+		System.out
+				.println("---------------------------------------------------------SSSSSSSSSSSPlayer1"
+						+ player1.getPlayerQuestions().size());
+		System.out
+				.println("---------------------------------------------------------SSSSSSSSSSS222Player2"
+						+ player2.getPlayerQuestions().size());
+		System.out.println("# Round won player1: "
+				+ this.getPlayer1().getNumberRoundWon());
 		
-		System.out.println("---------------------------------------------------------SSSSSSSSSSSPlayer1" + player1.getPlayerQuestions().size());
-		System.out.println("---------------------------------------------------------SSSSSSSSSSS222Player2" + player2.getPlayerQuestions().size());
-		System.out.println("Round won1: " + this.getPlayer1().getNumberRoundWon());
-		
+		System.out.println("# Round won player2: "
+				+ this.getPlayer2().getNumberRoundWon());
+
 		questionNumber = 0;
 		List<? extends Question> question = new ArrayList<Question>(categories
 				.get(roundNumber++).getQuestions());
 		questionForCategory = new ArrayList(question);
 
 		questionForCategory = orderQuestions(questionForCategory);
+		
+		
+		System.out.println("Player1: totalScore"+player1.getTotalScore());
+		System.out.println("Player2: totalScore"+player2.getTotalScore());
 
 	}
 
@@ -164,31 +184,37 @@ public class Game {
 
 		return orderedQuestions;
 	}
-	
-	public void simulateTaktik(){
+
+	public void simulateTaktik() {
 		Random rand = new Random();
-		if(rand.nextDouble()<0.50){
-			player2.incrementScore();
-			player2.setStateOfQuestion(questionNumber-1, QuestionState.CORRECT);
+		if (rand.nextDouble() < 0.50) {
+			player2.incrementScoreInRound();
+			player2.incrementTotalScore();
+			player2.setStateOfQuestion(questionNumber - 1,
+					QuestionState.CORRECT);
+		} else {
+			player2.setStateOfQuestion(questionNumber - 1,
+					QuestionState.INCORRECT);
+
 		}
-		else{
-			player2.setStateOfQuestion(questionNumber-1, QuestionState.INCORRECT);
-			
-		}
-		
+
 	}
 
-	public void incrementScoreAfterRound(){
+	public void incrementScoreAfterRound() {
+		System.out.println("player 1 has "+player1.getScoreInRound()+ " in round.");
+		System.out.println("player 2 has "+player2.getScoreInRound()+ " in round.");
+		System.out.println("winner of round is "+getRoundWinner());
 		getRoundWinner().incrementRoundNumberWon();
-		}
-	
-	public Player getRoundWinner(){
-		if(player1.getScore() > player2.getScore()){
+	}
+
+	public Player getRoundWinner() {
+		
+		if (player1.getScoreInRound() > player2.getScoreInRound()) {
 			return player1;
 		}
 		return player2;
 	}
-	
+
 	public int getRoundNumber() {
 		return roundNumber;
 	}
@@ -196,9 +222,9 @@ public class Game {
 	public void setRoundNumber(int roundNumber) {
 		this.roundNumber = roundNumber;
 	}
-	
-	public void incrementRoundNumber(){
-		this.roundNumber ++;
+
+	public void incrementRoundNumber() {
+		this.roundNumber++;
 	}
 
 	public int getQuestionNumber() {
@@ -209,10 +235,10 @@ public class Game {
 		this.questionNumber = questionNumber;
 	}
 
-	public void incrementQuestionNumber(){
-		questionNumber ++;
+	public void incrementQuestionNumber() {
+		questionNumber++;
 	}
-	
+
 	public Player getPlayer1() {
 		return player1;
 	}
@@ -220,7 +246,7 @@ public class Game {
 	public void setPlayer1(Player player1) {
 		this.player1 = player1;
 	}
-	
+
 	public Player getPlayer2() {
 		return player2;
 	}
@@ -228,7 +254,6 @@ public class Game {
 	public void setPlayer2(Player player1) {
 		this.player2 = player1;
 	}
-
 
 	public List<SimpleCategory> getCategories() {
 		return categories;
