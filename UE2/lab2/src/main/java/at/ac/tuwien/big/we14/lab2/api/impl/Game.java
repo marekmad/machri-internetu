@@ -111,6 +111,10 @@ public class Game {
 	}
 
 	public void startQuiz(List<SimpleCategory> categories) {
+		
+		player1.resetBeforeGame();
+		player2.resetBeforeGame();
+		
 		roundNumber = 0;
 		this.categories = orderCategories(categories);
 		System.out.println(categories);

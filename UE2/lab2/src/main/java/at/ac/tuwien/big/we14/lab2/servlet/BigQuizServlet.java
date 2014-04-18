@@ -54,7 +54,17 @@ public class BigQuizServlet extends HttpServlet {
 
 		if (game.getQuestionNumber() == 3) {
 
+			System.out.println("incrementing score after round "+game.getRoundNumber());
+			game.incrementScoreAfterRound();
+			
 			if (game.getRoundNumber() == 5) {
+				
+				
+				System.out.println("end of game: ");
+				System.out.println("p1 score: " + game.getPlayer1().getNumberRoundWon());
+				System.out.println("p2 score: " + game.getPlayer2().getNumberRoundWon());
+				
+				
 				RequestDispatcher dispatcher = request
 						.getRequestDispatcher("/finish.html");
 
@@ -63,8 +73,6 @@ public class BigQuizServlet extends HttpServlet {
 
 				}
 			} else {
-				System.out.println("incrementing score after round "+game.getRoundNumber());
-				game.incrementScoreAfterRound();
 				
 				RequestDispatcher dispatcher = request
 						.getRequestDispatcher("/roundcomplete.jsp");

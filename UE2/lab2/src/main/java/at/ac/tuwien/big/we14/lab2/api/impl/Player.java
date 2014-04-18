@@ -35,6 +35,14 @@ public class Player {
 			playerQuestions.add(QuestionState.UNKNOWN);
 		}
 	}
+	
+	public void resetBeforeGame(){
+		resetQuestionState();
+		scoreInRound = 0;
+		totalScore = 0;
+		time = 0;
+		roundNumberWon = 0;
+	}
 
 	public int getScoreInRound() {
 		return scoreInRound;
