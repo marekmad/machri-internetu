@@ -66,7 +66,7 @@ public class BigQuizServlet extends HttpServlet {
 				
 				
 				RequestDispatcher dispatcher = request
-						.getRequestDispatcher("/finish.html");
+						.getRequestDispatcher("/finish.jsp");
 
 				if (dispatcher != null) {
 					dispatcher.forward(request, response);

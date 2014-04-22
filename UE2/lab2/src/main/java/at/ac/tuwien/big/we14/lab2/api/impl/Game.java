@@ -109,6 +109,9 @@ public class Game {
 	public String getRoundWinerName() {
 		return this.getRoundWinner().getName();
 	}
+	public String getTotalWinnerName(){
+		return this.getTotalWinner().getName();
+	}
 
 	public void startQuiz(List<SimpleCategory> categories) {
 		
@@ -131,10 +134,10 @@ public class Game {
 		player2.resetQuestionState();
 
 		System.out
-				.println("---------------------------------------------------------SSSSSSSSSSSPlayer1"
+				.println("---------------------------------------------------------SSSSSSSSSSSPlayer1:"
 						+ player1.getPlayerQuestions().size());
 		System.out
-				.println("---------------------------------------------------------SSSSSSSSSSS222Player2"
+				.println("---------------------------------------------------------SSSSSSSSSSS222Player:2"
 						+ player2.getPlayerQuestions().size());
 		System.out.println("# Round won player1: "
 				+ this.getPlayer1().getNumberRoundWon());
@@ -218,6 +221,14 @@ public class Game {
 		}
 		return player2;
 	}
+	//Juro
+	public Player getTotalWinner(){
+		if(player1.getNumberRoundWon()>player2.getNumberRoundWon())
+			return player1;
+		return player2;
+		
+	}
+	//Juro
 
 	public int getRoundNumber() {
 		return roundNumber;
