@@ -1,6 +1,7 @@
 package at.ac.tuwien.big.we14.lab2.api.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import at.ac.tuwien.big.we14.lab2.api.Category;
@@ -13,6 +14,7 @@ public class AskedQuestion implements Question {
 	private String text;
 	private List<Choice> askedChoices = new ArrayList<>();
 	private Category category;
+	private Date askedTime;
 	private long maxTime;
 	
 	public AskedQuestion() {
@@ -20,6 +22,14 @@ public class AskedQuestion implements Question {
 		this.maxTime = 60;
 		this.askedChoices = new ArrayList<>();
 		this.category = null;
+	}
+
+	public Date getAskedTime() {
+		return askedTime;
+	}
+
+	public void setAskedTime(Date askedTime) {
+		this.askedTime = askedTime;
 	}
 
 	public AskedQuestion(SimpleQuestion q) {

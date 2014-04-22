@@ -3,6 +3,7 @@ package at.ac.tuwien.big.we14.lab2.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -89,6 +90,7 @@ public class BigQuizServlet extends HttpServlet {
 			game.nextQuestion();
 			
 			session.setAttribute("game", game);
+			game.getAcctuallQuestion().setAskedTime(new Date());
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("/question.jsp");
 
@@ -121,7 +123,8 @@ public class BigQuizServlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 
 		session.setAttribute("game", game);
-
+		game.getAcctuallQuestion().setAskedTime(new Date());
+		
 		RequestDispatcher dispatcher = request
 				.getRequestDispatcher("question.jsp");
 		if (dispatcher != null) {

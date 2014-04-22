@@ -1,6 +1,7 @@
 package at.ac.tuwien.big.we14.lab2.api.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -47,7 +48,7 @@ public class Game {
 			for (Choice c : allcChoises) {
 				if (c.equals(allC)) {
 					cChoises.add(c);
-					System.out.println("adding" + c.getId());
+//					System.out.println("adding" + c.getId());
 				}
 
 			}
@@ -57,19 +58,24 @@ public class Game {
 
 		boolean wasNotCorrect = false;
 		boolean wasIncluded = false;
+		int timeNeeded = (int)((new Date().getTime() - acctuallQuestion.getAskedTime().getTime())/ 1000 % 60);
+		System.out.println("calculated time: " + timeNeeded);
+		if (timeNeeded >= 30)timeNeeded = 30;
+		
+		
 		if (selected != null) {
 
 			if (!cChoises.isEmpty()) {
 				for (String s : selected) {
-					System.out.println(s);
+//					System.out.println(s);
 
 					wasIncluded = false;
 					for (Choice c : cChoises) {
-						System.out.println("ceking for choise" + c.getId());
+//						System.out.println("ceking for choise" + c.getId());
 						if (String.valueOf(c.getId()).equals(s)) {
 							copyOfChoises.remove(c);
 							wasIncluded = true;
-							System.out.println("Removing: " + s);
+//							System.out.println("Removing: " + s);
 						}
 					}
 					if (!wasIncluded)
@@ -90,6 +96,7 @@ public class Game {
 			player1.incrementTotalScore();
 			player1.setStateOfQuestion(questionNumber - 1,
 					QuestionState.CORRECT);
+			player1.setTime(player1.getTime() + timeNeeded);
 		} else {
 			player1.setStateOfQuestion(questionNumber - 1,
 					QuestionState.INCORRECT);
@@ -199,6 +206,10 @@ public class Game {
 			player2.incrementTotalScore();
 			player2.setStateOfQuestion(questionNumber - 1,
 					QuestionState.CORRECT);
+			int timeNeeded = rand.nextInt(38)+3;
+			if(timeNeeded>30)timeNeeded = 30; 
+			player2.setTime(player2.getTime()+timeNeeded);
+			
 		} else {
 			player2.setStateOfQuestion(questionNumber - 1,
 					QuestionState.INCORRECT);
@@ -210,6 +221,8 @@ public class Game {
 	public void incrementScoreAfterRound() {
 		System.out.println("player 1 has "+player1.getScoreInRound()+ " in round.");
 		System.out.println("player 2 has "+player2.getScoreInRound()+ " in round.");
+		System.out.println("player 1 has time "+player1.getTime()+ " sec total in round.");
+		System.out.println("player 2 has time "+player2.getTime()+ " sec total in round.");
 		System.out.println("winner of round is "+getRoundWinner());
 		getRoundWinner().incrementRoundNumberWon();
 	}
@@ -218,6 +231,11 @@ public class Game {
 		
 		if (player1.getScoreInRound() > player2.getScoreInRound()) {
 			return player1;
+		}
+		else if(player1.getScoreInRound() == player2.getScoreInRound()){
+			if(player1.getTime()>player2.getTime()){
+				return player1;
+			}
 		}
 		return player2;
 	}

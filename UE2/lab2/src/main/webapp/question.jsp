@@ -104,7 +104,7 @@
                 
                 var value = $("#timeleftvalue").val();
                 if(value > 0) {
-                    //value = value - 1;   
+                    value = value - 1;   
                 }
                 
                 hiddenInput.val(value);
