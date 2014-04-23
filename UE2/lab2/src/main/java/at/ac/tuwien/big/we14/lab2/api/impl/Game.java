@@ -18,6 +18,8 @@ public class Game {
 
 	private int roundNumber = 0;
 	private int questionNumber = 0;
+	
+	private String requestDispatcherAction = "";
 
 	private Player player1;
 	private Player player2;
@@ -26,6 +28,10 @@ public class Game {
 	private List<SimpleQuestion> questionForCategory = new ArrayList<SimpleQuestion>();
 
 	private AskedQuestion acctuallQuestion;
+	
+	public static final String QUESTION_JSP = "question";
+	public static final String ROUND_COMPLETE_JSP = "roundcomplete";
+	public static final String FINISH_JSP = "finish";
 
 	public Game() {
 		player1 = new Player("Spieler1");
@@ -310,6 +316,14 @@ public class Game {
 
 	public void setAcctuallQuestion(AskedQuestion acctuallQuestion) {
 		this.acctuallQuestion = acctuallQuestion;
+	}
+
+	public String getRequestDispatcherAction() {
+		return requestDispatcherAction;
+	}
+
+	public void setRequestDispatcherAction(String requestDispatcherAction) {
+		this.requestDispatcherAction = requestDispatcherAction;
 	}
 
 }

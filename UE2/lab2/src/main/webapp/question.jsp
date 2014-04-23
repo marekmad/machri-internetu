@@ -32,17 +32,17 @@
                 <div id="player1info">
                     <span id="player1name">Spieler 1</span>
                     <ul class="playerroundsummary">
-                        <li><span class="accessibility">Frage 1:</span><span id="player1answer1" class=<%=game.getPlayer1().getQuestionState(0) %>> Richtig</span></li>
-                        <li><span class="accessibility">Frage 2:</span><span id="player1answer2" class=<%=game.getPlayer1().getQuestionState(1) %>>Falsch</span></li>
-                        <li><span class="accessibility">Frage 3:</span><span id="player1answer3" class=<%=game.getPlayer1().getQuestionState(2) %>>Unbekannt</span></li>
+                        <li><span class="accessibility">Frage 1:</span><span id="player1answer1" class=<%=game.getPlayer1().getQuestionState(0) %>> <%=game.getPlayer1().getQuestionState(0) %></span></li>
+                        <li><span class="accessibility">Frage 2:</span><span id="player1answer2" class=<%=game.getPlayer1().getQuestionState(1) %>> <%=game.getPlayer1().getQuestionState(1) %></span></li>
+                        <li><span class="accessibility">Frage 3:</span><span id="player1answer3" class=<%=game.getPlayer1().getQuestionState(2) %>> <%=game.getPlayer1().getQuestionState(2) %></span></li>
                     </ul>
                 </div>
                 <div id="player2info">
                     <span id="player2name">Spieler 2</span>
                     <ul class="playerroundsummary">
-                        <li><span class="accessibility">Frage 1:</span><span id="player2answer1" class=<%=game.getPlayer2().getQuestionState(0) %>>Richtig</span></li>
-                        <li><span class="accessibility">Frage 2:</span><span id="player2answer2" class=<%=game.getPlayer2().getQuestionState(1) %>>Richtig</span></li>
-                        <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class=<%=game.getPlayer2().getQuestionState(2) %>>Unbekannt</span></li>
+                        <li><span class="accessibility">Frage 1:</span><span id="player2answer1" class=<%=game.getPlayer2().getQuestionState(0) %>><%=game.getPlayer2().getQuestionState(0) %></span></li>
+                        <li><span class="accessibility">Frage 2:</span><span id="player2answer2" class=<%=game.getPlayer2().getQuestionState(1) %>><%=game.getPlayer2().getQuestionState(1) %></span></li>
+                        <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class=<%=game.getPlayer2().getQuestionState(2) %>><%=game.getPlayer2().getQuestionState(2) %></span></li>
                     </ul>
                 </div>
                 <div id="currentcategory"><span class="accessibility">Kategorie:</span> <%=game.getAcctuallQuestion().getCategory().getName() %></div>
