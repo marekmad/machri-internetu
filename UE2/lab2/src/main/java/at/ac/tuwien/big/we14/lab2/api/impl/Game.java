@@ -66,7 +66,7 @@ public class Game {
 		boolean wasIncluded = false;
 		int timeNeeded = (int)((new Date().getTime() - acctuallQuestion.getAskedTime().getTime())/ 1000 % 60);
 		System.out.println("calculated time: " + timeNeeded);
-		if (timeNeeded >= 30)timeNeeded = 30;
+		if (timeNeeded >= acctuallQuestion.getMaxTime())timeNeeded = (int)acctuallQuestion.getMaxTime();
 		
 		
 		if (selected != null) {
@@ -213,7 +213,7 @@ public class Game {
 			player2.setStateOfQuestion(questionNumber - 1,
 					QuestionState.CORRECT);
 			int timeNeeded = rand.nextInt(38)+3;
-			if(timeNeeded>30)timeNeeded = 30; 
+			if(timeNeeded>acctuallQuestion.getMaxTime())timeNeeded = (int)acctuallQuestion.getMaxTime();  
 			player2.setTime(player2.getTime()+timeNeeded);
 			
 		} else {

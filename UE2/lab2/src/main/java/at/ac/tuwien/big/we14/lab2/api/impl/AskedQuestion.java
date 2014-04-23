@@ -1,5 +1,6 @@
 package at.ac.tuwien.big.we14.lab2.api.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -79,6 +80,14 @@ public class AskedQuestion implements Question {
 
 	public long getMaxTime() {
 		return maxTime;
+	}
+	
+	public String getFormatedMaxTime() {
+		
+		SimpleDateFormat df = new SimpleDateFormat("mm:ss");
+		String time = df.format(maxTime*1000);
+		
+		return time;
 	}
 
 	public void setMaxTime(long maxTime) {

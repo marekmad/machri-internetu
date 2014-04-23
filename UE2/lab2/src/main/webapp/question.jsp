@@ -35,6 +35,7 @@
                         <li><span class="accessibility">Frage 1:</span><span id="player1answer1" class=<%=game.getPlayer1().getQuestionState(0) %>> <%=game.getPlayer1().getQuestionState(0) %></span></li>
                         <li><span class="accessibility">Frage 2:</span><span id="player1answer2" class=<%=game.getPlayer1().getQuestionState(1) %>> <%=game.getPlayer1().getQuestionState(1) %></span></li>
                         <li><span class="accessibility">Frage 3:</span><span id="player1answer3" class=<%=game.getPlayer1().getQuestionState(2) %>> <%=game.getPlayer1().getQuestionState(2) %></span></li>
+
                     </ul>
                 </div>
                 <div id="player2info">
@@ -43,6 +44,7 @@
                         <li><span class="accessibility">Frage 1:</span><span id="player2answer1" class=<%=game.getPlayer2().getQuestionState(0) %>><%=game.getPlayer2().getQuestionState(0) %></span></li>
                         <li><span class="accessibility">Frage 2:</span><span id="player2answer2" class=<%=game.getPlayer2().getQuestionState(1) %>><%=game.getPlayer2().getQuestionState(1) %></span></li>
                         <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class=<%=game.getPlayer2().getQuestionState(2) %>><%=game.getPlayer2().getQuestionState(2) %></span></li>
+
                     </ul>
                 </div>
                 <div id="currentcategory"><span class="accessibility">Kategorie:</span> <%=game.getAcctuallQuestion().getCategory().getName() %></div>
@@ -67,7 +69,7 @@
             
             <section id="timer" aria-labelledby="timerheading">
                 <h2 id="timerheading" class="accessibility">Timer</h2>
-                <p><span id="timeleftlabel">Verbleibende Zeit:</span> <time id="timeleft">00:30</time></p>
+                <p><span id="timeleftlabel">Verbleibende Zeit:</span> <time id="timeleft"><%=game.getAcctuallQuestion().getFormatedMaxTime()%></time></p>
                 <meter id="timermeter" min="0" low="20" value="100" max="100"/>
             </section>
             
@@ -84,7 +86,7 @@
             
             // initialize time
             $(document).ready(function() {
-                var maxtime = 30;
+                var maxtime = <%=game.getAcctuallQuestion().getMaxTime()%>;
                 var hiddenInput = $("#timeleftvalue");
                 var meter = $("#timer meter");
                 var timeleft = $("#timeleft");
