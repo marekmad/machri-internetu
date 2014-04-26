@@ -17,7 +17,7 @@
     </head>
     <body id="questionpage">
         <a class="accessibility" href="BigQuizServlet?action=question">Zur Frage springen</a>
-        <header role="banner" aria-labelledby="mainheading"><h1 id="mainheading"><span class="accessibility">Business Informatics Group</span> Quiz</h1></header>
+        <header role="banner" aria-labelledby="mainheading"><h1 id="mainheading"><span class="accessibility">Business Informatics Group</span> Quiz</h1> <input id="questionid" type = "hidden" value=<%=game.getAcctuallQuestion().getId()%> accesskey="s"/></header>
         <nav role="navigation" aria-labelledby="navheading">
             <h2 id="navheading" class="accessibility">Navigation</h2>
             <ul>
@@ -32,18 +32,18 @@
                 <div id="player1info">
                     <span id="player1name">Spieler 1</span>
                     <ul class="playerroundsummary">
-                        <li><span class="accessibility">Frage 1:</span><span id="player1answer1" class=<%=game.getPlayer1().getQuestionState(0) %>> <%=game.getPlayer1().getQuestionState(0) %></span></li>
-                        <li><span class="accessibility">Frage 2:</span><span id="player1answer2" class=<%=game.getPlayer1().getQuestionState(1) %>> <%=game.getPlayer1().getQuestionState(1) %></span></li>
-                        <li><span class="accessibility">Frage 3:</span><span id="player1answer3" class=<%=game.getPlayer1().getQuestionState(2) %>> <%=game.getPlayer1().getQuestionState(2) %></span></li>
+                        <li><span class="accessibility">Frage 1:</span><span id="player1answer0" class=<%=game.getPlayer1().getQuestionState(0) %>> <%=game.getPlayer1().getQuestionState(0) %></span></li>
+                        <li><span class="accessibility">Frage 2:</span><span id="player1answer1" class=<%=game.getPlayer1().getQuestionState(1) %>> <%=game.getPlayer1().getQuestionState(1) %></span></li>
+                        <li><span class="accessibility">Frage 3:</span><span id="player1answer2" class=<%=game.getPlayer1().getQuestionState(2) %>> <%=game.getPlayer1().getQuestionState(2) %></span></li>
 
                     </ul>
                 </div>
                 <div id="player2info">
                     <span id="player2name">Spieler 2</span>
                     <ul class="playerroundsummary">
-                        <li><span class="accessibility">Frage 1:</span><span id="player2answer1" class=<%=game.getPlayer2().getQuestionState(0) %>><%=game.getPlayer2().getQuestionState(0) %></span></li>
-                        <li><span class="accessibility">Frage 2:</span><span id="player2answer2" class=<%=game.getPlayer2().getQuestionState(1) %>><%=game.getPlayer2().getQuestionState(1) %></span></li>
-                        <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class=<%=game.getPlayer2().getQuestionState(2) %>><%=game.getPlayer2().getQuestionState(2) %></span></li>
+                        <li><span class="accessibility">Frage 1:</span><span id="player2answer0" class=<%=game.getPlayer2().getQuestionState(0) %>><%=game.getPlayer2().getQuestionState(0) %></span></li>
+                        <li><span class="accessibility">Frage 2:</span><span id="player2answer1" class=<%=game.getPlayer2().getQuestionState(1) %>><%=game.getPlayer2().getQuestionState(1) %></span></li>
+                        <li><span class="accessibility">Frage 3:</span><span id="player2answer2" class=<%=game.getPlayer2().getQuestionState(2) %>><%=game.getPlayer2().getQuestionState(2) %></span></li>
 
                     </ul>
                 </div>
@@ -60,6 +60,7 @@
                     	<%List<Choice> choices = game.getAcctuallQuestion().getAllChoices();%>
                    		<% for (int i = 0; i < 4; i ++) { %> 
                    				<li><input id=<%=choices.get(i).getId()%> type="checkbox" name = "opts" value = "<%=choices.get(i).getId()%>"/><label for=<%=choices.get(i).getId()%>><%= choices.get(i).getText() %> </label></li>
+                				<!-- neda sa kliknut <li><input id="labeloption<%=String.valueOf(i) + "\""%> type="checkbox" name = "opts" value = "<%=choices.get(i).getId()%>"/><label for=<%="\"option"+String.valueOf(i)+"\"" %>><%= choices.get(i).getText() %> </label></li>-->
                 		<% } %>
                     </ul>
                     <input id="timeleftvalue" type="hidden" value="100"/>
