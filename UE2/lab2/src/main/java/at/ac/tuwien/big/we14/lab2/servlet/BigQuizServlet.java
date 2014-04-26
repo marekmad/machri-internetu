@@ -49,7 +49,42 @@ public class BigQuizServlet extends HttpServlet {
 
 		String action = request.getParameter("action");
 
+		
+		System.out.println("doPost "+action);
+		
 		if (action != null) {
+			if (action.equals("newGame")) {
+
+				Game game = null;
+
+				game = (Game) request.getSession().getAttribute("game"); 
+				
+				System.out.println("starting new game "+game);
+				
+				if (game == null || (game != null && game.getRequestDispatcherAction().equals(Game.FINISH_JSP))) {
+				// disable generating new game on refresh, BigQuizServlet?action=newGame
+					game = new Game();
+					startGame(game);
+					game.nextQuestion();
+					game.getAcctuallQuestion().setAskedTime(new Date());
+				} 
+
+				game.setRequestDispatcherAction(Game.QUESTION_JSP);// next page question.jsp
+
+				HttpSession session = request.getSession(true);
+
+				session.setAttribute("game", game);
+				
+				RequestDispatcher dispatcher = request
+						.getRequestDispatcher("question.jsp");
+				if (dispatcher != null) {
+					dispatcher.forward(request, response);
+				}
+				
+				
+
+			}
+			
 			if (action.equals("submitAnswer")) {
 
 				String[] selected = request.getParameterValues("opts");
@@ -131,6 +166,7 @@ public class BigQuizServlet extends HttpServlet {
 				}
 			}
 		}
+		
 
 	}
 
@@ -195,6 +231,18 @@ public class BigQuizServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 
+		}
+		else{
+			//send to start.jsp 
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("/start.jsp");
+			
+			if (dispatcher != null) {
+				System.out.println("");
+				dispatcher.forward(request, response);
+			}
+			
+			
 		}
 
 	}
