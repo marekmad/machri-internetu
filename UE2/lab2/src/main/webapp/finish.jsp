@@ -40,11 +40,22 @@
                     <span id="player2name" class="playername">Spieler 2</span>
                     <p id="player2roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player2wonrounds" class="playerwonrounds"><%= game.getPlayer2().getNumberRoundWon() %></span></p>
                 </div>
-                <a id="next" href="BigQuizServlet?action=newGame" accesskey="n">Neues Spiel</a>
+                <a id="next" href="BigQuizServlet?action=newGame" accesskey="n" onclick="loadLastTime()">Neues Spiel</a>
             </section>
         </section>
 
         <!-- footer -->
         <footer role="contentinfo">© 2014 BIG Quiz</footer>
+        <script type="text/javascript">
+		//<![CDATA[
+		function loadLastTime() {
+			
+				var lastT = new Date();
+				localStorage.setItem('actualTime', lastT);
+				localStorage.setItem('lastTime', localStorage
+						.getItem('actualTime'));
+		}
+		//]]>
+	</script>
     </body>
 </html>
