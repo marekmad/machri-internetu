@@ -232,7 +232,7 @@ public class BigQuizServlet extends HttpServlet {
 			}
 
 		}
-		else{
+		else {
 			//send to start.jsp 
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("/start.jsp");
