@@ -15,7 +15,7 @@
         <script src="js/jquery.js" type="text/javascript"></script>
         <script src="js/framework.js" type="text/javascript"></script>
     </head>
-    <body id="questionpage">
+    <body id="questionpage" onload="loadLastTime()">
         <a class="accessibility" href="BigQuizServlet?action=question">Zur Frage springen</a>
         <header role="banner" aria-labelledby="mainheading"><h1 id="mainheading"><span class="accessibility">Business Informatics Group</span> Quiz</h1> <input id="questionid" type = "hidden" value=<%=game.getAcctuallQuestion().getId()%> accesskey="s"/></header>
         <nav role="navigation" aria-labelledby="navheading">
@@ -75,7 +75,7 @@
             </section>
             
             <section id="lastgame">
-                <p>Letztes Spiel: Nie</p>
+                <p>Letztes Spiel: <label id = "lastTime"></label></p>
             </section>
         </section>
 
@@ -98,6 +98,24 @@
                 meter.attr('low', maxtime/100*20);
                 timeleft.text(secToMMSS(maxtime));
             });
+            
+            function loadLastTime() {
+    			if (typeof (Storage) !== "undefined") {
+
+    				var storedValue = localStorage.getItem('time');
+    				if (storedValue )
+    					document.getElementById('lastTime').innerHTML = storedValue;
+    				else {
+    					document.getElementById('lastTime').innerHTML = "NEIN";
+    					var lastT = new Date();
+    					localStorage.setItem('time', lastT);
+    				}
+
+    				
+    			} else {
+    				document.getElementById('lastTime').innerHTML = "Browser does not support localStorage";
+    			}
+    		}
             
             // update time
             function timeStep() {
