@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import at.ac.tuwien.big.we14.lab2.api.Category;
 import at.ac.tuwien.big.we14.lab2.api.Choice;
@@ -17,7 +18,7 @@ public class AskedQuestion implements Question {
 	private Category category;
 	private Date askedTime;
 	private long maxTime;
-	
+
 	public AskedQuestion() {
 		this.text = "";
 		this.maxTime = 60;
@@ -36,11 +37,28 @@ public class AskedQuestion implements Question {
 	public AskedQuestion(SimpleQuestion q) {
 		this.id = q.getId();
 		this.text = q.getText();
+
 		List<Choice> allChoices = q.getAllChoices();
-		for(int i=0; i<4; i++){
+		for (int i = 0; i < 4; i++) {
 			askedChoices.add(allChoices.get(i));
 		}
-		
+
+		boolean hasCorrectChoice = false;
+		for (int i = 0; i < 4; i++) {
+			for (int y = 0; y < q.getCorrectChoices().size(); y++) {
+				if (askedChoices.get(i).equals(q.getCorrectChoices().get(y))) {
+					hasCorrectChoice = true;
+				}
+			}
+		}
+		if (!hasCorrectChoice) {
+			
+			Random r = new Random();
+			int i = r.nextInt(4);
+			askedChoices.set(i, q.getCorrectChoices().get(0));
+			
+		}
+
 		this.category = q.getCategory();
 		this.maxTime = q.getMaxTime();
 
@@ -81,12 +99,12 @@ public class AskedQuestion implements Question {
 	public long getMaxTime() {
 		return maxTime;
 	}
-	
+
 	public String getFormatedMaxTime() {
-		
+
 		SimpleDateFormat df = new SimpleDateFormat("mm:ss");
-		String time = df.format(maxTime*1000);
-		
+		String time = df.format(maxTime * 1000);
+
 		return time;
 	}
 
@@ -96,20 +114,20 @@ public class AskedQuestion implements Question {
 
 	@Override
 	public List<Choice> getCorrectChoices() {
-		
+
 		return null;
 	}
 
 	@Override
 	public void addChoice(Choice choice, boolean isCorrect) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void removeChoice(Choice choice) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
