@@ -9,5 +9,18 @@ GET     /                           controllers.Application.index()
 GET     /blank                      controllers.Registration.blank()
 POST    /signup                     controllers.Registration.submit()
 
+# Authentification
+GET		/authentification			controllers.Registration.authentification()
+
+#Quiz over
+GET		/quizOver					controllers.Registration.quizOver()
+
+#Round over
+GET		/roundOver					controllers.Registration.roundOver()
+
+#Quiz
+GET		/quiz						controllers.Registration.quiz()
+
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

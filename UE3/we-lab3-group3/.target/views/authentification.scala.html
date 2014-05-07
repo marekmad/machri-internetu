@@ -1,0 +1,36 @@
+@(taktik: String)
+
+@main("Business Informatics Group Quiz - Login","loginpage"){
+   
+        <a class="accessibility" href="#login">Zum Login springen</a>
+        <header role="banner" aria-labelledby="mainheading"><h1 id="mainheading"><span class="accessibility">Business Informatics Group</span> Quiz</h1></header>
+        <nav role="navigation" aria-labelledby="navheading">
+            <h2 id="navheading" class="accessibility">Navigation</h2>
+            <ul>
+                <li><a id="registerlink" title="Klicke hier um dich zu registrieren" href="register.html" accesskey="r">Registrieren</a></li>
+            </ul>
+        </nav>
+        <!-- Login section -->
+        <section role="main">
+            <section id="login" aria-labelledby="loginheading">
+                <form action="login.html" method="get">
+                    <fieldset>
+                        <legend id="loginheading">Login</legend>
+                        <label for="username">Benutzername:</label>
+                        <input id="username" type="text" required="required"/>
+                        <label for="password">Passwort:</label>
+                        <input id="password" type="password" required="required"/>
+                        <input id="loginsubmit" type="submit" value="Anmelden"/>
+                    </fieldset>
+                </form>
+            </section>
+            <!-- Register section -->
+            <section id="register" aria-labelledby="registerheading">
+                <h2 id="registerheading" class="accessibility">Registrierung</h2>
+                <p>Nicht registriert?</p>
+                <a href="register.html">Zur Registierung</a>
+            </section>
+        </section>
+
+
+}
