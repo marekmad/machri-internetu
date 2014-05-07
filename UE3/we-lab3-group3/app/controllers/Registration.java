@@ -10,15 +10,15 @@ import views.html.registration;
 
 public class Registration extends Controller {
 	
-	final static Form<User> registrationForm = form(User.class);
+	//final static Form<User> registrationForm = form(User.class);
 	/**
      * Display a blank form.
      */ 
     public static Result blank() {
-        return ok(registration.render(registrationForm));
+        return ok(registration.render(""));
     }
     public static Result submit() {
-        return ok(registration.render(registrationForm));
+        return ok(registration.render(""));
     }
-  
+//  
 }
