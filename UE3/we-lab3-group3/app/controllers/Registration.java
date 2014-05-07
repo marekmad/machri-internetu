@@ -7,6 +7,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.*;
 import views.html.registration;
+import views.html.authentification;
 
 public class Registration extends Controller {
 	
@@ -19,6 +20,10 @@ public class Registration extends Controller {
     }
     public static Result submit() {
         return ok(registration.render(""));
+    }
+    
+    public static Result ahoj(){
+    	return ok(authentification.render(""));
     }
 //  
 }
