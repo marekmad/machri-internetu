@@ -14,20 +14,22 @@ import views.html.quiz;
 
 public class Registration extends Controller {
 
-	// final static Form<User> registrationForm = form(User.class);
+	final static Form<User> registrationForm = form(User.class);
+	final static Form<User> authentifForm = form(User.class);
+	
 	/**
 	 * Display a blank form.
 	 */
 	public static Result blank() {
-		return ok(registration.render(""));
+		return ok(registration.render(registrationForm));
 	}
 
 	public static Result submit() {
-		return ok(registration.render(""));
+		return ok(registration.render(registrationForm));
 	}
 
 	public static Result authentification() {
-		return ok(authentification.render(""));
+		return ok(authentification.render(authentifForm));
 	}
 
 	public static Result quizOver() {

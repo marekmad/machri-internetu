@@ -1,4 +1,7 @@
-@(taktik: String)
+@(registrationForm: Form[User])
+
+@import helper._
+@import helper.twitterBootstrap._
 
 
 @main("Business Informatics Group Quiz - Registrieren", "registerpage"){
@@ -14,38 +17,53 @@
         <section role="main" id="register" aria-labelledby="registerheading">
             <!-- Register section -->
             <h2 id="registerheading" class="accessibility">Registrierung</h2>
-            <form action="register.html" method="post">
+            @helper.form(action = routes.Registration.submit) {
                 <fieldset>
                     <legend>Persönliche Daten</legend>
-                    <label for="firstname">Vorname:</label>
-                    <input id="firstname" type="text" name="firstName"/>
+                    @inputText(
+		                registrationForm("vorname"), 
+		                '_label -> "Vorname:",
+		                'id -> "firstname"
+		            )
                     
-                    <label for="lastname">Nachname:</label>
-                    <input id="lastname" type="text" name="lastName"/>
+                    @inputText(
+		                registrationForm("nachname"), 
+		                '_label -> "Nachname:",
+		                'id -> "lastname"
+		            )
                     
                     <label for="birthdate">Geburtstag:</label>
                     <input id="birthdate" type="date" name="birthDate"/>
                     <div id="error_msg_birthdate" class="hide" role="alert">Verwenden Sie bitte folgendes Datumsformat: dd.mm.yyyy (z.B. 24.12.2012).</div>
                     
-                    <label for="gender">Geschlecht:</label>
-                    <select id="gender" name="gender">
-                        <option value="m">Männlich</option>
-                        <option value="f">Weiblich</option>
-                    </select>
+                    @select(
+		                registrationForm("geschlecht"), 
+		                options = options(User.Geschlecht.toList),
+		                '_label -> "Geschlecht:"
+		            )
                 </fieldset>
                 <fieldset>
                     <legend>Login Daten</legend>
-                    <label for="username">Benutzername*:</label>
-                    <input id="username" type="text" required="required" pattern="\w{4,8}" name="userName"/>
+                    @inputText(
+		                registrationForm("userName"), 
+		                '_label -> "Benutzername*:",
+		                '_showConstraints -> false,
+		                'id -> "username"
+		            )
                     <div id="error_msg_username" class="hide" role="alert">Der Benutzername muss mindestens 4 Zeichen und darf maximal 8 Zeichen enthalten.</div>
                     
-                    <label for="password">Passwort*:</label>
-                    <input id="password" type="password" required="required" pattern="\w{4,8}" name="password"/>
+                    @inputPassword(
+		                registrationForm("passwort"), 
+		                '_label -> "Passwort*:",
+		                '_showConstraints -> false,
+		                'id -> "password"
+		            )
                     <div id="error_msg_password" class="hide" role="alert">Das Passwort muss mindestens 4 Zeichen und darf maximal 8 Zeichen enthalten.</div>
+
                     <input id="registersubmit" type="submit" value="Registrieren" accesskey="s"/>
                     <p id="requiredhint">Mit "*" gekennzeichnete Felder sind Pflichtfelder</p>
                 </fieldset>
-            </form>
+            }
         </section>
         
 }

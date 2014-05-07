@@ -1,4 +1,7 @@
-@(taktik: String)
+@(authentifForm: Form[User])
+
+@import helper._
+@import helper.twitterBootstrap._
 
 @main("Business Informatics Group Quiz - Login","loginpage"){
    
@@ -13,16 +16,24 @@
         <!-- Login section -->
         <section role="main">
             <section id="login" aria-labelledby="loginheading">
-                <form action="login.html" method="get">
+                @helper.form(action = routes.Registration.authentification) {
                     <fieldset>
                         <legend id="loginheading">Login</legend>
-                        <label for="username">Benutzername:</label>
-                        <input id="username" type="text" required="required"/>
-                        <label for="password">Passwort:</label>
-                        <input id="password" type="password" required="required"/>
+                        @inputText(
+			                authentifForm("userName"), 
+			                '_label -> "Benutzername:",
+			                '_showConstraints -> false,
+			                'id -> "username"
+			            )
+                        @inputPassword(
+			                authentifForm("passwort"), 
+			                '_label -> "Passwort:",
+			                '_showConstraints -> false,
+			                'id -> "password"
+			            )
                         <input id="loginsubmit" type="submit" value="Anmelden"/>
                     </fieldset>
-                </form>
+                }
             </section>
             <!-- Register section -->
             <section id="register" aria-labelledby="registerheading">
