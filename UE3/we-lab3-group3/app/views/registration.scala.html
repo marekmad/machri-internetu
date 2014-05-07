@@ -1,0 +1,61 @@
+@(registrationForm: Form[User])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("Business Informatics Group Quiz - Registrieren", "registerpage") {
+			
+            @helper.form(action = routes.Registration.submit) {
+
+                <fieldset>
+                    <legend>Persönliche Daten</legend>
+                    
+                    @inputText(
+		                registrationForm("vorname"), 
+		                '_label -> "Vorname:",
+		                'id -> "firstname"
+		            )
+		            
+		            @inputText(
+		                registrationForm("nachname"), 
+		                '_label -> "Nachname:",
+		                'id -> "lastname"
+		            )
+                    
+                    <label for="birthdate">Geburtstag:</label>
+                    <input id="birthdate" type="date" name="birthDate"/>
+                    <div id="error_msg_birthdate" class="hide" role="alert">Verwenden Sie bitte folgendes Datumsformat: dd.mm.yyyy (z.B. 24.12.2012).</div>
+                    
+                    @select(
+		                registrationForm("geschlecht"), 
+		                options = options(User.Geschlecht.toList),
+		                '_label -> "Geschlecht:"
+		            )
+                    
+                </fieldset>
+                <fieldset>
+                    <legend>Login Daten</legend>
+                    
+                    
+                    @inputText(
+		                registrationForm("userName"), 
+		                '_label -> "Benutzername*:",
+		                '_showConstraints -> false
+		            )
+                    <div id="error_msg_username" class="hide" role="alert">Der Benutzername muss mindestens 4 Zeichen und darf maximal 8 Zeichen enthalten.</div>
+                    
+                    
+                    @inputPassword(
+		                registrationForm("passwort"), 
+		                '_label -> "Passwort*:",
+		                '_showConstraints -> false
+		            )
+                   
+                    <div id="error_msg_password" class="hide" role="alert">Das Passwort muss mindestens 4 Zeichen und darf maximal 8 Zeichen enthalten.</div>
+                    <input id="registersubmit" type="submit" value="Registrieren" accesskey="s"/>
+                    <p id="requiredhint">Mit "*" gekennzeichnete Felder sind Pflichtfelder</p>
+                </fieldset>
+			
+			}
+	}
+
