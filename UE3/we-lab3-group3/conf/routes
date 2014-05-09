@@ -3,11 +3,11 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET     /                           controllers.Registration.index()
 
 # Signup
-GET     /blank                      controllers.Registration.blank()
-POST    /signup                     controllers.Registration.submit()
+GET     /create                     controllers.Registration.create()
+POST    /save                    	controllers.Registration.save()
 
 # Authentification
 GET		/authentification			controllers.Registration.authentification()

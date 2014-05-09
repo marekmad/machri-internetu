@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import play.data.validation.Constraints;
+import play.db.jpa.JPA;
 
 
 @Entity
@@ -33,7 +34,7 @@ public class User {
 	
 	String vorname;
 	String nachname;
-	Date geburtsDatum;
+	//Date geburtsDatum;
 	Geschlecht geschlecht;
 	
 	@Constraints.Required
@@ -46,6 +47,29 @@ public class User {
 	@Constraints.MaxLength(8)
 	String passwort;
 
+	
+	 public void save() {
+		  JPA.em().persist(this);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -66,13 +90,13 @@ public class User {
 		this.nachname = nachname;
 	}
 
-	public Date getGeburtsDatum() {
-		return geburtsDatum;
-	}
-
-	public void setGeburtsDatum(Date geburtsDatum) {
-		this.geburtsDatum = geburtsDatum;
-	}
+//	public Date getGeburtsDatum() {
+//		return geburtsDatum;
+//	}
+//
+//	public void setGeburtsDatum(Date geburtsDatum) {
+//		this.geburtsDatum = geburtsDatum;
+//	}
 
 	public Geschlecht getGeschlecht() {
 		return geschlecht;
@@ -97,6 +121,25 @@ public class User {
 	public void setPasswort(String passwort) {
 		this.passwort = passwort;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	
 	

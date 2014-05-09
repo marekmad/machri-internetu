@@ -7,7 +7,6 @@ create table user (
   id                        bigint auto_increment not null,
   vorname                   varchar(255),
   nachname                  varchar(255),
-  geburts_datum             timestamp,
   geschlecht                integer,
   user_name                 varchar(255),
   passwort                  varchar(255),

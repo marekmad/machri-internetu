@@ -17,7 +17,7 @@
         <section role="main" id="register" aria-labelledby="registerheading">
             <!-- Register section -->
             <h2 id="registerheading" class="accessibility">Registrierung</h2>
-            @helper.form(action = routes.Registration.submit) {
+            @form(routes.Registration.save()) {
                 <fieldset>
                     <legend>Persönliche Daten</legend>
                     @inputText(
