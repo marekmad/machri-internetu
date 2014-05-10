@@ -13,7 +13,7 @@ import play.data.validation.Constraints;
 
 @Entity
 @SequenceGenerator(name = "user_seq", sequenceName = "user_seq")
-public class User{
+public class User implements at.ac.tuwien.big.we14.lab2.api.User{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
@@ -89,10 +89,14 @@ public class User{
 	}
 
 	@Override
-	public String toString() {
-		return "User [vorname=" + vorname + ", nachname="
-				+ nachname + ", geschlecht=" + geschlecht + ", userName="
-				+ userName + ", passwort=" + passwort + "]";
+	public String getName() {
+		return this.nachname;
+	}
+
+	@Override
+	public void setName(String name) {
+		this.nachname = name;
+		
 	}
 	
 	

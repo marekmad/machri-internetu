@@ -1,9 +1,9 @@
-@(authentifForm: Form[User])
+@(loginForm: Form[Registration.LoginData])
 
 @import helper._
 @import helper.twitterBootstrap._
 
-@main("Business Informatics Group Quiz - Login","loginpage"){
+@main("Business Informatics Group Quiz - Login","loginpage") {
    
         <a class="accessibility" href="#login">Zum Login springen</a>
         <header role="banner" aria-labelledby="mainheading"><h1 id="mainheading"><span class="accessibility">Business Informatics Group</span> Quiz</h1></header>
@@ -16,25 +16,45 @@
         <!-- Login section -->
         <section role="main">
             <section id="login" aria-labelledby="loginheading">
-                @helper.form(action = routes.Registration.submitLogin) {
+                @helper.form(action = routes.Registration.authentificate) {
+                
+                	@if(flash.contains("successLogout")) {
+					    <p>
+					        @flash.get("successLogout")
+					    </p>
+					}
+					                	
+                
                     <fieldset>
+                    
                         <legend id="loginheading">Login</legend>
+                        
                         @inputText(
-			                authentifForm("userName"), 
+			                loginForm("userName"), 
 			                '_label -> "Benutzername:",
 			                '_showConstraints -> false,
 			                'id -> "username"
 			            )
                         @inputPassword(
-			                authentifForm("passwort"), 
+			                loginForm("password"), 
 			                '_label -> "Passwort:",
 			                '_showConstraints -> false,
 			                'id -> "password"
 			            )
+			            
+			            
+			            
                         <input id="loginsubmit" type="submit" value="Anmelden"/>
                     </fieldset>
                 }
             </section>
+            
+            @if(loginForm.hasGlobalErrors) { 
+		    	<p>
+		        	@loginForm.globalError.message
+		        </p>
+		    }
+            
             <!-- Register section -->
             <section id="register" aria-labelledby="registerheading">
                 <h2 id="registerheading" class="accessibility">Registrierung</h2>

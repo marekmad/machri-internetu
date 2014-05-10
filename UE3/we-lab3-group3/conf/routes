@@ -10,8 +10,14 @@ GET     /create                     controllers.Registration.create()
 POST    /save                    	controllers.Registration.save()
 
 # Authentification
-GET		/authentification			controllers.Registration.authentification()
-POST	/submitLogin				controllers.Registration.submitLogin()
+GET		/login						controllers.Registration.login()
+POST	/authentificate				controllers.Registration.authentificate()
+
+# Log out
+GET		/logout						controllers.Registration.logout()
+
+#Start quiz
+GET		/index						controllers.Registration.quizStart()
 
 #Quiz over
 GET		/quizOver					controllers.Registration.quizOver()

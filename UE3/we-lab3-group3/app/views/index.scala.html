@@ -1,7 +1,18 @@
-@(message: String)
+@(taktik: String)
 
-@main("Welcome to Play", "") {
+@main("Business Informatics Group Quiz - Start","startpage") {
 
-    @play20.welcome(message, style = "Java")
+        <header role="banner" aria-labelledby="mainheading"><h1 id="mainheading"><span class="accessibility">Business Informatics Group</span> Quiz</h1></header>
+        <nav role="navigation" aria-labelledby="navheading">
+            <h2 id="navheading" class="accessibility">Navigation</h2>
+            <ul>
+                <li><a id="logoutlink" href="@routes.Registration.logout()">Abmelden</a></li>
+            </ul>
+        </nav>
+        
+        <section role="main" id="quiz">
+          <a id="startgame" href="@routes.Registration.quiz()">Quiz starten</a>
+        </section>
+
 
 }

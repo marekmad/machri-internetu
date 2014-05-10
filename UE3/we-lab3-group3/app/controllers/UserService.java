@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import controllers.Registration.LoginData;
 import models.User;
 import play.db.jpa.JPA;
 import play.mvc.Controller;
@@ -38,9 +39,9 @@ public class UserService extends Controller{
 		return (Collection<User>) query.getResultList();
 	}
 	
-	public static boolean authetificateUserLoginData(User user){
-		String userName = user.getUserName();
-		String passwort = user.getPasswort();
+	public static boolean authetificateUserLoginData(LoginData loginData){
+		String userName = loginData.userName;
+		String passwort = loginData.password;
 		User u = UserService.findByUsername(userName);
 		
 		if(u == null){
