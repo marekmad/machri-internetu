@@ -11,6 +11,7 @@ POST    /save                    	controllers.Registration.save()
 
 # Authentification
 GET		/authentification			controllers.Registration.authentification()
+POST	/submitLogin				controllers.Registration.submitLogin()
 
 #Quiz over
 GET		/quizOver					controllers.Registration.quizOver()

@@ -1,75 +1,38 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 import play.data.validation.Constraints;
-import play.db.jpa.JPA;
-
 
 @Entity
-public class User {
-	
-	public enum Geschlecht {
-		maenlich, weiblich;
-		
-		public static List<String> toList(){
-			List<String> geschlecht = new ArrayList<String>();
-			geschlecht.add("Manlich");
-			geschlecht.add("Weiblich");
-			return geschlecht;
-		}
-	}
-	
-	
+@SequenceGenerator(name = "user_seq", sequenceName = "user_seq")
+public class User{
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
 	private Long id;
 	
 	String vorname;
 	String nachname;
-	//Date geburtsDatum;
-	Geschlecht geschlecht;
-	
+	String geschlecht;
+
 	@Constraints.Required
 	@Constraints.MinLength(4)
 	@Constraints.MaxLength(8)
 	String userName;
-	
+
 	@Constraints.Required
 	@Constraints.MinLength(4)
 	@Constraints.MaxLength(8)
 	String passwort;
 
-	
-	 public void save() {
-		  JPA.em().persist(this);
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public Long getId() {
 		return id;
 	}
@@ -90,20 +53,8 @@ public class User {
 		this.nachname = nachname;
 	}
 
-//	public Date getGeburtsDatum() {
-//		return geburtsDatum;
-//	}
-//
-//	public void setGeburtsDatum(Date geburtsDatum) {
-//		this.geburtsDatum = geburtsDatum;
-//	}
-
-	public Geschlecht getGeschlecht() {
-		return geschlecht;
-	}
-
-	public void setGeschlecht(Geschlecht geschlecht) {
-		this.geschlecht = geschlecht;
+	public void setID(long id) {
+		this.id = id;
 	}
 
 	public String getUserName() {
@@ -121,26 +72,29 @@ public class User {
 	public void setPasswort(String passwort) {
 		this.passwort = passwort;
 	}
+	
+	public void setGeschlecht(String geschlecht){
+		this.geschlecht = geschlecht;
+	}
+	
+	public String getGeschlecht(){
+		return this.geschlecht;
+	}
+	
+	public static List<String> geschlechtToList() {
+		List<String> geschlecht = new ArrayList<String>();
+		geschlecht.add("Manlich");
+		geschlecht.add("Weiblich");
+		return geschlecht;
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	@Override
+	public String toString() {
+		return "User [vorname=" + vorname + ", nachname="
+				+ nachname + ", geschlecht=" + geschlecht + ", userName="
+				+ userName + ", passwort=" + passwort + "]";
+	}
 	
 	
-	
+
 }

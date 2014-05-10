@@ -6,12 +6,12 @@
 
 @main("Business Informatics Group Quiz - Registrieren", "registerpage"){
 
-        <a class="accessibility" href="#register">Zur Registrierung springen</a>
+        <a class="accessibility" href="@routes.Registration.create()">Zur Registrierung springen</a>
         <header role="banner" aria-labelledby="mainheading"><h1 id="mainheading"><span class="accessibility">Business Informatics Group</span> Quiz</h1></header>
         <nav role="navigation" aria-labelledby="navheading">
             <h2 id="navheading" class="accessibility">Navigation</h2>
             <ul>
-                <li><a id="loginlink" title="Klicke hier um dich anzumelden" href="#" accesskey="l">Anmelden</a></li>
+                <li><a id="loginlink" title="Klicke hier um dich anzumelden" href="@routes.Registration.authentification()" accesskey="l">Anmelden</a></li>
             </ul>
         </nav>
         <section role="main" id="register" aria-labelledby="registerheading">
@@ -20,27 +20,31 @@
             @form(routes.Registration.save()) {
                 <fieldset>
                     <legend>Persönliche Daten</legend>
+                    
                     @inputText(
 		                registrationForm("vorname"), 
 		                '_label -> "Vorname:",
-		                'id -> "firstname"
+		                'id -> "firstname",
+		                '_showConstraints -> false
 		            )
                     
                     @inputText(
 		                registrationForm("nachname"), 
 		                '_label -> "Nachname:",
-		                'id -> "lastname"
+		                'id -> "lastname",
+		                '_showConstraints -> false
 		            )
+		            
+		            @select(
+                  		registrationForm("geschlecht"), 
+                 		options = options(User.geschlechtToList),
+                  		'_label -> "Geschlecht:"
+              		)
                     
                     <label for="birthdate">Geburtstag:</label>
                     <input id="birthdate" type="date" name="birthDate"/>
                     <div id="error_msg_birthdate" class="hide" role="alert">Verwenden Sie bitte folgendes Datumsformat: dd.mm.yyyy (z.B. 24.12.2012).</div>
                     
-                    @select(
-		                registrationForm("geschlecht"), 
-		                options = options(User.Geschlecht.toList),
-		                '_label -> "Geschlecht:"
-		            )
                 </fieldset>
                 <fieldset>
                     <legend>Login Daten</legend>

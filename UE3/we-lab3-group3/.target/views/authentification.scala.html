@@ -10,13 +10,13 @@
         <nav role="navigation" aria-labelledby="navheading">
             <h2 id="navheading" class="accessibility">Navigation</h2>
             <ul>
-                <li><a id="registerlink" title="Klicke hier um dich zu registrieren" href="register.html" accesskey="r">Registrieren</a></li>
+                <li><a id="registerlink" title="Klicke hier um dich zu registrieren" href="@routes.Registration.create()" accesskey="r">Registrieren</a></li>
             </ul>
         </nav>
         <!-- Login section -->
         <section role="main">
             <section id="login" aria-labelledby="loginheading">
-                @helper.form(action = routes.Registration.authentification) {
+                @helper.form(action = routes.Registration.submitLogin) {
                     <fieldset>
                         <legend id="loginheading">Login</legend>
                         @inputText(
@@ -39,7 +39,7 @@
             <section id="register" aria-labelledby="registerheading">
                 <h2 id="registerheading" class="accessibility">Registrierung</h2>
                 <p>Nicht registriert?</p>
-                <a href="register.html">Zur Registierung</a>
+                <a href="@routes.Registration.create()">Zur Registierung</a>
             </section>
         </section>
 
