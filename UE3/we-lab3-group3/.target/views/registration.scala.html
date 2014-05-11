@@ -1,4 +1,4 @@
-@(registrationForm: Form[User])
+@(registrationForm: Form[Player])
 
 @import helper._
 @import helper.twitterBootstrap._
@@ -37,13 +37,13 @@
 		            
 		            @select(
                   		registrationForm("geschlecht"), 
-                 		options = options(User.geschlechtToList),
+                 		options = options(Player.geschlechtToList),
                   		'_label -> "Geschlecht:"
               		)
+              		
+              		@inputText(registrationForm("geburtsTag"), '_label -> "Geburtstag", '_showConstraints -> false)
                     
-                    <label for="birthdate">Geburtstag:</label>
-                    <input id="birthdate" type="date" name="birthDate"/>
-                    <div id="error_msg_birthdate" class="hide" role="alert">Verwenden Sie bitte folgendes Datumsformat: dd.mm.yyyy (z.B. 24.12.2012).</div>
+                    
                     
                 </fieldset>
                 <fieldset>

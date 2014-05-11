@@ -24,9 +24,11 @@ public class Application extends Controller {
 		session("questionNummer", "0");
 		models.Player user = new models.Player();
 		
+		String lang = Controller.lang().language();
+		
 		if(!gameMap.containsKey(userName)) {
 			user = UserService.findByUsername(userName);
-			QuizFactory factory = new PlayQuizFactory("conf/data.de.json", user);
+			QuizFactory factory = new PlayQuizFactory("conf/data."+lang+".json", user);
 			QuizGame game = factory.createQuizGame();
 			factory.createQuizGame();
 			gameMap.put(userName, game);

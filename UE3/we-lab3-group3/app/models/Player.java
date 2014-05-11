@@ -24,6 +24,9 @@ public class Player implements at.ac.tuwien.big.we14.lab2.api.User{
 	String vorname;
 	String nachname;
 	String geschlecht;
+	
+	@Formats.DateTime(pattern="yyyy-MM-dd")
+    Date geburtsTag;
 
 	@Constraints.Required
 	@Constraints.MinLength(4)
@@ -82,6 +85,15 @@ public class Player implements at.ac.tuwien.big.we14.lab2.api.User{
 	public String getGeschlecht(){
 		return this.geschlecht;
 	}
+	
+	public Date getGeburtsTag() {
+		return geburtsTag;
+	}
+
+	public void setGeburtsTag(Date geburtsTag) {
+		this.geburtsTag = geburtsTag;
+	}
+
 	
 	public static List<String> geschlechtToList() {
 		List<String> geschlecht = new ArrayList<String>();
