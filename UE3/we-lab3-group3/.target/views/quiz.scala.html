@@ -1,4 +1,4 @@
-@(questionText: String,question: List[String],category:String,id:List[String] )
+@(questionText:  String, question: at.ac.tuwien.big.we14.lab2.api.Question,category:String,id:List[String] )
 
 @main("Business Informatics Group Quiz","questionpage"){
 
@@ -41,10 +41,9 @@
                     <h2 id="questionheading" class="accessibility">Frage</h2>
                     <p id="questiontext">@questionText</p>
                     <ul id="answers">
-                    
-                    @for((choices , idList) <- (question zip id)){
-                   
-                        <li><input id=@idList type="checkbox"/><label for="@idList">@choices</label></li>
+                 
+                    @for((choices , idList) <- (question.getAllChoices() zip id)){
+                          <li><input id=@idList type="checkbox" name='answer' value= "@choices.getText()"/><label for="@idList">@choices.getText()</label></li>
                          }
                     </ul>
                     <input id="timeleftvalue" type="hidden" value="100"/>

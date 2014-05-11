@@ -91,10 +91,10 @@ public class Registration extends Controller {
 		return ok(quizover.render(""));
 	}
 	
-	@Security.Authenticated(SessionSecured.class)
-	public static Result roundOver() {
-		return ok(roundover.render(""));
-	}
+//	@Security.Authenticated(SessionSecured.class)
+//	public static Result roundOver() {
+//		return ok(roundover.render(""));
+//	}
 
 //	@Security.Authenticated(SessionSecured.class)
 //	public static Result quiz() {
