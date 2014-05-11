@@ -53,7 +53,7 @@
             
             <section id="timer" aria-labelledby="timerheading">
                 <h2 id="timerheading" class="accessibility">Timer</h2>
-                <p><span id="timeleftlabel">Verbleibende Zeit:</span> <time id="timeleft">00:30</time></p>
+                <p><span id="timeleftlabel">Verbleibende Zeit:</span> <time id="timeleft">@question.getMaxTime()</time></p>
                 <meter id="timermeter" min="0" low="20" value="100" max="100"/>
             </section>
             
@@ -65,9 +65,27 @@
         <script type="text/javascript">
             //<![CDATA[
             
+            
+            function secToMMSS(value){
+   			 var minutes = Math.floor(value / 60);
+   			 var seconds = (value % 60);
+    
+   			 if(seconds < 10) {
+   		  	   seconds = "0" + seconds;
+   			 }
+  			  if(minutes < 10) {
+     		   minutes = "0" + minutes;
+   			 }
+    		return minutes + ":" + seconds;
+}
+            
+            
+            
+            
+            
             // initialize time
             $(document).ready(function(){
-		        var maxtime = 30;
+		        var maxtime = @question.getMaxTime();
 		        var hiddenInput = $("#timeleftvalue");
 		        var meter = $("#timer meter");
 		        var timeleft = $("#timeleft");

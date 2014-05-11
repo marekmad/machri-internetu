@@ -13,9 +13,9 @@ import play.mvc.*;
 import views.html.*;
 
 public class Application extends Controller {
-	
+
 	private static Map<String, QuizGame> gameMap = new HashMap<String, QuizGame>();
-	
+
 	static int roundNr = 0;
 
 	@play.db.jpa.Transactional
@@ -24,28 +24,26 @@ public class Application extends Controller {
 
 		String userName = session().get("userName");
 		models.Player user = new models.Player();
-		
-		if(!gameMap.containsKey(userName)) {
+
+		if (!gameMap.containsKey(userName)) {
 			user = UserService.findByUsername(userName);
 			QuizFactory factory = new PlayQuizFactory("conf/data.de.json", user);
 			QuizGame game = factory.createQuizGame();
 			factory.createQuizGame();
 			gameMap.put(userName, game);
 		}
-		
-		
-		
+
 		QuizGame currentGame = gameMap.get(userName);
-		
+
 		User player = currentGame.getPlayers().get(0);
-		
+		player.setName("Username");
+
 		currentGame.startNewRound();
 
 		Round round = currentGame.getCurrentRound();// current round
-		
+
 		Question question = round.getCurrentQuestion(player);
-		
-		
+
 		List<String> idList = new ArrayList<String>();
 		for (int i = 0; i < question.getAllChoices().size(); i++) {
 			idList.add("option" + (i + 1));
@@ -55,113 +53,110 @@ public class Application extends Controller {
 		return ok(quiz.render(question, idList));
 
 	}
-	
-//	public static Result newRound() {
-//		
-//		game.startNewRound();
-//		Round round = game.getCurrentRound();// current round
-//		
-//		User user = game.getPlayers().get(0);
-//		
-//		
-//		
-//		Question question = round.getCurrentQuestion(user);
-//
-//		question.getAllChoices(); // all possible choices for a question
-//		round.answerCurrentQuestion(question.getAllChoices(), 5, user, factory);
-//
-//		
-//
-//		List<String> idList = new ArrayList<String>();
-//		for (int i = 0; i < question.getAllChoices().size(); i++) {
-//			idList.add("option" + (i + 1));
-//		}
-//
-//		return ok(quiz.render(question, idList));
-//		
-//	}
-	
-	public static Result roundOver(){
-		
+
+	// public static Result newRound() {
+	//
+	// game.startNewRound();
+	// Round round = game.getCurrentRound();// current round
+	//
+	// User user = game.getPlayers().get(0);
+	//
+	//
+	//
+	// Question question = round.getCurrentQuestion(user);
+	//
+	// question.getAllChoices(); // all possible choices for a question
+	// round.answerCurrentQuestion(question.getAllChoices(), 5, user, factory);
+	//
+	//
+	//
+	// List<String> idList = new ArrayList<String>();
+	// for (int i = 0; i < question.getAllChoices().size(); i++) {
+	// idList.add("option" + (i + 1));
+	// }
+	//
+	// return ok(quiz.render(question, idList));
+	//
+	// }
+
+	public static Result roundOver() {
+
 		String userName = session().get("userName");
-		
+
 		QuizGame game = gameMap.get(userName);
-	    
-	    Round round = game.getCurrentRound();
-		
-		return ok(roundover.render(round.getRoundWinner().getName().toString(), 0, 0, game.getCurrentRoundCount()));
-	}
-	
-	public static Result quizOver() {
-		
-		String userName = session().get("userName");
-		
-		QuizGame game = gameMap.get(userName);
-		
+
 		Round round = game.getCurrentRound();
-		
+
+		return ok(roundover.render(round.getRoundWinner().getName().toString(),
+				0, 0, game.getCurrentRoundCount()));
+	}
+
+	public static Result quizOver() {
+
+		String userName = session().get("userName");
+
+		QuizGame game = gameMap.get(userName);
+
+		Round round = game.getCurrentRound();
+
 		User player = game.getPlayers().get(0);
 		User computer = game.getPlayers().get(1);
-	
-		
-		return ok(quizover.render(game.getWinner().getName(), game.getWonRounds(player), game.getWonRounds(computer), player.getName(), computer.getName()));
-		
+
+		return ok(quizover.render(game.getWinner().getName(),
+				game.getWonRounds(player), game.getWonRounds(computer),
+				player.getName(), computer.getName()));
+
 	}
 
 	public static Result nextQuestion() {
-		
-		Map<String, String[]> map = request().body().asFormUrlEncoded();
-	    String[] checkedVal = map.get("answer"); // get selected answers
-	    
-	    String userName = session().get("userName");
-		
-		QuizGame game = gameMap.get(userName);
-		
-	    
-	    Round round = game.getCurrentRound();
-	    User player1 = game.getPlayers().get(0);
-	    
-	    
-	    Question currentQuestion = round.getCurrentQuestion(player1);
-	    
-	    List<Choice> questionChoices = currentQuestion.getAllChoices();
-	    
-	    List<Choice> selectedChoices = new ArrayList<Choice>();
-	    
-	    for(int y = 0; y < checkedVal.length; y++) {
-	    	for(int i = 0; i < questionChoices.size(); i++){
-		    	if(questionChoices.get(i).getText().equals(checkedVal[y])){
-		    		selectedChoices.add(questionChoices.get(i));
-		    	}
-		    }
-	    }
-	    
 
-		    
-	    game.answerCurrentQuestion(player1, selectedChoices, 10);
-	    
-	    if(game.isRoundOver()) {
-	    	
-	    	if(game.isGameOver()) {
-	    		return redirect(routes.Application.quizOver());
-	    	}
-	    	
-	    	return redirect(routes.Application.roundOver());
-	    }
-	 
-	    Question nextQuestion = round.getCurrentQuestion(player1);
-	    
-	    List<String> idList = new ArrayList<String>();
+		Map<String, String[]> map = request().body().asFormUrlEncoded();
+		String[] checkedVal = map.get("answer"); // get selected answers
+
+		String userName = session().get("userName");
+
+		QuizGame game = gameMap.get(userName);
+
+		Round round = game.getCurrentRound();
+		User player1 = game.getPlayers().get(0);
+
+		Question currentQuestion = round.getCurrentQuestion(player1);
+
+		List<Choice> questionChoices = currentQuestion.getAllChoices();
+
+		List<Choice> selectedChoices = new ArrayList<Choice>();
+
+		if (checkedVal.length != 0) {
+
+			for (int y = 0; y < checkedVal.length; y++) {
+				for (int i = 0; i < questionChoices.size(); i++) {
+					if (questionChoices.get(i).getText().equals(checkedVal[y])) {
+						selectedChoices.add(questionChoices.get(i));
+					}
+				}
+			}
+		}
+
+		game.answerCurrentQuestion(player1, selectedChoices, 10);
+
+		if (game.isRoundOver()) {
+
+			if (game.isGameOver()) {
+				return redirect(routes.Application.quizOver());
+			}
+
+			return redirect(routes.Application.roundOver());
+		}
+
+		Question nextQuestion = round.getCurrentQuestion(player1);
+
+		List<String> idList = new ArrayList<String>();
 		for (int i = 0; i < nextQuestion.getAllChoices().size(); i++) {
 			idList.add("option" + (i + 1));
 		}
-		
-		
-	    
-	    return ok(quiz.render(nextQuestion, idList));
+
+		return ok(quiz.render(nextQuestion, idList));
 
 	}
-	
-	
 
 }
