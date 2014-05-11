@@ -1,7 +1,7 @@
 package controllers;
 
 import static play.data.Form.form;
-import models.User;
+import models.Player;
 import play.data.Form;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
@@ -18,7 +18,7 @@ import models.*;
 
 public class Registration extends Controller {
 
-	final static Form<User> registrationForm = form(User.class);
+	final static Form<Player> registrationForm = form(Player.class);
 	final static Form<LoginData> loginForm = form(LoginData.class);
 
 	public static Result index() {
@@ -30,13 +30,13 @@ public class Registration extends Controller {
 	@Transactional
 	public static Result save() {
 		
-		Form<User> userForm = form(User.class).bindFromRequest();	
+		Form<Player> userForm = form(Player.class).bindFromRequest();	
 		
 		if(userForm.hasErrors()) {
 			return badRequest(registration.render(userForm));
 		}
 		
-		User user = userForm.get();
+		Player user = userForm.get();
 		
 		UserService.save(user);	
 		
@@ -47,7 +47,7 @@ public class Registration extends Controller {
 
 	@Transactional
 	public static Result create() {
-		Form<User> userForm = form(User.class);
+		Form<Player> userForm = form(Player.class);
 		return ok(registration.render(userForm));
 	}
 

@@ -1,4 +1,4 @@
-@(registrationForm: Form[User])
+@(registrationForm: Form[Player])
 
 @import helper._
 @import helper.twitterBootstrap._
@@ -37,7 +37,7 @@
 		            
 		            @select(
                   		registrationForm("geschlecht"), 
-                 		options = options(User.geschlechtToList),
+                 		options = options(Player.geschlechtToList),
                   		'_label -> "Geschlecht:"
               		)
                     

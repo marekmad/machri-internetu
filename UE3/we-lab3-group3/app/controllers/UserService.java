@@ -7,17 +7,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import controllers.Registration.LoginData;
-import models.User;
+import models.Player;
 import play.db.jpa.JPA;
 import play.mvc.Controller;
 
 public class UserService extends Controller{
 	
-	private static User findById(Long id) {
-        return JPA.em().find(User.class, id);
+	private static Player findById(Long id) {
+        return JPA.em().find(Player.class, id);
     }
-	public static User findByUsername(String username) {
-		List<User> allUsers = (List<User>) UserService.getAllUsers();
+	public static Player findByUsername(String username) {
+		List<Player> allUsers = (List<Player>) UserService.getAllUsers();
 		for(int i = 0; i < allUsers.size(); i++){
 			if(allUsers.get(i).getUserName().equals(username)){
 				return allUsers.get(i);
@@ -27,22 +27,22 @@ public class UserService extends Controller{
 	}
 	
 	
-	public static void save(User user) {
+	public static void save(Player user) {
 		EntityManager em = JPA.em();
 		em.persist(user);
 	}
 	
-	public static Collection<User> getAllUsers() {
+	public static Collection<Player> getAllUsers() {
 		EntityManager em = JPA.em();
-		String queryString = "SELECT u FROM User u";
-		TypedQuery<User> query = em.createQuery(queryString, User.class);
-		return (Collection<User>) query.getResultList();
+		String queryString = "SELECT u FROM Player u";
+		TypedQuery<Player> query = em.createQuery(queryString, Player.class);
+		return (Collection<Player>) query.getResultList();
 	}
 	
 	public static boolean authetificateUserLoginData(LoginData loginData){
 		String userName = loginData.userName;
 		String passwort = loginData.password;
-		User u = UserService.findByUsername(userName);
+		Player u = UserService.findByUsername(userName);
 		
 		if(u == null){
 			return false;

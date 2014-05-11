@@ -13,7 +13,7 @@ import play.data.validation.Constraints;
 
 @Entity
 @SequenceGenerator(name = "user_seq", sequenceName = "user_seq")
-public class User implements at.ac.tuwien.big.we14.lab2.api.User{
+public class Player implements at.ac.tuwien.big.we14.lab2.api.User{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
