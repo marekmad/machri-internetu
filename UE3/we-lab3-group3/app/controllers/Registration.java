@@ -6,8 +6,8 @@ import play.data.Form;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 import views.html.*;
-
 import play.mvc.*;
 import play.data.*;
 import static play.data.Form.*;
@@ -74,9 +74,15 @@ public class Registration extends Controller {
 		
 	}
 	
+	
+	@Security.Authenticated(SessionSecured.class)
 	public static Result logout() {
+		
+		String userName = session().get("userName");
 		session().clear();
 	    flash("successLogout", "You've been logged out");
+	    
+	    Application.gameMap.remove(userName);
 	    
 	    return redirect(routes.Registration.login());
 	}
