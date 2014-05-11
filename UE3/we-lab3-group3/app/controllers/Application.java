@@ -34,18 +34,16 @@ public class Application extends Controller {
 		}
 		
 		
+		
 		QuizGame currentGame = gameMap.get(userName);
+		
+		User player = currentGame.getPlayers().get(0);
 		
 		currentGame.startNewRound();
 
 		Round round = currentGame.getCurrentRound();// current round
 		
-		Question question = round.getCurrentQuestion(user);
-		
-		if(roundNr++ == 1) {
-			
-			return ok(Integer.toString(currentGame.getCurrentRoundCount()));
-		}
+		Question question = round.getCurrentQuestion(player);
 		
 		
 		List<String> idList = new ArrayList<String>();
@@ -93,6 +91,22 @@ public class Application extends Controller {
 		
 		return ok(roundover.render(round.getRoundWinner().getName().toString(), 0, 0, game.getCurrentRoundCount()));
 	}
+	
+	public static Result quizOver() {
+		
+		String userName = session().get("userName");
+		
+		QuizGame game = gameMap.get(userName);
+		
+		Round round = game.getCurrentRound();
+		
+		User player = game.getPlayers().get(0);
+		User computer = game.getPlayers().get(1);
+	
+		
+		return ok(quizover.render(game.getWinner().getName(), game.getWonRounds(player), game.getWonRounds(computer), player.getName(), computer.getName()));
+		
+	}
 
 	public static Result nextQuestion() {
 		
@@ -127,10 +141,14 @@ public class Application extends Controller {
 	    game.answerCurrentQuestion(player1, selectedChoices, 10);
 	    
 	    if(game.isRoundOver()) {
+	    	
+	    	if(game.isGameOver()) {
+	    		return redirect(routes.Application.quizOver());
+	    	}
+	    	
 	    	return redirect(routes.Application.roundOver());
 	    }
 	 
-	    
 	    Question nextQuestion = round.getCurrentQuestion(player1);
 	    
 	    List<String> idList = new ArrayList<String>();

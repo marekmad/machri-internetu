@@ -20,7 +20,7 @@ GET		/logout						controllers.Registration.logout()
 GET		/index						controllers.Registration.quizStart()
 
 #Quiz over
-#GET	/quizOver					controllers.Registration.quizOver()
+GET	/quizOver						controllers.Application.quizOver()
 
 #Round over
 GET		/roundOver					controllers.Application.roundOver()
