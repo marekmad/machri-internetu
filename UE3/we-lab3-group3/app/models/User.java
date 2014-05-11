@@ -9,14 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
-import at.ac.tuwien.big.we14.lab2.api.Choice;
-import at.ac.tuwien.big.we14.lab2.api.Question;
-import at.ac.tuwien.big.we14.lab2.api.QuizFactory;
-import at.ac.tuwien.big.we14.lab2.api.QuizGame;
-import at.ac.tuwien.big.we14.lab2.api.Round;
-import at.ac.tuwien.big.we14.lab2.api.impl.PlayQuizFactory;
 import play.data.validation.Constraints;
-import play.mvc.Result;
 
 @Entity
 @SequenceGenerator(name = "user_seq", sequenceName = "user_seq")
@@ -105,9 +98,6 @@ public class User implements at.ac.tuwien.big.we14.lab2.api.User{
 		this.nachname = name;
 		
 	}
-	
-	
-	
 	
 	
 

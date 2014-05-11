@@ -1,4 +1,4 @@
-@(questionText:  String, question: at.ac.tuwien.big.we14.lab2.api.Question,category:String,id:List[String] )
+@(question: at.ac.tuwien.big.we14.lab2.api.Question, id:List[String] )
 
 @main("Business Informatics Group Quiz","questionpage"){
 
@@ -31,7 +31,7 @@
                         <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class="unknown">Unbekannt</span></li>
                     </ul>
                 </div>
-                <div id="currentcategory"><span class="accessibility">Kategorie:</span> @category</div>
+                <div id="currentcategory"><span class="accessibility">Kategorie:</span> @question.getCategory.getName</div>
             </section>
             
             <!-- Question -->
@@ -39,7 +39,7 @@
                 
                 <form id="questionform" action="@routes.Application.nextQuestion()" method="post">
                     <h2 id="questionheading" class="accessibility">Frage</h2>
-                    <p id="questiontext">@questionText</p>
+                    <p id="questiontext">@question.getText</p>
                     <ul id="answers">
                  
                     @for((choices , idList) <- (question.getAllChoices() zip id)){

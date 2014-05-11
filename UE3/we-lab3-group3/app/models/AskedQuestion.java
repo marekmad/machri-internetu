@@ -13,14 +13,14 @@ public class AskedQuestion implements Choice{
 	
 	
 	Question question;
-	public List<String> chosenAnseres;
+	public List<String> chosenAnsweres;
 	
 	
-	public List<String> getchosenAnseres(){
-		return chosenAnseres;
+	public List<String> getChosenAnsweres(){
+		return chosenAnsweres;
 	}
 	public void setchosenAnseres(ArrayList<String> s){
-		chosenAnseres = s;
+		chosenAnsweres = s;
 		
 	}
 	@Override
