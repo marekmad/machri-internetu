@@ -26,7 +26,8 @@ GET		/quizOver					controllers.Registration.quizOver()
 GET		/roundOver					controllers.Registration.roundOver()
 
 #Quiz
-GET		/quiz						controllers.Registration.quiz()
+GET  	/quiz      					controllers.Application.quiz()
+POST 	/nextQuestion    			controllers.Application.nextQuestion()
 
 
 # Map static resources from the /public folder to the /assets URL path

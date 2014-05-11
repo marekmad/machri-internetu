@@ -47,7 +47,7 @@ public class Registration extends Controller {
 
 	@Transactional
 	public static Result create() {
-		 Form<User> userForm = form(User.class);
+		Form<User> userForm = form(User.class);
 		return ok(registration.render(userForm));
 	}
 
@@ -96,10 +96,10 @@ public class Registration extends Controller {
 		return ok(roundover.render(""));
 	}
 
-	@Security.Authenticated(SessionSecured.class)
-	public static Result quiz() {
-		return ok(quiz.render(""));
-	}
+//	@Security.Authenticated(SessionSecured.class)
+//	public static Result quiz() {
+//		return ok(quiz.render(""));
+//	}
 	
 	
 	public static class LoginData {
@@ -109,7 +109,7 @@ public class Registration extends Controller {
         
         public String validate() {
         	boolean isAuthentificated = UserService.authetificateUserLoginData(this);
-        	if(isAuthentificated){
+        	if(isAuthentificated) {
         		return null;
         	}else{
         		return "Invalid username or password";

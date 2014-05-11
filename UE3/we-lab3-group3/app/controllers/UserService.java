@@ -16,7 +16,7 @@ public class UserService extends Controller{
 	private static User findById(Long id) {
         return JPA.em().find(User.class, id);
     }
-	private static User findByUsername(String username){
+	public static User findByUsername(String username) {
 		List<User> allUsers = (List<User>) UserService.getAllUsers();
 		for(int i = 0; i < allUsers.size(); i++){
 			if(allUsers.get(i).getUserName().equals(username)){
