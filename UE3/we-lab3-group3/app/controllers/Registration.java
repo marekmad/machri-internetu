@@ -92,21 +92,6 @@ public class Registration extends Controller {
 		return ok(index.render(""));
 	}
 	
-//	@Security.Authenticated(SessionSecured.class)
-//	public static Result quizOver() {
-//		return ok(quizover.render(""));
-//	}
-	
-//	@Security.Authenticated(SessionSecured.class)
-//	public static Result roundOver() {
-//		return ok(roundover.render(""));
-//	}
-
-//	@Security.Authenticated(SessionSecured.class)
-//	public static Result quiz() {
-//		return ok(quiz.render(""));
-//	}
-	
 	
 	public static class LoginData {
 		

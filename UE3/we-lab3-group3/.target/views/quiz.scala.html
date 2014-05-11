@@ -1,4 +1,4 @@
-@(question: at.ac.tuwien.big.we14.lab2.api.Question, id:List[String] )
+@(question: at.ac.tuwien.big.we14.lab2.api.Question, id:List[String],correct:List[String] ,correct2:List[String]) 
 
 @main("Business Informatics Group Quiz","questionpage"){
 
@@ -16,20 +16,21 @@
             <section id="roundinfo" aria-labelledby="roundinfoheading">
                 <h2 id="roundinfoheading" class="accessibility">Spielerinformationen</h2>
                 <div id="player1info">
-                    <span id="player1name">Spieler 1</span>
+                <span id="player1name">Spieler 1</span>
                     <ul class="playerroundsummary">
-                        <li><span class="accessibility">Frage 1:</span><span id="player1answer1" class="correct">Richtig</span></li>
-                        <li><span class="accessibility">Frage 2:</span><span id="player1answer2" class="incorrect">Falsch</span></li>
-                        <li><span class="accessibility">Frage 3:</span><span id="player1answer3" class="unknown">Unbekannt</span></li>
-                    </ul>
+                    @for(c <- correct){
+                        <li><span class="accessibility">Frage 1:</span><span id="player1answer1" class="@c">@c</span></li>
+                       }
+                       </ul>
                 </div>
                 <div id="player2info">
                     <span id="player2name">Spieler 2</span>
-                    <ul class="playerroundsummary">
-                        <li><span class="accessibility">Frage 1:</span><span id="player2answer1" class="correct">Richtig</span></li>
-                        <li><span class="accessibility">Frage 2:</span><span id="player2answer2" class="correct">Richtig</span></li>
-                        <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class="unknown">Unbekannt</span></li>
-                    </ul>
+                   <ul class="playerroundsummary">
+                    @for(cc <- correct2){
+                        <li><span class="accessibility">Frage 1:</span><span id="player1answer1" class="@cc">@cc</span></li>
+                       }
+                       </ul>
+
                 </div>
                 <div id="currentcategory"><span class="accessibility">Kategorie:</span> @question.getCategory.getName</div>
             </section>

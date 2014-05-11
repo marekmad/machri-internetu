@@ -15,14 +15,13 @@ import views.html.*;
 public class Application extends Controller {
 	
 	static Map<String, QuizGame> gameMap = new HashMap<String, QuizGame>();
-	
-	static int roundNr = 0;
 
 	@play.db.jpa.Transactional
 	@Security.Authenticated(SessionSecured.class)
 	public static Result startQuiz() {
 
 		String userName = session().get("userName");
+		session("questionNummer", "0");
 		models.Player user = new models.Player();
 		
 		if(!gameMap.containsKey(userName)) {
@@ -38,6 +37,7 @@ public class Application extends Controller {
 		QuizGame currentGame = gameMap.get(userName);
 		
 		User player = currentGame.getPlayers().get(0);
+		User computer = currentGame.getPlayers().get(1);
 		
 		player.setName(userName);
 		
@@ -52,9 +52,12 @@ public class Application extends Controller {
 		for (int i = 0; i < question.getAllChoices().size(); i++) {
 			idList.add("option" + (i + 1));
 		}
-		user.toString();
+		
+		
+		List<String> p1States = getStatesOfPlay(player, round, -1);
+		List<String> p2States = getStatesOfPlay(computer, round, -1);
 
-		return ok(quiz.render(question, idList));
+		return ok(quiz.render(question, idList, p1States, p2States));
 
 	}
 	
@@ -67,8 +70,14 @@ public class Application extends Controller {
 		QuizGame game = gameMap.get(userName);
 	    
 	    Round round = game.getCurrentRound();
+	    
+	    User player1 = game.getPlayers().get(0);
+	    User computer = game.getPlayers().get(1);
+	    
+	    List<String> p1States = getStatesOfPlay(player1, round, 2);
+		List<String> p2States = getStatesOfPlay(computer, round, 2);
 		
-		return ok(roundover.render(round.getRoundWinner().getName().toString(), 0, 0, game.getCurrentRoundCount()));
+		return ok(roundover.render(round.getRoundWinner().getName().toString(), game.getWonRounds(player1), game.getWonRounds(computer), game.getCurrentRoundCount(), p1States, p2States));
 	}
 	
 	@Security.Authenticated(SessionSecured.class)
@@ -96,12 +105,14 @@ public class Application extends Controller {
 	    String[] checkedVal = map.get("answer"); // get selected answers
 	    
 	    String userName = session().get("userName");
+	    int questionNr = Integer.parseInt(session().get("questionNummer"));
 		
 		QuizGame game = gameMap.get(userName);
 		
 	    
 	    Round round = game.getCurrentRound();
 	    User player1 = game.getPlayers().get(0);
+	    User computer = game.getPlayers().get(1);
 	    
 	    
 	    Question currentQuestion = round.getCurrentQuestion(player1);
@@ -110,10 +121,10 @@ public class Application extends Controller {
 	    
 	    List<Choice> selectedChoices = new ArrayList<Choice>();
 	    
-	    if(checkedVal != null){
+	    if(checkedVal != null) {
 	    
 		    for(int y = 0; y < checkedVal.length; y++) {
-		    	for(int i = 0; i < questionChoices.size(); i++){
+		    	for(int i = 0; i < questionChoices.size(); i++) {
 			    	if(questionChoices.get(i).getText().equals(checkedVal[y])){
 			    		selectedChoices.add(questionChoices.get(i));
 			    	}
@@ -121,10 +132,10 @@ public class Application extends Controller {
 		    }
 	    
 	    }
-	    
-
-		    
+	      
 	    game.answerCurrentQuestion(player1, selectedChoices, 10);
+	    
+	    questionNr++;
 	    
 	    if(game.isRoundOver()) {
 	    	
@@ -142,10 +153,32 @@ public class Application extends Controller {
 			idList.add("option" + (i + 1));
 		}
 		
+		session("questionNummer", Integer.toString(questionNr));
 		
+		List<String> p1States = getStatesOfPlay(player1, round, questionNr - 1);
+		List<String> p2States = getStatesOfPlay(computer, round, questionNr - 1);
 	    
-	    return ok(quiz.render(nextQuestion, idList));
+	    return ok(quiz.render(nextQuestion, idList, p1States, p2States));
 
+	}
+	
+	private static List<String> getStatesOfPlay(User user, Round round, int currentQuestionNr){
+		List<String> states = new ArrayList<String>();
+		for(int i = 0; i < 3; i++){
+			if(i <= currentQuestionNr) {
+				if(round.getAnswer(i, user).isCorrect()){
+					states.add("correct");
+				}
+				else{
+					states.add("incorrect");
+				}
+			}
+			else{
+				states.add("unknown");
+			}
+		}
+		return states;
+		
 	}
 	
 	

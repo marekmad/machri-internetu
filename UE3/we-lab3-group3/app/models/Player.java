@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import play.data.format.Formats;
 import play.data.validation.Constraints;
 
 @Entity
@@ -32,7 +34,7 @@ public class Player implements at.ac.tuwien.big.we14.lab2.api.User{
 	@Constraints.MinLength(4)
 	@Constraints.MaxLength(8)
 	String passwort;
-
+	
 	public Long getId() {
 		return id;
 	}

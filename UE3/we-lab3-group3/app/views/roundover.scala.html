@@ -1,4 +1,4 @@
-@(roundWinner: String, spieler1score : Integer ,spieler2score: Integer , runde: Integer)
+@(roundWinner: String, spieler1score : Integer ,spieler2score: Integer , runde: Integer,correct:List[String] ,correct2:List[String] )
 
 @main("Business Informatics Group Quiz - Zwischenstand","winnerpage"){
 
@@ -24,19 +24,17 @@
                 <div id="player1info" class="playerinfo">
                     <span id="player1name" class="playername">Spieler 1</span>
                     <ul class="playerroundsummary">
-                        <li><span class="accessibility">Frage 1:</span><span id="player1answer1" class="correct">Richtig</span></li>
-                        <li><span class="accessibility">Frage 2:</span><span id="player1answer2" class="incorrect">Falsch</span></li>
-                        <li><span class="accessibility">Frage 3:</span><span id="player1answer3" class="correct">Richtig</span></li>
-                    </ul>
+                       @for(cc <- correct){
+                        <li><span class="accessibility">Frage 1:</span><span id="player1answer1" class="@cc">@cc</span></li>
+                       } </ul>
                     <p id="player1roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player1wonrounds" class="playerwonrounds">@spieler1score</span></p>
                 </div>
                 <div id="player2info" class="playerinfo">
                     <span id="player2name" class="playername">Spieler 2</span>
                     <ul class="playerroundsummary">
-                        <li><span class="accessibility">Frage 1:</span><span id="player2answer1" class="correct">Richtig</span></li>
-                        <li><span class="accessibility">Frage 2:</span><span id="player2answer2" class="correct">Richtig</span></li>
-                        <li><span class="accessibility">Frage 3:</span><span id="player2answer3" class="correct">Richtig</span></li>
-                    </ul>
+                        @for(c <- correct2){
+                        <li><span class="accessibility">Frage 1:</span><span id="player2answer1" class="@c">@c</span></li>
+                       }</ul>
                     <p id="player2roundcounter" class="playerroundcounter">Gewonnene Runden: <span id="player2wonrounds" class="playerwonrounds">@spieler2score</span></p>
                 </div>
                 <a id="next" href="@routes.Application.startQuiz()">Weiter</a>
