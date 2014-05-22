@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 /**
@@ -88,4 +89,5 @@ public class Choice extends BaseEntity {
     public Boolean isRight() {
     	return correctAnswer;
     }
+    
 }

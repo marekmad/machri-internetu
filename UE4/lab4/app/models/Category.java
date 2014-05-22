@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 /**
@@ -21,7 +22,7 @@ public class Category extends BaseEntity {
 
     //A list of questions in this category
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+    @OneToMany(cascade = CascadeType.ALL,  mappedBy = "category")
     private List<Question> questions = new ArrayList<Question>();
 
     /**
@@ -85,4 +86,5 @@ public class Category extends BaseEntity {
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
+    
 }

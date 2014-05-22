@@ -1,74 +1,399 @@
-2014-05-22 14:09:32,713 - [INFO] - from play in pool-41-thread-1 
+2014-05-22 15:35:57,834 - [INFO] - from play in pool-4-thread-1 
 Listening for HTTP on /0:0:0:0:0:0:0:0:9000
 
-2014-05-22 14:09:45,594 - [INFO] - from play in play-internal-execution-context-1 
+2014-05-22 15:36:41,584 - [INFO] - from play in play-internal-execution-context-1 
 datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
 
-2014-05-22 14:09:45,618 - [INFO] - from play in play-internal-execution-context-1 
+2014-05-22 15:36:41,921 - [INFO] - from play in play-internal-execution-context-1 
 database [default] connected at jdbc:h2:~/dblab4
 
-2014-05-22 14:09:47,311 - [INFO] - from application in play-internal-execution-context-1 
+2014-05-22 15:36:43,372 - [ERROR] - from application in New I/O worker #1 
+
+
+! @6iabo0i9h - Internal server error, for (GET) [/] ->
+
+play.api.UnexpectedException: Unexpected exception[PersistenceException: [PersistenceUnit: defaultPersistenceUnit] Unable to build EntityManagerFactory]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:148) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:112) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.Option.map(Option.scala:145) ~[scala-library.jar:na]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1.apply(ApplicationProvider.scala:112) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1.apply(ApplicationProvider.scala:110) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.util.Success.flatMap(Try.scala:200) ~[scala-library.jar:na]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:102) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) ~[scala-library.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1361) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) ~[scala-library.jar:na]
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: defaultPersistenceUnit] Unable to build EntityManagerFactory
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:924) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:899) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.HibernatePersistence.createEntityManagerFactory(HibernatePersistence.java:59) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:63) ~[hibernate-jpa-2.0-api.jar:1.0.1.Final]
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:47) ~[hibernate-jpa-2.0-api.jar:1.0.1.Final]
+	at play.db.jpa.JPAPlugin.onStart(JPAPlugin.java:35) ~[play-java-jpa_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.collection.immutable.List.foreach(List.scala:318) ~[scala-library.jar:na]
+	at play.api.Play$$anonfun$start$1.apply$mcV$sp(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:18) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$.start(Play.scala:87) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:139) ~[play_2.10-2.2.2.jar:2.2.2]
+	... 14 common frames omitted
+Caused by: org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch multiple bags
+	at org.hibernate.loader.BasicLoader.postInstantiate(BasicLoader.java:93) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:118) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:70) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:53) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.BatchingEntityLoaderBuilder.buildLoader(BatchingEntityLoaderBuilder.java:75) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createEntityLoader(AbstractEntityPersister.java:2495) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createEntityLoader(AbstractEntityPersister.java:2508) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createLoaders(AbstractEntityPersister.java:3854) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.postInstantiate(AbstractEntityPersister.java:3840) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.SingleTableEntityPersister.postInstantiate(SingleTableEntityPersister.java:1018) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:465) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1797) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.EntityManagerFactoryImpl.<init>(EntityManagerFactoryImpl.java:96) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:914) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	... 28 common frames omitted
+
+2014-05-22 15:42:14,900 - [INFO] - from application in play-internal-execution-context-1 
+Application shutdown...
+
+2014-05-22 15:42:15,208 - [INFO] - from play in play-internal-execution-context-1 
+datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
+
+2014-05-22 15:42:15,213 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:h2:~/dblab4
+
+2014-05-22 15:42:15,429 - [ERROR] - from application in New I/O worker #2 
+
+
+! @6iabojffb - Internal server error, for (GET) [/] ->
+
+play.api.UnexpectedException: Unexpected exception[PersistenceException: [PersistenceUnit: defaultPersistenceUnit] Unable to build EntityManagerFactory]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:148) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:112) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.Option.map(Option.scala:145) ~[scala-library.jar:na]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1.apply(ApplicationProvider.scala:112) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1.apply(ApplicationProvider.scala:110) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.util.Success.flatMap(Try.scala:200) ~[scala-library.jar:na]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:102) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) ~[scala-library.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1361) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) ~[scala-library.jar:na]
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: defaultPersistenceUnit] Unable to build EntityManagerFactory
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:924) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:899) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.HibernatePersistence.createEntityManagerFactory(HibernatePersistence.java:59) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:63) ~[hibernate-jpa-2.0-api.jar:1.0.1.Final]
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:47) ~[hibernate-jpa-2.0-api.jar:1.0.1.Final]
+	at play.db.jpa.JPAPlugin.onStart(JPAPlugin.java:35) ~[play-java-jpa_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.collection.immutable.List.foreach(List.scala:318) ~[scala-library.jar:na]
+	at play.api.Play$$anonfun$start$1.apply$mcV$sp(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:18) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$.start(Play.scala:87) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:139) ~[play_2.10-2.2.2.jar:2.2.2]
+	... 14 common frames omitted
+Caused by: org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch multiple bags
+	at org.hibernate.loader.BasicLoader.postInstantiate(BasicLoader.java:93) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:118) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:70) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:53) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.BatchingEntityLoaderBuilder.buildLoader(BatchingEntityLoaderBuilder.java:75) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createEntityLoader(AbstractEntityPersister.java:2495) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createEntityLoader(AbstractEntityPersister.java:2508) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createLoaders(AbstractEntityPersister.java:3854) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.postInstantiate(AbstractEntityPersister.java:3840) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.SingleTableEntityPersister.postInstantiate(SingleTableEntityPersister.java:1018) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:465) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1797) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.EntityManagerFactoryImpl.<init>(EntityManagerFactoryImpl.java:96) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:914) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	... 28 common frames omitted
+
+2014-05-22 15:42:57,389 - [INFO] - from application in play-internal-execution-context-1 
+Application shutdown...
+
+2014-05-22 15:42:57,541 - [INFO] - from play in play-internal-execution-context-1 
+datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
+
+2014-05-22 15:42:57,546 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:h2:~/dblab4
+
+2014-05-22 15:42:57,746 - [ERROR] - from application in New I/O worker #2 
+
+
+! @6iabom04p - Internal server error, for (GET) [/] ->
+
+play.api.UnexpectedException: Unexpected exception[PersistenceException: [PersistenceUnit: defaultPersistenceUnit] Unable to build EntityManagerFactory]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:148) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:112) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.Option.map(Option.scala:145) ~[scala-library.jar:na]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1.apply(ApplicationProvider.scala:112) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1.apply(ApplicationProvider.scala:110) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.util.Success.flatMap(Try.scala:200) ~[scala-library.jar:na]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:102) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) ~[scala-library.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1361) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) ~[scala-library.jar:na]
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: defaultPersistenceUnit] Unable to build EntityManagerFactory
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:924) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:899) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.HibernatePersistence.createEntityManagerFactory(HibernatePersistence.java:59) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:63) ~[hibernate-jpa-2.0-api.jar:1.0.1.Final]
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:47) ~[hibernate-jpa-2.0-api.jar:1.0.1.Final]
+	at play.db.jpa.JPAPlugin.onStart(JPAPlugin.java:35) ~[play-java-jpa_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.collection.immutable.List.foreach(List.scala:318) ~[scala-library.jar:na]
+	at play.api.Play$$anonfun$start$1.apply$mcV$sp(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:18) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$.start(Play.scala:87) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:139) ~[play_2.10-2.2.2.jar:2.2.2]
+	... 14 common frames omitted
+Caused by: org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch multiple bags
+	at org.hibernate.loader.BasicLoader.postInstantiate(BasicLoader.java:93) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:118) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:70) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:53) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.BatchingEntityLoaderBuilder.buildLoader(BatchingEntityLoaderBuilder.java:75) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createEntityLoader(AbstractEntityPersister.java:2495) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createEntityLoader(AbstractEntityPersister.java:2508) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createLoaders(AbstractEntityPersister.java:3854) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.postInstantiate(AbstractEntityPersister.java:3840) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.SingleTableEntityPersister.postInstantiate(SingleTableEntityPersister.java:1018) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:465) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1797) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.EntityManagerFactoryImpl.<init>(EntityManagerFactoryImpl.java:96) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:914) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	... 28 common frames omitted
+
+2014-05-22 15:44:12,360 - [INFO] - from application in play-internal-execution-context-1 
+Application shutdown...
+
+2014-05-22 15:44:12,505 - [INFO] - from play in play-internal-execution-context-1 
+datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
+
+2014-05-22 15:44:12,512 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:h2:~/dblab4
+
+2014-05-22 15:44:12,779 - [ERROR] - from application in New I/O worker #2 
+
+
+! @6iabp074m - Internal server error, for (GET) [/] ->
+
+play.api.UnexpectedException: Unexpected exception[PersistenceException: [PersistenceUnit: defaultPersistenceUnit] Unable to build EntityManagerFactory]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:148) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:112) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.Option.map(Option.scala:145) ~[scala-library.jar:na]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1.apply(ApplicationProvider.scala:112) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1.apply(ApplicationProvider.scala:110) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.util.Success.flatMap(Try.scala:200) ~[scala-library.jar:na]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:102) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) ~[scala-library.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1361) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) ~[scala-library.jar:na]
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: defaultPersistenceUnit] Unable to build EntityManagerFactory
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:924) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:899) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.HibernatePersistence.createEntityManagerFactory(HibernatePersistence.java:59) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:63) ~[hibernate-jpa-2.0-api.jar:1.0.1.Final]
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:47) ~[hibernate-jpa-2.0-api.jar:1.0.1.Final]
+	at play.db.jpa.JPAPlugin.onStart(JPAPlugin.java:35) ~[play-java-jpa_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.collection.immutable.List.foreach(List.scala:318) ~[scala-library.jar:na]
+	at play.api.Play$$anonfun$start$1.apply$mcV$sp(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:18) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$.start(Play.scala:87) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:139) ~[play_2.10-2.2.2.jar:2.2.2]
+	... 14 common frames omitted
+Caused by: org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch multiple bags
+	at org.hibernate.loader.BasicLoader.postInstantiate(BasicLoader.java:93) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:118) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:70) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:53) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.BatchingEntityLoaderBuilder.buildLoader(BatchingEntityLoaderBuilder.java:75) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createEntityLoader(AbstractEntityPersister.java:2495) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createEntityLoader(AbstractEntityPersister.java:2508) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createLoaders(AbstractEntityPersister.java:3854) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.postInstantiate(AbstractEntityPersister.java:3840) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.SingleTableEntityPersister.postInstantiate(SingleTableEntityPersister.java:1018) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:465) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1797) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.EntityManagerFactoryImpl.<init>(EntityManagerFactoryImpl.java:96) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:914) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	... 28 common frames omitted
+
+2014-05-22 15:44:35,488 - [INFO] - from application in play-internal-execution-context-1 
+Application shutdown...
+
+2014-05-22 15:44:35,628 - [INFO] - from play in play-internal-execution-context-1 
+datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
+
+2014-05-22 15:44:35,636 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:h2:~/dblab4
+
+2014-05-22 15:44:35,890 - [ERROR] - from application in New I/O worker #2 
+
+
+! @6iabp1f9j - Internal server error, for (GET) [/] ->
+
+play.api.UnexpectedException: Unexpected exception[PersistenceException: [PersistenceUnit: defaultPersistenceUnit] Unable to build EntityManagerFactory]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:148) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:112) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.Option.map(Option.scala:145) ~[scala-library.jar:na]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1.apply(ApplicationProvider.scala:112) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1.apply(ApplicationProvider.scala:110) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.util.Success.flatMap(Try.scala:200) ~[scala-library.jar:na]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:102) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) ~[scala-library.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1361) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) ~[scala-library.jar:na]
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: defaultPersistenceUnit] Unable to build EntityManagerFactory
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:924) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:899) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.HibernatePersistence.createEntityManagerFactory(HibernatePersistence.java:59) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:63) ~[hibernate-jpa-2.0-api.jar:1.0.1.Final]
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:47) ~[hibernate-jpa-2.0-api.jar:1.0.1.Final]
+	at play.db.jpa.JPAPlugin.onStart(JPAPlugin.java:35) ~[play-java-jpa_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.collection.immutable.List.foreach(List.scala:318) ~[scala-library.jar:na]
+	at play.api.Play$$anonfun$start$1.apply$mcV$sp(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:18) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$.start(Play.scala:87) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:139) ~[play_2.10-2.2.2.jar:2.2.2]
+	... 14 common frames omitted
+Caused by: org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch multiple bags
+	at org.hibernate.loader.BasicLoader.postInstantiate(BasicLoader.java:93) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:118) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:70) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:53) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.BatchingEntityLoaderBuilder.buildLoader(BatchingEntityLoaderBuilder.java:75) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createEntityLoader(AbstractEntityPersister.java:2495) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createEntityLoader(AbstractEntityPersister.java:2508) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createLoaders(AbstractEntityPersister.java:3854) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.postInstantiate(AbstractEntityPersister.java:3840) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.SingleTableEntityPersister.postInstantiate(SingleTableEntityPersister.java:1018) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:465) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1797) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.EntityManagerFactoryImpl.<init>(EntityManagerFactoryImpl.java:96) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:914) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	... 28 common frames omitted
+
+2014-05-22 15:45:46,900 - [ERROR] - from application in New I/O worker #2 
+
+
+! @6iabp1f9j - Internal server error, for (GET) [/] ->
+
+play.api.UnexpectedException: Unexpected exception[PersistenceException: [PersistenceUnit: defaultPersistenceUnit] Unable to build EntityManagerFactory]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:148) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:112) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.Option.map(Option.scala:145) ~[scala-library.jar:na]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1.apply(ApplicationProvider.scala:112) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1.apply(ApplicationProvider.scala:110) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.util.Success.flatMap(Try.scala:200) ~[scala-library.jar:na]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:110) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:102) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) ~[scala-library.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1361) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) ~[scala-library.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) ~[scala-library.jar:na]
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: defaultPersistenceUnit] Unable to build EntityManagerFactory
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:924) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:899) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.HibernatePersistence.createEntityManagerFactory(HibernatePersistence.java:59) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:63) ~[hibernate-jpa-2.0-api.jar:1.0.1.Final]
+	at javax.persistence.Persistence.createEntityManagerFactory(Persistence.java:47) ~[hibernate-jpa-2.0-api.jar:1.0.1.Final]
+	at play.db.jpa.JPAPlugin.onStart(JPAPlugin.java:35) ~[play-java-jpa_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at scala.collection.immutable.List.foreach(List.scala:318) ~[scala-library.jar:na]
+	at play.api.Play$$anonfun$start$1.apply$mcV$sp(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:88) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:18) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.api.Play$.start(Play.scala:87) ~[play_2.10-2.2.2.jar:2.2.2]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:139) ~[play_2.10-2.2.2.jar:2.2.2]
+	... 14 common frames omitted
+Caused by: org.hibernate.loader.MultipleBagFetchException: cannot simultaneously fetch multiple bags
+	at org.hibernate.loader.BasicLoader.postInstantiate(BasicLoader.java:93) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:118) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:70) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.EntityLoader.<init>(EntityLoader.java:53) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.loader.entity.BatchingEntityLoaderBuilder.buildLoader(BatchingEntityLoaderBuilder.java:75) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createEntityLoader(AbstractEntityPersister.java:2495) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createEntityLoader(AbstractEntityPersister.java:2508) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.createLoaders(AbstractEntityPersister.java:3854) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.AbstractEntityPersister.postInstantiate(AbstractEntityPersister.java:3840) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.persister.entity.SingleTableEntityPersister.postInstantiate(SingleTableEntityPersister.java:1018) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:465) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1797) ~[hibernate-core-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.EntityManagerFactoryImpl.<init>(EntityManagerFactoryImpl.java:96) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:914) ~[hibernate-entitymanager-4.2.12.Final.jar:4.2.12.Final]
+	... 28 common frames omitted
+
+2014-05-22 15:53:13,422 - [INFO] - from application in play-internal-execution-context-1 
+Application shutdown...
+
+2014-05-22 15:53:13,498 - [INFO] - from play in play-internal-execution-context-1 
+datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
+
+2014-05-22 15:53:13,502 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:h2:~/dblab4
+
+2014-05-22 15:53:14,493 - [INFO] - from application in play-internal-execution-context-1 
 Data from json file 'data.json' inserted.
 
-2014-05-22 14:09:47,361 - [INFO] - from play in play-internal-execution-context-1 
+2014-05-22 15:53:14,537 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
 
-2014-05-22 14:10:16,619 - [ERROR] - from play in play-internal-execution-context-1 
-Cannot invoke the action, eventually got an error: java.lang.UnsupportedOperationException: Not yet implemented.
+2014-05-22 15:53:26,709 - [INFO] - from application in play-akka.actor.default-dispatcher-6 
+Start game with 5 categories.
 
-2014-05-22 14:10:16,650 - [ERROR] - from application in play-internal-execution-context-1 
+2014-05-22 15:54:13,222 - [INFO] - from application in play-akka.actor.default-dispatcher-11 
+Start game with 5 categories.
 
-
-! @6iabchfi7 - Internal server error, for (POST) [/quiz] ->
-
-play.api.Application$$anon$1: Execution exception[[UnsupportedOperationException: Not yet implemented.]]
-	at play.api.Application$class.handleError(Application.scala:293) ~[play_2.10-2.2.2.jar:2.2.2]
-	at play.api.DefaultApplication.handleError(Application.scala:399) [play_2.10-2.2.2.jar:2.2.2]
-	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$2$$anonfun$applyOrElse$3.apply(PlayDefaultUpstreamHandler.scala:261) [play_2.10-2.2.2.jar:2.2.2]
-	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$2$$anonfun$applyOrElse$3.apply(PlayDefaultUpstreamHandler.scala:261) [play_2.10-2.2.2.jar:2.2.2]
-	at scala.Option.map(Option.scala:145) [scala-library.jar:na]
-	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$2.applyOrElse(PlayDefaultUpstreamHandler.scala:261) [play_2.10-2.2.2.jar:2.2.2]
-	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$2.applyOrElse(PlayDefaultUpstreamHandler.scala:257) [play_2.10-2.2.2.jar:2.2.2]
-	at scala.concurrent.Future$$anonfun$recoverWith$1.apply(Future.scala:344) [scala-library.jar:na]
-	at scala.concurrent.Future$$anonfun$recoverWith$1.apply(Future.scala:343) [scala-library.jar:na]
-	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library.jar:na]
-	at play.api.libs.iteratee.Execution$$anon$1.execute(Execution.scala:43) [play-iteratees_2.10-2.2.2.jar:2.2.2]
-	at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:40) [scala-library.jar:na]
-	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:248) [scala-library.jar:na]
-	at scala.concurrent.Promise$class.complete(Promise.scala:55) [scala-library.jar:na]
-	at scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:153) [scala-library.jar:na]
-	at scala.concurrent.Future$$anonfun$map$1.apply(Future.scala:235) [scala-library.jar:na]
-	at scala.concurrent.Future$$anonfun$map$1.apply(Future.scala:235) [scala-library.jar:na]
-	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1361) [scala-library.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) [scala-library.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) [scala-library.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) [scala-library.jar:na]
-	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) [scala-library.jar:na]
-Caused by: java.lang.UnsupportedOperationException: Not yet implemented.
-	at models.QuizDAO.findEntities(QuizDAO.java:101) ~[na:na]
-	at controllers.Quiz.createNewGame(Quiz.java:41) ~[na:na]
-	at controllers.Quiz.newGame(Quiz.java:35) ~[na:na]
-	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$9$$anonfun$apply$9.apply(routes_routing.scala:165) ~[na:na]
-	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$9$$anonfun$apply$9.apply(routes_routing.scala:165) ~[na:na]
-	at play.core.Router$HandlerInvoker$$anon$7$$anon$2.invocation(Router.scala:183) ~[play_2.10-2.2.2.jar:2.2.2]
-	at play.core.Router$Routes$$anon$1.invocation(Router.scala:377) ~[play_2.10-2.2.2.jar:2.2.2]
-	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:56) ~[play_2.10-2.2.2.jar:2.2.2]
-	at play.GlobalSettings$1.call(GlobalSettings.java:64) ~[play_2.10-2.2.2.jar:2.2.2]
-	at play.mvc.Security$AuthenticatedAction.call(Security.java:45) ~[play_2.10-2.2.2.jar:2.2.2]
-	at play.db.jpa.TransactionalAction$1.apply(TransactionalAction.java:20) ~[play-java-jpa_2.10-2.2.2.jar:2.2.2]
-	at play.db.jpa.TransactionalAction$1.apply(TransactionalAction.java:18) ~[play-java-jpa_2.10-2.2.2.jar:2.2.2]
-	at play.db.jpa.JPA.withTransactionAsync(JPA.java:177) ~[play-java-jpa_2.10-2.2.2.jar:2.2.2]
-	at play.db.jpa.TransactionalAction.call(TransactionalAction.java:15) ~[play-java-jpa_2.10-2.2.2.jar:2.2.2]
-	at play.core.j.JavaAction$$anon$3.apply(JavaAction.scala:91) ~[play_2.10-2.2.2.jar:2.2.2]
-	at play.core.j.JavaAction$$anon$3.apply(JavaAction.scala:90) ~[play_2.10-2.2.2.jar:2.2.2]
-	at play.core.j.FPromiseHelper$$anonfun$flatMap$1.apply(FPromiseHelper.scala:82) ~[play_2.10-2.2.2.jar:2.2.2]
-	at play.core.j.FPromiseHelper$$anonfun$flatMap$1.apply(FPromiseHelper.scala:82) ~[play_2.10-2.2.2.jar:2.2.2]
-	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:251) ~[scala-library.jar:na]
-	at scala.concurrent.Future$$anonfun$flatMap$1.apply(Future.scala:249) ~[scala-library.jar:na]
-	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library.jar:na]
-	at play.core.j.HttpExecutionContext$$anon$2.run(HttpExecutionContext.scala:37) ~[play_2.10-2.2.2.jar:2.2.2]
-	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:42) ~[akka-actor_2.10.jar:2.2.0]
-	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:386) ~[akka-actor_2.10.jar:2.2.0]
-	... 4 common frames omitted
+2014-05-22 15:55:33,471 - [INFO] - from application in play-akka.actor.default-dispatcher-23 
+Start game with 5 categories.
 
