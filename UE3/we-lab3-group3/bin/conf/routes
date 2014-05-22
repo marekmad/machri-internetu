@@ -1,0 +1,33 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Registration.index()
+
+# Signup
+GET     /create                     controllers.Registration.create()
+POST    /save                    	controllers.Registration.save()
+
+# Authentification
+GET		/login						controllers.Registration.login()
+POST	/authentificate				controllers.Registration.authentificate()
+
+# Log out
+GET		/logout						controllers.Registration.logout()
+
+#Start quiz
+GET		/index						controllers.Registration.quizStart()
+
+#Quiz over
+GET		/quizOver					controllers.Registration.quizOver()
+
+#Round over
+#GET		/roundOver					controllers.Registration.roundOver()
+
+#Quiz
+GET		/quiz						controllers.Application.quiz()
+POST	/nextQuestion				controllers.Application.nextQuestion()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
