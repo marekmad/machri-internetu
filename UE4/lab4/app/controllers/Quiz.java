@@ -23,6 +23,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+//imports for soap service
+import java.io.ByteArrayOutputStream;
+
+import javax.xml.soap.*;
+import javax.xml.transform.*;
+import javax.xml.transform.stream.*;
+
 @Security.Authenticated(Secured.class)
 public class Quiz extends Controller {
 
@@ -159,12 +166,59 @@ public class Quiz extends Controller {
 	@play.db.jpa.Transactional(readOnly = true)
 	public static Result endResult() {
 		QuizGame game = cachedGame();
+		
+	
 		if (game != null && isGameOver(game)) {
+			
+			//_________________________________________ SOAP
+			 try {
+		            // Create SOAP Connection
+		            SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
+		            SOAPConnection soapConnection = soapConnectionFactory.createConnection();
+
+		            // Send SOAP Message to SOAP Server
+		           
+		            String url = "http://playground.big.tuwien.ac.at:8080/highscore/PublishHighScoreService?wsdl";
+		            SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(), url);
+		            
+
+		            // Process the SOAP Response
+		            printSOAPResponse(soapResponse);
+
+		            soapConnection.close();
+		        } catch (Exception e) {
+		            System.err.println("Error occurred while sending SOAP Request to Server");
+		            e.printStackTrace();
+		        }
+			 
+			//_________________________________________ SOAP
+			
+			
+			
+			
 			return ok(quizover.render(game));
 		} else {
 			return badRequest(Messages.get("quiz.no-end-result"));
 		}
 	}
+	
+	 /**
+     * Method used to print the SOAP Response delete after it is not used anymore
+     */
+    private static void printSOAPResponse(SOAPMessage soapResponse) throws Exception {
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        Source sourceContent = soapResponse.getSOAPPart().getContent();
+       //System.out.println(soapResponse.);
+        
+        // TODO get response..
+        
+       // .getAttribute("xmlns:ns3")
+        
+        System.out.print("\nResponse SOAP Message = ");
+        StreamResult result = new StreamResult(System.out);
+        transformer.transform(sourceContent, result);
+    }
 
 	@play.db.jpa.Transactional(readOnly = true)
 	public static Result newRound() {
@@ -202,5 +256,68 @@ public class Quiz extends Controller {
 	private static Application application() {
 		return Play.application().getWrappedApplication();
 	}
+	
+	
+	//creates SOAPRequest
+	 private static SOAPMessage createSOAPRequest() throws Exception {
+	        MessageFactory messageFactory = MessageFactory.newInstance();
+	        SOAPMessage soapMessage = messageFactory.createMessage();
+	        SOAPPart soapPart = soapMessage.getSOAPPart();
+
+	        String serverURI = "http://big.tuwien.ac.at/we/highscore/data";
+
+	        // SOAP Envelope
+	        SOAPEnvelope envelope = soapPart.getEnvelope();
+	        envelope.addNamespaceDeclaration("data", serverURI);
+
+	       
+
+	        // SOAP Body
+	        SOAPBody soapBody = envelope.getBody();
+	        SOAPElement highScoreNode = soapBody.addChildElement("HighScoreRequest", "data");
+	        SOAPElement userKeyNode  = highScoreNode.addChildElement("UserKey", "data");
+	        userKeyNode.setValue("rkf4394dwqp49x");
+	       
+	        SOAPElement quiz = highScoreNode.addChildElement("quiz");
+	        
+	        SOAPElement users = quiz.addChildElement("users");
+	        
+	        SOAPElement user1 = users.addChildElement("user");
+	        
+	        user1.setAttribute("name", "loser");
+	        user1.setAttribute("gender", "male");
+	        SOAPElement passwd1Element = user1.addChildElement("password"); 
+	        SOAPElement firstname1Element = user1.addChildElement("firstname");
+	        firstname1Element.setValue("Marek");
+	        SOAPElement lastname1Element = user1.addChildElement("lastname");
+	        lastname1Element.setValue("Besser");
+	        SOAPElement birthdate1Element = user1.addChildElement("birthdate");
+	        birthdate1Element.setValue("1982-01-03");
+	        
+	        SOAPElement user2 = users.addChildElement("user");
+	        
+	        user2.setAttribute("name", "winner");
+	        user2.setAttribute("gender", "male");
+	        SOAPElement passwd2Element = user2.addChildElement("password"); 
+	        SOAPElement firstname2Element = user2.addChildElement("firstname");
+	        firstname2Element.setValue("Filip");
+	        SOAPElement lastname2Element = user2.addChildElement("lastname");
+	        lastname2Element.setValue("Taktik");
+	        SOAPElement birthdate2Element = user2.addChildElement("birthdate");
+	        birthdate2Element.setValue("1985-03-03");
+	     
+	        soapMessage.saveChanges();
+	        //System.out.println(messa);
+	        
+	        ByteArrayOutputStream out = new ByteArrayOutputStream();
+	        soapMessage.writeTo(out);
+	        String strMsg = new String(out.toByteArray());
+	        System.out.println(strMsg);
+	        
+	    
+	        
+	        return soapMessage;
+	        
+	    }
 
 }
