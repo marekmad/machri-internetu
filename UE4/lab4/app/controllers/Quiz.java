@@ -18,6 +18,7 @@ import views.html.quiz.quiz;
 import views.html.quiz.quizover;
 import views.html.quiz.roundover;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -179,7 +180,7 @@ public class Quiz extends Controller {
 		            // Send SOAP Message to SOAP Server
 		           
 		            String url = "http://playground.big.tuwien.ac.at:8080/highscore/PublishHighScoreService?wsdl";
-		            SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(), url);
+		            SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(game), url);
 		            
 
 		            // Process the SOAP Response
@@ -259,7 +260,9 @@ public class Quiz extends Controller {
 	
 	
 	//creates SOAPRequest
-	 private static SOAPMessage createSOAPRequest() throws Exception {
+	 private static SOAPMessage createSOAPRequest(QuizGame game) throws Exception {
+		 	
+		 
 	        MessageFactory messageFactory = MessageFactory.newInstance();
 	        SOAPMessage soapMessage = messageFactory.createMessage();
 	        SOAPPart soapPart = soapMessage.getSOAPPart();
@@ -271,6 +274,8 @@ public class Quiz extends Controller {
 	        envelope.addNamespaceDeclaration("data", serverURI);
 
 	       
+	        
+	        
 
 	        // SOAP Body
 	        SOAPBody soapBody = envelope.getBody();
@@ -284,27 +289,47 @@ public class Quiz extends Controller {
 	        
 	        SOAPElement user1 = users.addChildElement("user");
 	        
-	        user1.setAttribute("name", "loser");
-	        user1.setAttribute("gender", "male");
+	        String p1Status;
+	        String p2Status;
+	       if( game.getWinner().equals(game.getPlayers().get(0))){
+	    	   p1Status = "winner";
+	    	   p2Status = "loser";
+	    	   
+	       }
+	       else
+	       {
+	    	   p1Status = "loser";
+	    	   p2Status = "winner";
+	    	   
+	       }
+	        
+	        
+	        user1.setAttribute("name", p1Status);
+	        user1.setAttribute("gender", game.getPlayers().get(0).getGender().toString());
 	        SOAPElement passwd1Element = user1.addChildElement("password"); 
 	        SOAPElement firstname1Element = user1.addChildElement("firstname");
-	        firstname1Element.setValue("Marek");
+	        firstname1Element.setValue(game.getPlayers().get(0).getFirstName());
 	        SOAPElement lastname1Element = user1.addChildElement("lastname");
-	        lastname1Element.setValue("Besser");
+	        lastname1Element.setValue(game.getPlayers().get(0).getLastName());
 	        SOAPElement birthdate1Element = user1.addChildElement("birthdate");
-	        birthdate1Element.setValue("1982-01-03");
+	        
+	        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+	        	        
+	        birthdate1Element.setValue(dateFormat.format(game.getPlayers().get(0).getBirthDate()));
 	        
 	        SOAPElement user2 = users.addChildElement("user");
 	        
-	        user2.setAttribute("name", "winner");
-	        user2.setAttribute("gender", "male");
+	        user2.setAttribute("name", p2Status);
+	        user2.setAttribute("gender", game.getPlayers().get(1).getGender().toString());
 	        SOAPElement passwd2Element = user2.addChildElement("password"); 
 	        SOAPElement firstname2Element = user2.addChildElement("firstname");
-	        firstname2Element.setValue("Filip");
+	        firstname2Element.setValue(game.getPlayers().get(1).getFirstName());
 	        SOAPElement lastname2Element = user2.addChildElement("lastname");
-	        lastname2Element.setValue("Taktik");
+	        lastname2Element.setValue(game.getPlayers().get(1).getLastName());
 	        SOAPElement birthdate2Element = user2.addChildElement("birthdate");
-	        birthdate2Element.setValue("1985-03-03");
+	        
+	        
+	        birthdate2Element.setValue(dateFormat.format(game.getPlayers().get(1).getBirthDate()));
 	     
 	        soapMessage.saveChanges();
 	        //System.out.println(messa);
