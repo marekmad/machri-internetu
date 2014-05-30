@@ -33,7 +33,7 @@ public class Global extends GlobalSettings {
 
 			@Override
 			public Boolean apply() throws Throwable {
-				//insertJSonData();
+				insertJSonData();
 				DBPediaDataInserter.insertData();
 				return true;
 			}

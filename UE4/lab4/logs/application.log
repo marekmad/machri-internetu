@@ -64,3 +64,264 @@ Start game with 5 categories.
 2014-05-30 21:27:54,128 - [INFO] - from application in play-akka.actor.default-dispatcher-53 
 Start game with 5 categories.
 
+2014-05-30 21:55:34,688 - [INFO] - from application in play-internal-execution-context-10 
+Application shutdown...
+
+2014-05-30 21:55:34,846 - [INFO] - from play in play-internal-execution-context-10 
+datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
+
+2014-05-30 21:55:34,850 - [INFO] - from play in play-internal-execution-context-10 
+database [default] connected at jdbc:h2:~/dblab4
+
+2014-05-30 21:55:35,439 - [INFO] - from play in play-internal-execution-context-10 
+Application started (Dev)
+
+2014-05-30 22:00:50,318 - [INFO] - from application in play-internal-execution-context-10 
+Application shutdown...
+
+2014-05-30 22:00:50,412 - [INFO] - from play in play-internal-execution-context-10 
+datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
+
+2014-05-30 22:00:50,416 - [INFO] - from play in play-internal-execution-context-10 
+database [default] connected at jdbc:h2:~/dblab4
+
+2014-05-30 22:01:02,774 - [INFO] - from application in play-internal-execution-context-10 
+[models.Category@4681d3d7, models.Category@757aec6a, models.Category@59375f67, models.Category@425890f3, models.Category@4494638c]
+
+2014-05-30 22:01:02,778 - [INFO] - from application in play-internal-execution-context-10 
+7
+
+2014-05-30 22:01:02,836 - [INFO] - from application in play-internal-execution-context-10 
+7
+
+2014-05-30 22:01:02,872 - [INFO] - from application in play-internal-execution-context-10 
+7
+
+2014-05-30 22:01:02,905 - [INFO] - from application in play-internal-execution-context-10 
+7
+
+2014-05-30 22:01:02,939 - [INFO] - from application in play-internal-execution-context-10 
+7
+
+2014-05-30 22:01:03,000 - [INFO] - from play in play-internal-execution-context-10 
+Application started (Dev)
+
+2014-05-30 22:01:34,824 - [INFO] - from application in play-akka.actor.default-dispatcher-74 
+Start game with 5 categories.
+
+2014-05-30 22:03:45,287 - [INFO] - from application in play-internal-execution-context-11 
+Application shutdown...
+
+2014-05-30 22:03:45,469 - [INFO] - from play in play-internal-execution-context-11 
+datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
+
+2014-05-30 22:03:45,475 - [INFO] - from play in play-internal-execution-context-11 
+database [default] connected at jdbc:h2:~/dblab4
+
+2014-05-30 22:03:59,388 - [INFO] - from application in play-internal-execution-context-11 
+[models.Category@280521b4, models.Category@68e7c4f2, models.Category@483321ac, models.Category@14e7c83c, models.Category@7d0ae5dc]
+
+2014-05-30 22:03:59,389 - [INFO] - from application in play-internal-execution-context-11 
+7
+
+2014-05-30 22:03:59,463 - [INFO] - from application in play-internal-execution-context-11 
+7
+
+2014-05-30 22:03:59,506 - [INFO] - from application in play-internal-execution-context-11 
+7
+
+2014-05-30 22:03:59,551 - [INFO] - from application in play-internal-execution-context-11 
+7
+
+2014-05-30 22:03:59,591 - [INFO] - from application in play-internal-execution-context-11 
+7
+
+2014-05-30 22:03:59,672 - [INFO] - from play in play-internal-execution-context-11 
+Application started (Dev)
+
+2014-05-30 22:03:59,853 - [INFO] - from application in play-akka.actor.default-dispatcher-90 
+Start game with 5 categories.
+
+2014-05-30 22:03:59,868 - [INFO] - from application in play-akka.actor.default-dispatcher-96 
+Start game with 5 categories.
+
+2014-05-30 22:03:59,864 - [INFO] - from application in play-akka.actor.default-dispatcher-94 
+Start game with 5 categories.
+
+2014-05-30 22:03:59,863 - [INFO] - from application in play-akka.actor.default-dispatcher-93 
+Start game with 5 categories.
+
+2014-05-30 22:03:59,859 - [INFO] - from application in play-akka.actor.default-dispatcher-97 
+Start game with 5 categories.
+
+2014-05-30 22:03:59,869 - [INFO] - from application in play-akka.actor.default-dispatcher-87 
+Start game with 5 categories.
+
+2014-05-30 22:03:59,873 - [INFO] - from application in play-akka.actor.default-dispatcher-95 
+Start game with 5 categories.
+
+2014-05-30 22:03:59,873 - [INFO] - from application in play-akka.actor.default-dispatcher-92 
+Start game with 5 categories.
+
+2014-05-30 22:05:31,244 - [INFO] - from application in play-internal-execution-context-14 
+Application shutdown...
+
+2014-05-30 22:05:31,355 - [INFO] - from play in play-internal-execution-context-14 
+datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
+
+2014-05-30 22:05:31,361 - [INFO] - from play in play-internal-execution-context-14 
+database [default] connected at jdbc:h2:~/dblab4
+
+2014-05-30 22:05:44,310 - [INFO] - from application in play-internal-execution-context-14 
+[models.Category@6264c1d8, models.Category@44f27e5f, models.Category@c46b256, models.Category@75663265, models.Category@876c11a]
+
+2014-05-30 22:05:44,312 - [INFO] - from application in play-internal-execution-context-14 
+7
+
+2014-05-30 22:05:44,395 - [INFO] - from application in play-internal-execution-context-14 
+7
+
+2014-05-30 22:05:44,442 - [INFO] - from application in play-internal-execution-context-14 
+7
+
+2014-05-30 22:05:44,487 - [INFO] - from application in play-internal-execution-context-14 
+7
+
+2014-05-30 22:05:44,539 - [INFO] - from application in play-internal-execution-context-14 
+7
+
+2014-05-30 22:05:44,618 - [INFO] - from play in play-internal-execution-context-14 
+Application started (Dev)
+
+2014-05-30 22:05:48,462 - [INFO] - from application in play-internal-execution-context-14 
+Application shutdown...
+
+2014-05-30 22:05:48,646 - [INFO] - from play in play-internal-execution-context-14 
+datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
+
+2014-05-30 22:05:48,653 - [INFO] - from play in play-internal-execution-context-14 
+database [default] connected at jdbc:h2:~/dblab4
+
+2014-05-30 22:06:01,561 - [INFO] - from application in play-internal-execution-context-14 
+[models.Category@1f051586, models.Category@6c82053, models.Category@3cc22c9f, models.Category@6fff99e2, models.Category@75cffddf]
+
+2014-05-30 22:06:01,562 - [INFO] - from application in play-internal-execution-context-14 
+7
+
+2014-05-30 22:06:01,625 - [INFO] - from application in play-internal-execution-context-14 
+7
+
+2014-05-30 22:06:01,664 - [INFO] - from application in play-internal-execution-context-14 
+7
+
+2014-05-30 22:06:01,709 - [INFO] - from application in play-internal-execution-context-14 
+7
+
+2014-05-30 22:06:01,751 - [INFO] - from application in play-internal-execution-context-14 
+7
+
+2014-05-30 22:06:01,824 - [INFO] - from play in play-internal-execution-context-14 
+Application started (Dev)
+
+2014-05-30 22:06:01,952 - [INFO] - from application in play-akka.actor.default-dispatcher-107 
+Start game with 5 categories.
+
+2014-05-30 22:06:01,968 - [INFO] - from application in play-akka.actor.default-dispatcher-99 
+Start game with 5 categories.
+
+2014-05-30 22:06:01,967 - [INFO] - from application in play-akka.actor.default-dispatcher-105 
+Start game with 5 categories.
+
+2014-05-30 22:06:01,958 - [INFO] - from application in play-akka.actor.default-dispatcher-110 
+Start game with 5 categories.
+
+2014-05-30 22:06:01,957 - [INFO] - from application in play-akka.actor.default-dispatcher-108 
+Start game with 5 categories.
+
+2014-05-30 22:06:02,004 - [INFO] - from application in play-akka.actor.default-dispatcher-87 
+Start game with 5 categories.
+
+2014-05-30 22:06:01,984 - [INFO] - from application in play-akka.actor.default-dispatcher-109 
+Start game with 5 categories.
+
+2014-05-30 22:06:01,980 - [INFO] - from application in play-akka.actor.default-dispatcher-106 
+Start game with 5 categories.
+
+2014-05-30 22:08:41,963 - [INFO] - from application in play-internal-execution-context-22 
+Application shutdown...
+
+2014-05-30 22:08:42,090 - [INFO] - from play in play-internal-execution-context-22 
+datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
+
+2014-05-30 22:08:42,095 - [INFO] - from play in play-internal-execution-context-22 
+database [default] connected at jdbc:h2:~/dblab4
+
+2014-05-30 22:08:54,905 - [INFO] - from application in play-internal-execution-context-22 
+[models.Category@80b3087, models.Category@169ef331, models.Category@1d702191, models.Category@2cabc5b0, models.Category@413fbcb9]
+
+2014-05-30 22:08:54,906 - [INFO] - from application in play-internal-execution-context-22 
+7
+
+2014-05-30 22:08:54,977 - [INFO] - from application in play-internal-execution-context-22 
+7
+
+2014-05-30 22:08:55,018 - [INFO] - from application in play-internal-execution-context-22 
+7
+
+2014-05-30 22:08:55,085 - [INFO] - from application in play-internal-execution-context-22 
+7
+
+2014-05-30 22:08:55,215 - [INFO] - from application in play-internal-execution-context-22 
+7
+
+2014-05-30 22:08:55,279 - [INFO] - from play in play-internal-execution-context-22 
+Application started (Dev)
+
+2014-05-30 22:08:55,354 - [INFO] - from application in play-akka.actor.default-dispatcher-111 
+Start game with 5 categories.
+
+2014-05-30 22:08:55,354 - [INFO] - from application in play-akka.actor.default-dispatcher-120 
+Start game with 5 categories.
+
+2014-05-30 22:08:55,356 - [INFO] - from application in play-akka.actor.default-dispatcher-113 
+Start game with 5 categories.
+
+2014-05-30 22:08:55,356 - [INFO] - from application in play-akka.actor.default-dispatcher-119 
+Start game with 5 categories.
+
+2014-05-30 22:08:55,362 - [INFO] - from application in play-akka.actor.default-dispatcher-118 
+Start game with 5 categories.
+
+2014-05-30 22:08:55,360 - [INFO] - from application in play-akka.actor.default-dispatcher-121 
+Start game with 5 categories.
+
+2014-05-30 22:09:22,956 - [INFO] - from application in play-internal-execution-context-26 
+Application shutdown...
+
+2014-05-30 22:09:23,091 - [INFO] - from play in play-internal-execution-context-26 
+datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
+
+2014-05-30 22:09:23,097 - [INFO] - from play in play-internal-execution-context-26 
+database [default] connected at jdbc:h2:~/dblab4
+
+2014-05-30 22:09:24,118 - [INFO] - from application in play-internal-execution-context-26 
+Data from json file 'data.json' inserted.
+
+2014-05-30 22:09:26,675 - [INFO] - from application in play-internal-execution-context-26 
+[models.Category@742098f2]
+
+2014-05-30 22:09:26,676 - [INFO] - from application in play-internal-execution-context-26 
+7
+
+2014-05-30 22:09:26,745 - [INFO] - from play in play-internal-execution-context-26 
+Application started (Dev)
+
+2014-05-30 22:09:26,837 - [INFO] - from application in play-akka.actor.default-dispatcher-123 
+Start game with 6 categories.
+
+2014-05-30 22:09:26,847 - [INFO] - from application in play-akka.actor.default-dispatcher-117 
+Start game with 6 categories.
+
+2014-05-30 22:09:48,744 - [INFO] - from application in play-akka.actor.default-dispatcher-123 
+Start game with 6 categories.
+

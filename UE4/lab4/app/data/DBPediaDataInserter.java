@@ -25,7 +25,7 @@ import com.hp.hpl.jena.vocabulary.RDFS;
 
 public class DBPediaDataInserter {
 
-	public static void loadToQuestionFromDBPedia(Question question) {
+	public static void loadToQuestionFromDBPedia(Question question,String actorName, String directorName) {
 		
 		// Check if DBpedia is available
 		if (!DBPediaService.isAvailable()) {
@@ -36,12 +36,12 @@ public class DBPediaDataInserter {
 		// http://dbpedia.org/resource/Tim_Burton
 		// Load all statements as we need to get the name later
 		Resource director = DBPediaService.loadStatements(DBPedia
-				.createResource("Tim_Burton"));
+				.createResource(directorName));
 		// Resource Johnny Depp is available at
 		// http://dbpedia.org/resource/Johnny_Depp
 		// Load all statements as we need to get the name later
 		Resource actor = DBPediaService.loadStatements(DBPedia
-				.createResource("Johnny_Depp"));
+				.createResource(actorName));
 		// retrieve english and german names, might be used for question text
 		String englishDirectorName = DBPediaService.getResourceName(director,
 				Locale.ENGLISH);
@@ -52,8 +52,8 @@ public class DBPediaDataInserter {
 		String germanActorName = DBPediaService.getResourceName(actor,
 				Locale.GERMAN);
 		
-		question.setTextDE(germanActorName + " cibulu "+ germanDirectorName);
-		question.setTextEN(englishActorName + " cibulu "+ englishDirectorName);
+		question.setTextDE("Im welche Filmen hat "+germanActorName+" gespielt und "+germanDirectorName+" Regie gefürt");
+		question.setTextEN("In which movies did "+englishActorName+" played and "+englishDirectorName+" was director");
 		question.setMaxTime(new BigDecimal(30));
 		
 		
@@ -83,44 +83,21 @@ public class DBPediaDataInserter {
 			question.addRightChoice(correctChoice);
 		}
 		
-		
-		
-		
-		// alter query to get movies without tim burton
-		movieQuery.removeWhereClause(DBPediaOWL.director, director);
-		movieQuery.addMinusClause(DBPediaOWL.director, director);
-		// retrieve data from dbpedia
-		Model noTimBurtonMovies = DBPediaService.loadStatements(movieQuery
-				.toQueryString());
-		// get english and german movie names, e.g., for wrong choices
-		List<String> englishNoTimBurtonMovieNames = DBPediaService
-				.getResourceNames(noTimBurtonMovies, Locale.ENGLISH);
-		List<String> germanNoTimBurtonMovieNames = DBPediaService
-				.getResourceNames(noTimBurtonMovies, Locale.GERMAN);
-		
-		
-		
-		for(int i = 0; i < englishNoTimBurtonMovieNames.size(); i++){
-			Choice wrongChoice = new Choice();
-			wrongChoice.setTextEN(englishNoTimBurtonMovieNames.get(i).toString());
-			wrongChoice.setTextDE(englishNoTimBurtonMovieNames.get(i).toString());
-			question.addWrongChoice(wrongChoice);
-		}
-		
-
-		
 	}
 	
 	public static void loadToCategory(Category category){
 		
-		category.setNameDE("Bessere category DE");
-		category.setNameEN("Bessere category EN");
+		category.setNameDE("bessere Kategorie");
+		category.setNameEN("better category");
 		
 		List<Question> questionCategories = new ArrayList<Question>();
 		
+		String directorName[] = new String[] {"Tim_Burton","Steven_Spielberg", "Robert_Zemeckis", "Frank_Darabont","Nora_Ephron", "Ron_Howard","David_Silverman"};
+		String actorName[] = new String [] {"Johny_Depp","Tom_Hanks","Tom_Hanks","Tom_Hanks","Tom_Hanks", "Tom_Hanks","Tom_Hanks"};
+
 		for(int i = 0; i < 7; i++) {
 			Question question = new Question();
-			loadToQuestionFromDBPedia(question);
+			loadToQuestionFromDBPedia(question, actorName[i], directorName[i]);
 			question.setCategory(category);
 			questionCategories.add(question);
 		}
@@ -146,7 +123,7 @@ public class DBPediaDataInserter {
 	@Transactional
 	public static void insertData(){
 		
-		List<Category> dbpediaCategories = loadCategories(5);
+		List<Category> dbpediaCategories = loadCategories(1);
 		
 		Logger.info(dbpediaCategories.toString());
 		System.out.println(dbpediaCategories.toString());
