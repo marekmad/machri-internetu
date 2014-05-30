@@ -56,7 +56,6 @@ public class QuizDAO implements IQuizDAO {
      */
     @Override
     public void persist(BaseEntity entity) {
-        // TODO: Implement Method
         em().persist(entity);
     }
 
@@ -70,7 +69,6 @@ public class QuizDAO implements IQuizDAO {
      */
     @Override
     public <T extends BaseEntity> T merge(T entity) {
-        // TODO: Implement Method
     	return em().merge(entity);
     }
 
@@ -83,7 +81,6 @@ public class QuizDAO implements IQuizDAO {
      */
     @Override
     public <T extends BaseEntity> T findEntity(Long id, Class<T> entityClazz) {
-        // TODO: Implement Method
     	return em().find(entityClazz, id);
     }
 

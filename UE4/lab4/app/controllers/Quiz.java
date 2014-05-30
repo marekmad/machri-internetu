@@ -48,7 +48,8 @@ public class Quiz extends Controller {
 	private static QuizGame createNewGame() {
 		List<Category> allCategories = QuizDAO.INSTANCE.findEntities(Category.class);
 		Logger.info("Start game with " + allCategories.size() + " categories.");
-		QuizGame game = new QuizGame(allCategories);
+		QuizGame game = new QuizGame(allCategories, user());
+		
 		game.startNewRound();
 		cacheGame(game);
 		return game;

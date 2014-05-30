@@ -125,8 +125,7 @@ public class DBPediaDataInserter {
 		
 		List<Category> dbpediaCategories = loadCategories(1);
 		
-		Logger.info(dbpediaCategories.toString());
-		System.out.println(dbpediaCategories.toString());
+		
 		
 		for(Category category : dbpediaCategories) {
 			
@@ -135,6 +134,7 @@ public class DBPediaDataInserter {
 			QuizDAO.INSTANCE.persist(category);
 		}
 			
+		Logger.info("Data from DBPedia inserted.");
 		
 	}
 	
