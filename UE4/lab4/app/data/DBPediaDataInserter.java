@@ -1,5 +1,6 @@
 package data;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,14 +25,12 @@ import com.hp.hpl.jena.vocabulary.RDFS;
 
 public class DBPediaDataInserter {
 
-	public static Question loadQuestionFromDBPedia() {
-		
-		Question question = new Question();
+	public static void loadToQuestionFromDBPedia(Question question) {
 		
 		// Check if DBpedia is available
 		if (!DBPediaService.isAvailable()) {
 			Logger.info("DBpedia is currently not available.");
-			return null;
+			
 		}
 		// Resource Tim Burton is available at
 		// http://dbpedia.org/resource/Tim_Burton
@@ -55,6 +54,7 @@ public class DBPediaDataInserter {
 		
 		question.setTextDE(germanActorName + " cibulu "+ germanDirectorName);
 		question.setTextEN(englishActorName + " cibulu "+ englishDirectorName);
+		question.setMaxTime(new BigDecimal(30));
 		
 		
 		// build SPARQL-query
@@ -107,31 +107,36 @@ public class DBPediaDataInserter {
 			question.addWrongChoice(wrongChoice);
 		}
 		
-		return question;
+
 		
 	}
 	
-	public static Category loadCategory(){
-		Category category = new Category();
+	public static void loadToCategory(Category category){
 		
 		category.setNameDE("Bessere category DE");
 		category.setNameEN("Bessere category EN");
 		
 		List<Question> questionCategories = new ArrayList<Question>();
 		
-		for(int i = 0; i < 7; i++){
-			Question question = loadQuestionFromDBPedia();
+		for(int i = 0; i < 7; i++) {
+			Question question = new Question();
+			loadToQuestionFromDBPedia(question);
+			question.setCategory(category);
 			questionCategories.add(question);
 		}
 		
-		return category;
+		category.setQuestions(questionCategories);
+		
 	}
 	
 	public static List<Category> loadCategories(int categoryCount){
 		List<Category> allCategories = new ArrayList<Category>();
 		
-		for(int i = 0; i < categoryCount; i++){
-			allCategories.add(loadCategory());
+		for(int i = 0; i < categoryCount; i++) {
+			Category category = new Category();
+			loadToCategory(category);
+			
+			allCategories.add(category);
 		}
 		
 		return allCategories;
@@ -142,10 +147,14 @@ public class DBPediaDataInserter {
 	public static void insertData(){
 		
 		List<Category> dbpediaCategories = loadCategories(5);
+		
 		Logger.info(dbpediaCategories.toString());
 		System.out.println(dbpediaCategories.toString());
-		for(Category category : dbpediaCategories){
-			Logger.info(Integer.toString(category.getQuestions().get(0).getCorrectChoices().size()));
+		
+		for(Category category : dbpediaCategories) {
+			
+			Logger.info(Integer.toString(category.getQuestions().size()));
+			
 			QuizDAO.INSTANCE.persist(category);
 		}
 			

@@ -1,15 +1,66 @@
-2014-05-27 15:32:40,465 - [INFO] - from play in pool-4-thread-4 
+2014-05-30 21:14:40,855 - [INFO] - from play in pool-62-thread-2 
 Listening for HTTP on /0:0:0:0:0:0:0:0:9000
 
-2014-05-27 15:33:23,706 - [INFO] - from play in play-internal-execution-context-1 
+2014-05-30 21:14:47,282 - [INFO] - from play in play-internal-execution-context-1 
 datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
 
-2014-05-27 15:33:28,459 - [INFO] - from play in play-internal-execution-context-1 
+2014-05-30 21:14:47,328 - [INFO] - from play in play-internal-execution-context-1 
 database [default] connected at jdbc:h2:~/dblab4
 
-2014-05-27 15:33:46,519 - [INFO] - from application in play-internal-execution-context-1 
-[models.Category@2cea96a2, models.Category@5d477cb7, models.Category@4d0239, models.Category@3fccec56, models.Category@26b022d3]
+2014-05-30 21:15:13,100 - [INFO] - from application in play-internal-execution-context-1 
+[models.Category@63158c39, models.Category@1ba92501, models.Category@7dbc72d6, models.Category@5f178017, models.Category@7fda96c6]
 
-2014-05-27 15:33:46,557 - [INFO] - from play in play-internal-execution-context-1 
+2014-05-30 21:15:13,103 - [INFO] - from application in play-internal-execution-context-1 
+0
+
+2014-05-30 21:15:13,217 - [INFO] - from application in play-internal-execution-context-1 
+0
+
+2014-05-30 21:15:13,219 - [INFO] - from application in play-internal-execution-context-1 
+0
+
+2014-05-30 21:15:13,221 - [INFO] - from application in play-internal-execution-context-1 
+0
+
+2014-05-30 21:15:13,223 - [INFO] - from application in play-internal-execution-context-1 
+0
+
+2014-05-30 21:15:13,269 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
+
+2014-05-30 21:19:13,090 - [INFO] - from application in play-internal-execution-context-1 
+Application shutdown...
+
+2014-05-30 21:19:13,255 - [INFO] - from play in play-internal-execution-context-1 
+datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
+
+2014-05-30 21:19:13,259 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:h2:~/dblab4
+
+2014-05-30 21:19:39,193 - [INFO] - from application in play-internal-execution-context-1 
+[models.Category@c2f6cff, models.Category@7d9cdf98, models.Category@461bb495, models.Category@44ecc628, models.Category@14c58f72]
+
+2014-05-30 21:19:39,195 - [INFO] - from application in play-internal-execution-context-1 
+7
+
+2014-05-30 21:19:39,386 - [INFO] - from application in play-internal-execution-context-1 
+7
+
+2014-05-30 21:19:39,503 - [INFO] - from application in play-internal-execution-context-1 
+7
+
+2014-05-30 21:19:39,623 - [INFO] - from application in play-internal-execution-context-1 
+7
+
+2014-05-30 21:19:39,739 - [INFO] - from application in play-internal-execution-context-1 
+7
+
+2014-05-30 21:19:39,926 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2014-05-30 21:21:08,925 - [INFO] - from application in play-akka.actor.default-dispatcher-12 
+Start game with 5 categories.
+
+2014-05-30 21:27:54,128 - [INFO] - from application in play-akka.actor.default-dispatcher-53 
+Start game with 5 categories.
 
