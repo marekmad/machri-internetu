@@ -224,7 +224,7 @@ public class Quiz extends Controller {
 			try {
 				if(UUID.equals("")) UUID = "Hightscoreboard problem";
 				TwitterStatusMessage StatusMessage = new TwitterStatusMessage(
-						"Gruppe 6", UUID, Calendar.getInstance().getTime());
+						game.getPlayers().get(0).getUserName(), UUID, Calendar.getInstance().getTime());
 				ITwitterClient TClient = new TwitterClient();
 				TClient.publishUuid(StatusMessage);
 				Logger.info("Post to Twitter with UUID: " + UUID + " successful" );

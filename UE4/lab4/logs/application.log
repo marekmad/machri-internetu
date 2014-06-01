@@ -1,69 +1,114 @@
-2014-05-30 22:26:45,657 - [INFO] - from play in pool-105-thread-5 
+2014-06-01 21:29:14,690 - [INFO] - from play in pool-4-thread-3 
 Listening for HTTP on /0:0:0:0:0:0:0:0:9000
 
-2014-05-30 22:26:51,740 - [INFO] - from play in play-internal-execution-context-1 
+2014-06-01 21:30:10,078 - [INFO] - from play in play-internal-execution-context-1 
 datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
 
-2014-05-30 22:26:51,802 - [INFO] - from play in play-internal-execution-context-1 
+2014-06-01 21:30:11,051 - [INFO] - from play in play-internal-execution-context-1 
 database [default] connected at jdbc:h2:~/dblab4
 
-2014-05-30 22:26:55,420 - [INFO] - from play in play-internal-execution-context-1 
-Application started (Dev)
-
-2014-05-30 22:27:17,475 - [INFO] - from application in play-internal-execution-context-1 
-Application shutdown...
-
-2014-05-30 22:27:17,760 - [INFO] - from play in play-internal-execution-context-1 
-datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
-
-2014-05-30 22:27:17,768 - [INFO] - from play in play-internal-execution-context-1 
-database [default] connected at jdbc:h2:~/dblab4
-
-2014-05-30 22:27:19,066 - [INFO] - from application in play-internal-execution-context-1 
+2014-06-01 21:30:18,713 - [INFO] - from application in play-internal-execution-context-1 
 Data from json file 'data.json' inserted.
 
-2014-05-30 22:27:26,006 - [INFO] - from application in play-internal-execution-context-1 
-[models.Category@30e80477]
-
-2014-05-30 22:27:26,007 - [INFO] - from application in play-internal-execution-context-1 
+2014-06-01 21:30:25,993 - [INFO] - from application in play-internal-execution-context-1 
 7
 
-2014-05-30 22:27:26,152 - [INFO] - from play in play-internal-execution-context-1 
-Application started (Dev)
-
-2014-05-30 22:29:31,867 - [INFO] - from application in play-internal-execution-context-1 
-Application shutdown...
-
-2014-05-30 22:29:32,018 - [INFO] - from play in play-internal-execution-context-1 
-datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
-
-2014-05-30 22:29:32,027 - [INFO] - from play in play-internal-execution-context-1 
-database [default] connected at jdbc:h2:~/dblab4
-
-2014-05-30 22:29:32,872 - [INFO] - from play in play-internal-execution-context-1 
-Application started (Dev)
-
-2014-05-30 22:37:41,551 - [INFO] - from application in play-internal-execution-context-1 
-Application shutdown...
-
-2014-05-30 22:37:41,761 - [INFO] - from play in play-internal-execution-context-1 
-datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
-
-2014-05-30 22:37:41,768 - [INFO] - from play in play-internal-execution-context-1 
-database [default] connected at jdbc:h2:~/dblab4
-
-2014-05-30 22:37:42,638 - [INFO] - from application in play-internal-execution-context-1 
-Data from json file 'data.json' inserted.
-
-2014-05-30 22:37:45,830 - [INFO] - from application in play-internal-execution-context-1 
-7
-
-2014-05-30 22:37:45,866 - [INFO] - from application in play-internal-execution-context-1 
+2014-06-01 21:30:26,077 - [INFO] - from application in play-internal-execution-context-1 
 Data from DBPedia inserted.
 
-2014-05-30 22:37:45,905 - [INFO] - from play in play-internal-execution-context-1 
+2014-06-01 21:30:26,261 - [INFO] - from play in play-internal-execution-context-1 
 Application started (Dev)
 
-2014-05-30 22:38:03,506 - [INFO] - from application in play-akka.actor.default-dispatcher-11 
+2014-06-01 21:30:29,595 - [INFO] - from application in play-internal-execution-context-1 
+Application shutdown...
+
+2014-06-01 21:30:29,912 - [INFO] - from play in play-internal-execution-context-1 
+datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
+
+2014-06-01 21:30:29,920 - [INFO] - from play in play-internal-execution-context-1 
+database [default] connected at jdbc:h2:~/dblab4
+
+2014-06-01 21:30:31,409 - [INFO] - from application in play-internal-execution-context-1 
+Data from json file 'data.json' inserted.
+
+2014-06-01 21:30:33,952 - [INFO] - from application in play-internal-execution-context-1 
+7
+
+2014-06-01 21:30:34,037 - [INFO] - from application in play-internal-execution-context-1 
+Data from DBPedia inserted.
+
+2014-06-01 21:30:34,094 - [INFO] - from play in play-internal-execution-context-1 
+Application started (Dev)
+
+2014-06-01 21:30:56,217 - [INFO] - from application in play-akka.actor.default-dispatcher-7 
 Start game with 6 categories.
+
+2014-06-01 21:31:40,281 - [INFO] - from application in play-akka.actor.default-dispatcher-8 
+UUID: cc40012c-fa93-4007-8c37-8128b15bbc7e
+
+2014-06-01 21:31:40,282 - [INFO] - from application in play-akka.actor.default-dispatcher-8 
+Post to Highscoreboard with UUID: cc40012c-fa93-4007-8c37-8128b15bbc7e successful
+
+2014-06-01 21:31:42,261 - [INFO] - from application in play-akka.actor.default-dispatcher-8 
+Post to Twitter with UUID: cc40012c-fa93-4007-8c37-8128b15bbc7e successful
+
+2014-06-01 21:32:18,313 - [INFO] - from application in play-akka.actor.default-dispatcher-8 
+Start game with 6 categories.
+
+2014-06-01 21:33:02,415 - [INFO] - from application in play-akka.actor.default-dispatcher-19 
+Start game with 6 categories.
+
+2014-06-01 21:33:54,652 - [INFO] - from application in play-akka.actor.default-dispatcher-30 
+UUID: c8411b6f-da06-4c5f-a966-5ab10b94afad
+
+2014-06-01 21:33:54,653 - [INFO] - from application in play-akka.actor.default-dispatcher-30 
+Post to Highscoreboard with UUID: c8411b6f-da06-4c5f-a966-5ab10b94afad successful
+
+2014-06-01 21:33:55,378 - [INFO] - from application in play-akka.actor.default-dispatcher-30 
+Post to Twitter with UUID: c8411b6f-da06-4c5f-a966-5ab10b94afad successful
+
+2014-06-01 21:42:41,407 - [INFO] - from application in play-internal-execution-context-14 
+Application shutdown...
+
+2014-06-01 21:42:41,565 - [INFO] - from play in play-internal-execution-context-14 
+datasource [jdbc:h2:~/dblab4;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;AUTO_SERVER_PORT=9333] bound to JNDI as DefaultDS
+
+2014-06-01 21:42:41,572 - [INFO] - from play in play-internal-execution-context-14 
+database [default] connected at jdbc:h2:~/dblab4
+
+2014-06-01 21:42:42,409 - [INFO] - from application in play-internal-execution-context-14 
+Data from json file 'data.json' inserted.
+
+2014-06-01 21:42:44,866 - [INFO] - from application in play-internal-execution-context-14 
+7
+
+2014-06-01 21:42:44,940 - [INFO] - from application in play-internal-execution-context-14 
+Data from DBPedia inserted.
+
+2014-06-01 21:42:44,987 - [INFO] - from play in play-internal-execution-context-14 
+Application started (Dev)
+
+2014-06-01 21:43:40,533 - [INFO] - from application in play-akka.actor.default-dispatcher-34 
+Start game with 6 categories.
+
+2014-06-01 21:44:10,953 - [INFO] - from application in play-akka.actor.default-dispatcher-42 
+UUID: b3ffd190-8ed6-4ffe-8652-caeac39ce486
+
+2014-06-01 21:44:10,954 - [INFO] - from application in play-akka.actor.default-dispatcher-42 
+Post to Highscoreboard with UUID: b3ffd190-8ed6-4ffe-8652-caeac39ce486 successful
+
+2014-06-01 21:44:11,711 - [INFO] - from application in play-akka.actor.default-dispatcher-42 
+Post to Twitter with UUID: b3ffd190-8ed6-4ffe-8652-caeac39ce486 successful
+
+2014-06-01 21:45:22,875 - [INFO] - from application in play-akka.actor.default-dispatcher-41 
+Start game with 6 categories.
+
+2014-06-01 21:45:45,186 - [INFO] - from application in play-akka.actor.default-dispatcher-47 
+UUID: 34362d50-526d-494b-b6e8-1e02b273e8ce
+
+2014-06-01 21:45:45,187 - [INFO] - from application in play-akka.actor.default-dispatcher-47 
+Post to Highscoreboard with UUID: 34362d50-526d-494b-b6e8-1e02b273e8ce successful
+
+2014-06-01 21:45:45,967 - [INFO] - from application in play-akka.actor.default-dispatcher-47 
+Post to Twitter with UUID: 34362d50-526d-494b-b6e8-1e02b273e8ce successful
 
