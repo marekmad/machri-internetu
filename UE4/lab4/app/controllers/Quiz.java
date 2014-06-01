@@ -178,7 +178,7 @@ public class Quiz extends Controller {
 		String UUID = "";
 
 		if (game != null && isGameOver(game)) {
-			game.setMessage("Post to Hightscoreboard and Twitter successful!");
+			game.setMessage("Post to Hightscoreboard failed, bud was Twitter successful!");
 			// _________________________________________ SOAP
 			try {
 				// Create SOAP Connection
@@ -194,7 +194,7 @@ public class Quiz extends Controller {
 						createSOAPRequest(game), url);
 
 				// Process the SOAP Response
-				// printSOAPResponse(soapResponse);
+				 //printSOAPResponse(soapResponse);
 				// TODO get UID from soapResponse
 
 				QName bodyName = new QName(
@@ -213,6 +213,7 @@ public class Quiz extends Controller {
 
 				soapConnection.close();
 				Logger.info("Post to Highscoreboard with UUID: " + UUID + " successful" );
+				game.setMessage("Post to Hightscoreboard and Twitter was successful!!!");
 				// java.netConnectException
 
 			} catch (Exception e) {
@@ -333,17 +334,16 @@ public class Quiz extends Controller {
 		else
 			genderP1 = "male";
 
-		String firstnameP1;
-		if (game.getPlayers().get(0).getGender() != null)
+		String firstnameP1= "nicht angegeben1";
+		if (game.getPlayers().get(0).getFirstName() != null &&  !(game.getPlayers().get(0).getFirstName().equals("")))
 			firstnameP1 = game.getPlayers().get(0).getFirstName();
-		else
-			firstnameP1 = "nicht angegeben";
+		System.out.println("Firstname1: " + firstnameP1);
+		
 
-		String lastnameP1;
-		if (game.getPlayers().get(0).getGender() != null)
+		String lastnameP1= "nicht angegeben1";
+		if (game.getPlayers().get(0).getLastName() != null&&  !(game.getPlayers().get(0).getLastName().equals("")))
 			lastnameP1 = game.getPlayers().get(0).getLastName();
-		else
-			lastnameP1 = "nicht angegeben";
+		
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -371,17 +371,15 @@ public class Quiz extends Controller {
 		else
 			genderP2 = "male";
 
-		String firstnameP2;
-		if (game.getPlayers().get(1).getGender() != null)
+		String firstnameP2= "nicht angegeben2";
+		if (game.getPlayers().get(1).getFirstName() !=null &&  !(game.getPlayers().get(1).getFirstName().equals("")))
 			firstnameP2 = game.getPlayers().get(1).getFirstName();
-		else
-			firstnameP2 = "nicht angegeben";
+		System.out.println("Firstname: " + firstnameP2);
 
-		String lastnameP2;
-		if (game.getPlayers().get(1).getGender() != null)
+		String lastnameP2= "nicht angegeben2";
+		if (game.getPlayers().get(1).getLastName() != null &&  !(game.getPlayers().get(1).getLastName().equals("")))
 			lastnameP2 = game.getPlayers().get(1).getLastName();
-		else
-			lastnameP2 = "nicht angegeben";
+		
 
 		String birthDateP2 = "1982-01-01";
 		if (game.getPlayers().get(1).getBirthDate() != null)
@@ -411,5 +409,23 @@ public class Quiz extends Controller {
 		return soapMessage;
 
 	}
+	
+	 /**
+     * Method used to print the SOAP Response delete after it is not used anymore
+     */
+   private static void printSOAPResponse(SOAPMessage soapResponse) throws Exception {
+       TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        Source sourceContent = soapResponse.getSOAPPart().getContent();
+       //System.out.println(soapResponse.);
+        
+        // TODO get response..
+        
+       // .getAttribute("xmlns:ns3")
+        
+        System.out.print("\nResponse SOAP Message = ");
+        StreamResult result = new StreamResult(System.out);
+        transformer.transform(sourceContent, result);
+    }
 
 }
