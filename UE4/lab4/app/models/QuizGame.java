@@ -16,6 +16,8 @@ public class QuizGame {
 
 	private QuizUser human;
 	private QuizUser computer;
+	
+	private String message;
 
 	private List<Category> categories;
 
@@ -202,5 +204,13 @@ public class QuizGame {
 				return bestUsers.get(0);
 		}
 		return null;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

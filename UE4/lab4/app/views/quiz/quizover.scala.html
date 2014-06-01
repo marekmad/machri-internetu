@@ -1,6 +1,7 @@
 @(game: QuizGame)
 @player1 = @{ game.getPlayers().get(0) }
 @player2 = @{ game.getPlayers().get(1) }
+@message = @{ game.getMessage() }
 @winnerMessage = @{
     game.getWinner() match {
         case null => Messages("quiz.tie")
@@ -31,6 +32,14 @@
                 @helper.form(routes.Quiz.newGame) {
                     <input id="next" type="submit" value="@Messages("quiz.start")"/>
                 }
+                
+                
+        	<section id="roundwinner" aria-labelledby="roundwinnerheading">
+               
+                <p class="myclass">@message</p>
+            </section>
+            
+            
             </section>
             <script type="text/javascript">
             //<![CDATA[

@@ -13,13 +13,18 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
 import scala.Option;
+import twitter.ITwitterClient;
+import twitter.TwitterClient;
+import twitter.TwitterStatusMessage;
 import views.html.quiz.index;
 import views.html.quiz.quiz;
 import views.html.quiz.quizover;
 import views.html.quiz.roundover;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -27,6 +32,7 @@ import java.util.UUID;
 //imports for soap service
 import java.io.ByteArrayOutputStream;
 
+import javax.xml.namespace.QName;
 import javax.xml.soap.*;
 import javax.xml.transform.*;
 import javax.xml.transform.stream.*;
@@ -46,17 +52,18 @@ public class Quiz extends Controller {
 
 	@play.db.jpa.Transactional(readOnly = true)
 	private static QuizGame createNewGame() {
-		List<Category> allCategories = QuizDAO.INSTANCE.findEntities(Category.class);
+		List<Category> allCategories = QuizDAO.INSTANCE
+				.findEntities(Category.class);
 		Logger.info("Start game with " + allCategories.size() + " categories.");
 		QuizGame game = new QuizGame(allCategories, user());
-		
 		game.startNewRound();
 		cacheGame(game);
 		return game;
 	}
 
 	private static String dataFilePath() {
-		return Play.application().configuration().getString("questions.filePath");
+		return Play.application().configuration()
+				.getString("questions.filePath");
 	}
 
 	private static QuizUser user() {
@@ -168,59 +175,73 @@ public class Quiz extends Controller {
 	@play.db.jpa.Transactional(readOnly = true)
 	public static Result endResult() {
 		QuizGame game = cachedGame();
-		
-	
+		String UUID = "";
+
 		if (game != null && isGameOver(game)) {
-			
-			//_________________________________________ SOAP
-			 try {
-		            // Create SOAP Connection
-		            SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
-		            SOAPConnection soapConnection = soapConnectionFactory.createConnection();
+			game.setMessage("Post to Hightscoreboard and Twitter successful!");
+			// _________________________________________ SOAP
+			try {
+				// Create SOAP Connection
+				SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory
+						.newInstance();
+				SOAPConnection soapConnection = soapConnectionFactory
+						.createConnection();
 
-		            // Send SOAP Message to SOAP Server
-		           
-		            String url = "http://playground.big.tuwien.ac.at:8080/highscore/PublishHighScoreService?wsdl";
-		            SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(game), url);
-		            
+				// Send SOAP Message to SOAP Server
 
-		            // Process the SOAP Response
-		            printSOAPResponse(soapResponse);
+				String url = "http://playground.big.tuwien.ac.at:8080/highscore/PublishHighScoreService?wsdl";
+				SOAPMessage soapResponse = soapConnection.call(
+						createSOAPRequest(game), url);
 
-		            soapConnection.close();
-		        } catch (Exception e) {
-		            System.err.println("Error occurred while sending SOAP Request to Server");
-		            e.printStackTrace();
-		        }
-			 
-			//_________________________________________ SOAP
-			
-			
-			
+				// Process the SOAP Response
+				// printSOAPResponse(soapResponse);
+				// TODO get UID from soapResponse
+
+				QName bodyName = new QName(
+						"http://big.tuwien.ac.at/we/highscore/data",
+						"HighScoreResponse", "d");
+
+				SOAPBody sb = soapResponse.getSOAPBody();
+				java.util.Iterator iterator = sb.getChildElements(bodyName);
+				while (iterator.hasNext()) {
+
+					SOAPBodyElement bodyElement = (SOAPBodyElement) iterator
+							.next();
+					UUID = bodyElement.getValue();
+					Logger.info("UUID: " + UUID); 
+				}
+
+				soapConnection.close();
+				Logger.info("Post to Highscoreboard with UUID: " + UUID + " successful" );
+				// java.netConnectException
+
+			} catch (Exception e) {
+				game.setMessage("Cannot post - connection problem");
+				Logger.info("Post to Highscoreboard with UUID: " + UUID + " failed!!!" );
+			}
+
+			try {
+				if(UUID.equals("")) UUID = "Hightscoreboard problem";
+				TwitterStatusMessage StatusMessage = new TwitterStatusMessage(
+						"Gruppe 6", UUID, Calendar.getInstance().getTime());
+				ITwitterClient TClient = new TwitterClient();
+				TClient.publishUuid(StatusMessage);
+				Logger.info("Post to Twitter with UUID: " + UUID + " successful" );
+
+			} catch (Exception e) {
+				if(game.getMessage().equals(""))
+				game.setMessage("Post on Highscoreboard successful, Twitter connection problem");
+				else game.setMessage("Post to Highscoreboard and Twitter failed!");
+				Logger.error("Post to Twitter with UUID: " + UUID + " failed!!!" );
+			}
+
+			// _________________________________________ SOAP AND TWITTER
 			
 			return ok(quizover.render(game));
 		} else {
 			return badRequest(Messages.get("quiz.no-end-result"));
 		}
 	}
-	
-	 /**
-     * Method used to print the SOAP Response delete after it is not used anymore
-     */
-    private static void printSOAPResponse(SOAPMessage soapResponse) throws Exception {
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer();
-        Source sourceContent = soapResponse.getSOAPPart().getContent();
-       //System.out.println(soapResponse.);
-        
-        // TODO get response..
-        
-       // .getAttribute("xmlns:ns3")
-        
-        System.out.print("\nResponse SOAP Message = ");
-        StreamResult result = new StreamResult(System.out);
-        transformer.transform(sourceContent, result);
-    }
 
 	@play.db.jpa.Transactional(readOnly = true)
 	public static Result newRound() {
@@ -258,92 +279,137 @@ public class Quiz extends Controller {
 	private static Application application() {
 		return Play.application().getWrappedApplication();
 	}
-	
-	
-	//creates SOAPRequest
-	 private static SOAPMessage createSOAPRequest(QuizGame game) throws Exception {
-		 	
-		 
-	        MessageFactory messageFactory = MessageFactory.newInstance();
-	        SOAPMessage soapMessage = messageFactory.createMessage();
-	        SOAPPart soapPart = soapMessage.getSOAPPart();
 
-	        String serverURI = "http://big.tuwien.ac.at/we/highscore/data";
+	// creates SOAPRequest
+	private static SOAPMessage createSOAPRequest(QuizGame game)
+			throws Exception {
 
-	        // SOAP Envelope
-	        SOAPEnvelope envelope = soapPart.getEnvelope();
-	        envelope.addNamespaceDeclaration("data", serverURI);
+		MessageFactory messageFactory = MessageFactory.newInstance();
+		SOAPMessage soapMessage = messageFactory.createMessage();
+		SOAPPart soapPart = soapMessage.getSOAPPart();
 
-	       
-	        
-	        
+		String serverURI = "http://big.tuwien.ac.at/we/highscore/data";
 
-	        // SOAP Body
-	        SOAPBody soapBody = envelope.getBody();
-	        SOAPElement highScoreNode = soapBody.addChildElement("HighScoreRequest", "data");
-	        SOAPElement userKeyNode  = highScoreNode.addChildElement("UserKey", "data");
-	        userKeyNode.setValue("rkf4394dwqp49x");
-	       
-	        SOAPElement quiz = highScoreNode.addChildElement("quiz");
-	        
-	        SOAPElement users = quiz.addChildElement("users");
-	        
-	        SOAPElement user1 = users.addChildElement("user");
-	        
-	        String p1Status;
-	        String p2Status;
-	       if( game.getWinner().equals(game.getPlayers().get(0))){
-	    	   p1Status = "winner";
-	    	   p2Status = "loser";
-	    	   
-	       }
-	       else
-	       {
-	    	   p1Status = "loser";
-	    	   p2Status = "winner";
-	    	   
-	       }
-	        
-	        
-	        user1.setAttribute("name", p1Status);
-	        user1.setAttribute("gender", game.getPlayers().get(0).getGender().toString());
-	        SOAPElement passwd1Element = user1.addChildElement("password"); 
-	        SOAPElement firstname1Element = user1.addChildElement("firstname");
-	        firstname1Element.setValue(game.getPlayers().get(0).getFirstName());
-	        SOAPElement lastname1Element = user1.addChildElement("lastname");
-	        lastname1Element.setValue(game.getPlayers().get(0).getLastName());
-	        SOAPElement birthdate1Element = user1.addChildElement("birthdate");
-	        
-	        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-	        	        
-	        birthdate1Element.setValue(dateFormat.format(game.getPlayers().get(0).getBirthDate()));
-	        
-	        SOAPElement user2 = users.addChildElement("user");
-	        
-	        user2.setAttribute("name", p2Status);
-	        user2.setAttribute("gender", game.getPlayers().get(1).getGender().toString());
-	        SOAPElement passwd2Element = user2.addChildElement("password"); 
-	        SOAPElement firstname2Element = user2.addChildElement("firstname");
-	        firstname2Element.setValue(game.getPlayers().get(1).getFirstName());
-	        SOAPElement lastname2Element = user2.addChildElement("lastname");
-	        lastname2Element.setValue(game.getPlayers().get(1).getLastName());
-	        SOAPElement birthdate2Element = user2.addChildElement("birthdate");
-	        
-	        
-	        birthdate2Element.setValue(dateFormat.format(game.getPlayers().get(1).getBirthDate()));
-	     
-	        soapMessage.saveChanges();
-	        //System.out.println(messa);
-	        
-	        ByteArrayOutputStream out = new ByteArrayOutputStream();
-	        soapMessage.writeTo(out);
-	        String strMsg = new String(out.toByteArray());
-	        System.out.println(strMsg);
-	        
-	    
-	        
-	        return soapMessage;
-	        
-	    }
+		// SOAP Envelope
+		SOAPEnvelope envelope = soapPart.getEnvelope();
+		envelope.addNamespaceDeclaration("data", serverURI);
+
+		// SOAP Body
+		SOAPBody soapBody = envelope.getBody();
+		SOAPElement highScoreNode = soapBody.addChildElement(
+				"HighScoreRequest", "data");
+		SOAPElement userKeyNode = highScoreNode.addChildElement("UserKey",
+				"data");
+		userKeyNode.setValue("rkf4394dwqp49x");
+
+		SOAPElement quiz = highScoreNode.addChildElement("quiz");
+
+		SOAPElement users = quiz.addChildElement("users");
+
+		SOAPElement user1 = users.addChildElement("user");
+
+		String p1Status;
+		String p2Status;
+		if (game.getWinner().equals(game.getPlayers().get(0))) {
+			p1Status = "winner";
+			p2Status = "loser";
+
+		} else {
+			p1Status = "loser";
+			p2Status = "winner";
+
+		}
+
+		List<QuizUser> list = game.getPlayers();
+
+//		for (QuizUser u : list) {
+//			System.out.println(u.getId() + "gender: " + u.getFirstName());
+//
+//		}
+
+		String genderP1;
+		if (game.getPlayers().get(0).getGender() != null)
+			genderP1 = game.getPlayers().get(0).getGender().toString();
+		else
+			genderP1 = "male";
+
+		String firstnameP1;
+		if (game.getPlayers().get(0).getGender() != null)
+			firstnameP1 = game.getPlayers().get(0).getFirstName();
+		else
+			firstnameP1 = "nicht angegeben";
+
+		String lastnameP1;
+		if (game.getPlayers().get(0).getGender() != null)
+			lastnameP1 = game.getPlayers().get(0).getLastName();
+		else
+			lastnameP1 = "nicht angegeben";
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+		String birthDateP1 = "1980-01-01";
+		if (game.getPlayers().get(0).getBirthDate() != null)
+			birthDateP1 = dateFormat.format(game.getPlayers().get(0)
+					.getBirthDate());
+
+		user1.setAttribute("name", p1Status);
+		user1.setAttribute("gender", genderP1);
+		SOAPElement passwd1Element = user1.addChildElement("password");
+		SOAPElement firstname1Element = user1.addChildElement("firstname");
+		firstname1Element.setValue(firstnameP1);
+		SOAPElement lastname1Element = user1.addChildElement("lastname");
+		lastname1Element.setValue(lastnameP1);
+		SOAPElement birthdate1Element = user1.addChildElement("birthdate");
+
+		birthdate1Element.setValue(birthDateP1);
+
+		SOAPElement user2 = users.addChildElement("user");
+
+		String genderP2;
+		if (game.getPlayers().get(1).getGender() != null)
+			genderP2 = game.getPlayers().get(1).getGender().toString();
+		else
+			genderP2 = "male";
+
+		String firstnameP2;
+		if (game.getPlayers().get(1).getGender() != null)
+			firstnameP2 = game.getPlayers().get(1).getFirstName();
+		else
+			firstnameP2 = "nicht angegeben";
+
+		String lastnameP2;
+		if (game.getPlayers().get(1).getGender() != null)
+			lastnameP2 = game.getPlayers().get(1).getLastName();
+		else
+			lastnameP2 = "nicht angegeben";
+
+		String birthDateP2 = "1982-01-01";
+		if (game.getPlayers().get(1).getBirthDate() != null)
+			birthDateP2 = dateFormat.format(game.getPlayers().get(1)
+					.getBirthDate());
+
+		user2.setAttribute("name", p2Status);
+		user2.setAttribute("gender", genderP2);
+		SOAPElement passwd2Element = user2.addChildElement("password");
+		SOAPElement firstname2Element = user2.addChildElement("firstname");
+		firstname2Element.setValue(firstnameP2);
+		SOAPElement lastname2Element = user2.addChildElement("lastname");
+		lastname2Element.setValue(lastnameP2);
+		SOAPElement birthdate2Element = user2.addChildElement("birthdate");
+
+		birthdate2Element.setValue(birthDateP2);
+
+		soapMessage.saveChanges();
+		// System.out.println(messa);
+
+		//message output
+//		ByteArrayOutputStream out = new ByteArrayOutputStream();
+//		soapMessage.writeTo(out);
+//		String strMsg = new String(out.toByteArray());
+//		System.out.println(strMsg);
+
+		return soapMessage;
+
+	}
 
 }
